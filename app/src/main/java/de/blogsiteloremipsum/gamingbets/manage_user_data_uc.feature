@@ -1,4 +1,7 @@
-Feature: Managing User Data
+Feature: manage personal user data
+  As a user
+  I want manage personal user data
+  so that I update my personal data
 
   Scenario: Try to enter the edit tab, but you are not logged in
     Given the App is started

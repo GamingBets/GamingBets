@@ -1,5 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.server;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
@@ -10,17 +11,31 @@ import de.blogsiteloremipsum.gamingbets.classes.User;
  */
 public class Logic implements ServerMethods {
 
+    private ArrayList<User> users;
+
     public Logic() {
+        users = new ArrayList<>();
     }
 
     @Override
     public boolean login(User user) {
-        return false;
+        //TODO overright isequal method in User!
+        if (!users.contains(user)) {
+            users.add(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean logout(User user) {
-        return false;
+        if (users.contains(user)) {
+            users.remove(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

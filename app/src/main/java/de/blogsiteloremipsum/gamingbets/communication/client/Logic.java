@@ -1,16 +1,26 @@
-package de.blogsiteloremipsum.gamingbets.client;
+package de.blogsiteloremipsum.gamingbets.communication.client;
 
 import java.util.Date;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
 /**
  * Created by Felix Morsbach on 13.11.2015.
+ *
+ * @NICK:
+ * hab hier jetzt nur das Interface Implementiert damit du siehst was für Funktionen es gibt.
+ * Das solltest du dann bitte Entfernen sobald du das implementierst.
+ * Wenn du ne Aktion ausführen willst, einfach über die Methoden des Feldes "server" arbeiten
+ *
+ * Auswertung ob die Aktion erfolgreich war gibts es aktuell nur über die bool´schen Rückgabewerte der Funktionen
+ * Soll aber mal als Fehler-String implementiert sein, später!
  */
 public class Logic implements ClientMethods {
 
-    ClientMethods server = new LocalClientSocket();
+
+    ClientMethods server = new LocalClientSocket();     //Hier dran bitte nichts aendern!
 
     public Logic() {
     }
@@ -45,6 +55,11 @@ public class Logic implements ClientMethods {
 
     @Override
     public boolean placeBet(Bet bet) {
+        return false;
+    }
+
+    @Override
+    public boolean sendTicket(Ticket ticket) {
         return false;
     }
 }

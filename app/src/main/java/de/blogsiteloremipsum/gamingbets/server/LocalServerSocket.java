@@ -10,15 +10,13 @@ import java.net.Socket;
 /**
  * Created by Felix Morsbach on 13.11.2015.
  */
-public class LocalServerSocket {
+public class LocalServerSocket implements ServerMethods{
 
-    private int port = 4567;
+    public final static int port = 4567;
     private PrintWriter out;
     private BufferedReader in;
     private boolean exit;
 
-    //Logic
-    private ServerMethods logic = new Logic();
 
     public static void main(String args[]){
 
@@ -46,32 +44,10 @@ public class LocalServerSocket {
     //TODO Threads?
     private void run() {
 
-        while (!exit){
+        while (!exit) {
             //do stuff!
-
-            int aktion = 0;
-
-            switch (aktion){
-                case 0: logic.login(null);
-                    break;
-                case 1: logic.logout(null);
-                    break;
-                case 2: logic.edit(null);
-                    break;
-                case 3: logic.editAdmin(null);
-                    break;
-                case 4: logic.register(null, null, null, null);
-                    break;
-                case 5: logic.placeBet(null);
-                    break;
-                //...
-                default:
-                    //TODO Default fall überlegen
-                    break;
-            }
-
-
         }
+
 
     }
 
@@ -83,11 +59,4 @@ public class LocalServerSocket {
         this.exit = exit;
     }
 
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
 }

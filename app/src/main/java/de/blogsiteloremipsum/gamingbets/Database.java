@@ -14,7 +14,7 @@ import de.blogsiteloremipsum.gamingbets.classes.User;
  */
 public class Database {
 
-    public Connection connect(){
+    public static Connection connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
 
@@ -23,16 +23,7 @@ public class Database {
 
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/" + name + "?user=" + user);
             return con;
-            /*Statement stmt = con.createStatement();
-            String query = "SELECT name FROM address";
-            ResultSet rs = stmt.executeQuery(query);
 
-            while(rs.next()){
-                System.out.println(rs.getString("name"));
-            }
-            rs.close();
-            stmt.close();
-            con.close();*/
         }
         catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -52,14 +43,13 @@ public class Database {
         return null;
     }
 
-    public boolean register(String userName, String password, Date dob, boolean admin){
+    public static boolean register(String userName, String password, Date dob, boolean admin){
 
         Connection con = connect();
         try {
 
-
+            String query = "INSERT INTO `user` (`iD`, `userName`, `password`, `bets`, `loggedIn`, `admin`, `active`, `dob`, `email`) VALUES (NULL, '"+userName+"', '"+password+"', 'nichts', '0', '1', '1', '2015-11-18', 'hey@nichts');";
             Statement stmt = con.createStatement();
-            String query = "INSERT INTO user (userName, password, bets, loggedIn, admin, active, dob) VALUES (" + userName + ", " + password + ", nichts , false , false, true, " + dob + ")";
             boolean succ = stmt.execute(query);
             stmt.close();
             con.close();
@@ -71,7 +61,7 @@ public class Database {
         return false;
     }
 
-    public User getUser(String userName){
+    public static User getUser(String userName){
 
         int id=0;
         String uName = userName;
@@ -84,14 +74,14 @@ public class Database {
         Connection con = connect();
         try{
             Statement stmt = con.createStatement();
-            String query = "SELECT * FROM user WHERE userName="+userName+"";
+            String query = "SELECT * FROM `user` WHERE `userName` = '"+userName+"' ";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()){
                 id = rs.getInt("iD");
                 password = rs.getString("password");
                 bets = rs.getString("bets");
                 admin = rs.getBoolean("admin");
-                active = rs.getBoolean("active1");
+                active = rs.getBoolean("active");
                 email = rs.getString("email");
             }
             return new User(id, uName, email, password, bets, admin, active);

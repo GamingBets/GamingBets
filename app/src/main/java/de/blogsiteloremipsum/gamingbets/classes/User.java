@@ -11,18 +11,18 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    private List<Bet> bets;
+    private String bets;
     private boolean admin;
-    private boolean loggedin;
+    private boolean active;
 
-    public User(int ID, String userName, String email, String password, List<Bet> bets, boolean admin, boolean loggedin) {
+    public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active) {
         this.ID = ID;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.bets = bets;
         this.admin = admin;
-        this.loggedin = loggedin;
+        this.active = active;
     }
 
     public int getID() {
@@ -45,7 +45,7 @@ public class User {
         return password;
     }
 
-    public List<Bet> getBets() {
+    public String getBets() {
         return bets;
     }
 
@@ -54,7 +54,7 @@ public class User {
     }
 
     public boolean isLoggedin() {
-        return loggedin;
+        return active;
     }
 
     public void setUserName(String userName) {
@@ -69,7 +69,7 @@ public class User {
         this.password = password;
     }
 
-    public void setBets(List<Bet> bets) {
+    public void setBets(String bets) {
         this.bets = bets;
     }
 
@@ -78,6 +78,6 @@ public class User {
     }
 
     public void setLoggedin(boolean loggedin) {
-        this.loggedin = loggedin;
+        this.active = loggedin;
     }
 }

@@ -32,7 +32,7 @@ public class Logic implements ClientMethods {
 
     @Override
     public boolean logout(User user) {
-       return server.logout(user);
+        return server.logout(user);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class Logic implements ClientMethods {
         return server.register(username, email, pw, dob);
     }
 
-        // And so on....
-        // @nick, dein kram
+    // And so on....
+    // @nick, dein kram
 
     @Override
     public boolean edit(User user) {
@@ -63,3 +63,5 @@ public class Logic implements ClientMethods {
         return false;
     }
 }
+
+

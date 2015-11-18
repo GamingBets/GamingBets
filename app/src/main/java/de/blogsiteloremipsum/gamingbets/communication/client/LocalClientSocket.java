@@ -47,8 +47,6 @@ public class LocalClientSocket implements ClientMethods{
             out.writeObject(cp);
             response = in.readLine();
 
-
-
             socket.close();
 
         } catch (IOException e) {

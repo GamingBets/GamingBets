@@ -1,11 +1,13 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
+import android.app.Application;
+
 import java.util.List;
 
 /**
  * Created by quint_000 on 12.11.2015.
  */
-public class User {
+public class User extends Application{
 
     private int ID;
     private String userName;
@@ -24,6 +26,8 @@ public class User {
         this.admin = admin;
         this.active = active;
     }
+
+    public User(){}
 
     public int getID() {
         return ID;

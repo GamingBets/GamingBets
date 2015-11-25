@@ -3,6 +3,7 @@ package de.blogsiteloremipsum.gamingbets.activity;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity{
 
         @Override
         protected Boolean doInBackground(User... params) {
+            Log.d("Login Atempt","Attempt started");
             if (login(params[0])){
                 return true;
             }

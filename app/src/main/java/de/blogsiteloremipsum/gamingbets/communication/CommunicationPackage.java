@@ -30,6 +30,7 @@ public class CommunicationPackage implements Serializable{
         this.user = user;
         this.bet = bet;
         this.ticket = ticket;
+        this.unregisteredUser = unregisteredUser;
     }
 
     public static long getSerialVerssionUID() {

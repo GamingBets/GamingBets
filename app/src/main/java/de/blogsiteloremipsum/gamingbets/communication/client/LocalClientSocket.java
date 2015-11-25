@@ -29,7 +29,7 @@ public class LocalClientSocket implements ClientMethods{
     public static void main(String args[]){
 
         LocalClientSocket lc = new LocalClientSocket();
-        System.out.println(lc.login(new User()));
+        System.out.println(lc.register("Test", "test", "test", null));
 
     }
 
@@ -72,7 +72,10 @@ public class LocalClientSocket implements ClientMethods{
 
     @Override
     public boolean register(String username, String email, String pw, Date dob) {
-        return send(new CommunicationPackage(communication_types.REGISTER, null, null, null, new UnregisteredUser(username, email, pw, dob)));
+        UnregisteredUser u = new UnregisteredUser(username, email, pw, dob);
+        CommunicationPackage cp = new CommunicationPackage(communication_types.REGISTER, null, null, null, u);
+
+        return send(cp);
     }
 
     @Override

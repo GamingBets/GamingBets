@@ -5,7 +5,7 @@ import android.app.Application;
 /**
  * Created by Niclas on 24.11.2015.
  */
-public class Globals_bla extends Application{
+public class Globals extends Application{
 
     private User user;
 

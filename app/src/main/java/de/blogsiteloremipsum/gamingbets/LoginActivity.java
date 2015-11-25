@@ -12,7 +12,7 @@ import java.util.Date;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.classes.globals;
+import de.blogsiteloremipsum.gamingbets.classes.Globals_bla;
 import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements ClientMethods {
         //Button b = (Button) findViewById(R.id.LoginButton);
         EditText MailEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
-        globals g = (globals) getApplication();
+        Globals_bla g = (Globals_bla) getApplication();
         User u = g.getUser();
         u.setEmail(MailEdit.getText().toString());
         u.setPassword(PwEdit.getText().toString());
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements ClientMethods {
         protected void onPostExecute(Boolean b){
             TextView Status = (TextView) findViewById(R.id.Status);
             if(b) {
-                globals g = (globals) getApplication();
+                Globals_bla g = (Globals_bla) getApplication();
                 User u = g.getUser();
                 u.setLoggedin(true);
                 Status.setText("Login successful");

@@ -16,7 +16,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
-public class LoginActivity extends AppCompatActivity implements ClientMethods {
+public class LoginActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,39 +70,10 @@ public class LoginActivity extends AppCompatActivity implements ClientMethods {
         }
     }
 
-    @Override
     public boolean login(User user) {
-        ClientMethods client = new LocalClientSocket();
+        Globals g = (Globals) getApplication();
+        LocalClientSocket client = g.getClient();
         return client.login(user);
     }
 
-    @Override
-    public boolean logout(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean register(String username, String email, String pw, Date dob) {
-        return false;
-    }
-
-    @Override
-    public boolean edit(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean editAdmin(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean placeBet(Bet bet) {
-        return false;
-    }
-
-    @Override
-    public boolean sendTicket(Ticket ticket) {
-        return false;
-    }
 }

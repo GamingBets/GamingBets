@@ -19,7 +19,6 @@ public class CommunicationPackage implements Serializable{
 
     private static final long serialVerssionUID = 1L;
 
-
     private communication_types type;
     private User user;
     private Bet bet;

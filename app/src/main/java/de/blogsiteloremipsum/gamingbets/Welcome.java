@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
+import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
 public class Welcome extends AppCompatActivity {
 
@@ -23,6 +25,8 @@ public class Welcome extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Globals g = (Globals)getApplication();
         User u = new User();
+        LocalClientSocket client = new LocalClientSocket();
+        g.setClient(client);
         g.setUser(u);
     }
 

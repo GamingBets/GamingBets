@@ -30,6 +30,7 @@ public class LocalClientSocket implements ClientMethods{
 
     }
 
+
     public boolean send(CommunicationPackage cp){
 
         String response = "";

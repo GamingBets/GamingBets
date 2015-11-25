@@ -2,12 +2,13 @@ package de.blogsiteloremipsum.gamingbets.classes;
 
 import android.app.Application;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by quint_000 on 12.11.2015.
  */
-public class User{
+public class User {
 
     private int ID;
     private String userName;

@@ -34,6 +34,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
+            android:parentActivityName=".Welcome" >
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Register"
             android:parentActivityName=".Welcome">
         </activity>
     </application>

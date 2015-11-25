@@ -11,6 +11,7 @@ import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 public class Globals extends Application{
 
     private User user;
+    private UnregisteredUser unregisteredUser;
     private LocalClientSocket client;
 
     public void setUser (User u){
@@ -20,6 +21,12 @@ public class Globals extends Application{
     public User getUser(){
         return user;
     }
+
+    public void setUnregisteredUser(UnregisteredUser u){
+        unregisteredUser=u;
+    }
+
+    public UnregisteredUser getUnregisteredUser(){return unregisteredUser;}
 
     public void setClient(LocalClientSocket c){
         client=c;

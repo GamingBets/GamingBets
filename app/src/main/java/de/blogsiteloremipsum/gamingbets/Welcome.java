@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
@@ -25,9 +26,11 @@ public class Welcome extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Globals g = (Globals)getApplication();
         User u = new User();
+        UnregisteredUser uu = new UnregisteredUser();
         LocalClientSocket client = new LocalClientSocket();
         g.setClient(client);
         g.setUser(u);
+        g.setUnregisteredUser(uu);
     }
 
     public void buttonOnClick(View v){
@@ -63,6 +66,11 @@ public class Welcome extends AppCompatActivity {
         if (id == R.id.action_Ticket){
             Intent intentTicket = new Intent(getApplicationContext(), TicketActivity.class);
             startActivity(intentTicket);
+            return true;
+        }
+        if (id == R.id.action_Register){
+            Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+            startActivity(intentRegister);
             return true;
         }
 

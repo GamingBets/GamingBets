@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
-import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
 public class Welcome extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Globals g = (Globals)getApplication();
+        globals g = (globals)getApplication();
         User u = new User();
         g.setUser(u);
     }
@@ -30,7 +30,7 @@ public class Welcome extends AppCompatActivity {
         Button b=(Button) v;
         b.setText("Boom!");
         TextView myTextView=(TextView) findViewById(R.id.textView);
-        Globals g  = (Globals)getApplication();
+        globals g  = (globals)getApplication();
         User u = g.getUser();
         u.setUserName("Bob");
         myTextView.setText(g.getUser().getUserName());

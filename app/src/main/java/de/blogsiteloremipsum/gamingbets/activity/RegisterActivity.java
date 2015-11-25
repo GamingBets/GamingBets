@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets;
+package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -29,6 +30,20 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         b = (Button) findViewById(R.id.dob);
 
+    }
+
+    public void showDatePickerDialog(View v){
+        DialogFragment dialog = new DatePickerFragment();
+        FragmentManager fm = getFragmentManager();
+        dialog.show(fm, "datePicker");
+
+    }
+
+    public boolean RegisterAttempt(View v){
+        EditText MailEdit = (EditText) findViewById(R.id.mail);
+        EditText PwEdit = (EditText) findViewById(R.id.password);
+
+        return false;
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -49,19 +64,5 @@ public class RegisterActivity extends AppCompatActivity {
             String txt = String.valueOf(d);
             b.setText(txt);
         }
-    }
-
-    public void showDatePickerDialog(View v){
-        DialogFragment dialog = new DatePickerFragment();
-        FragmentManager fm = getFragmentManager();
-        dialog.show(fm, "datePicker");
-
-    }
-
-    public boolean RegisterAttempt(View v){
-        EditText MailEdit = (EditText) findViewById(R.id.mail);
-        EditText PwEdit = (EditText) findViewById(R.id.password);
-
-        return false;
     }
 }

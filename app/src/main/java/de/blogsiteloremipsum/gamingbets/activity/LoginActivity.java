@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets;
+package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.Date;
 
+import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
@@ -33,6 +34,12 @@ public class LoginActivity extends AppCompatActivity{
         u.setPassword(PwEdit.getText().toString());
         new LoginTask().execute(u);
         return true;
+    }
+
+    public boolean login(User user) {
+        Globals g = (Globals) getApplication();
+        LocalClientSocket client = g.getClient();
+        return client.login(user);
     }
 
     private class LoginTask extends AsyncTask<User, Void, Boolean>{
@@ -67,12 +74,6 @@ public class LoginActivity extends AppCompatActivity{
                 Status.setVisibility(View.VISIBLE);
             }
         }
-    }
-
-    public boolean login(User user) {
-        Globals g = (Globals) getApplication();
-        LocalClientSocket client = g.getClient();
-        return client.login(user);
     }
 
 }

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Welcome">
     <item android:id="@+id/action_SignIn" android:title="Sign in"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_Register" android:title="Register"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_Ticket" android:title="Write a Ticket"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

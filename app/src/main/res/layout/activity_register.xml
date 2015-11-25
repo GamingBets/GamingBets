@@ -6,75 +6,75 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:weightSum="1"
-    tools:context="de.blogsiteloremipsum.gamingbets.activity.RegisterActivity">
+    tools:context="de.blogsiteloremipsum.gamingbets.RegisterActivity"
+    android:weightSum="1">
 
     <ScrollView
-        android:id="@+id/RegisterForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/RegisterForm"
         android:fillViewport="false">
 
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/username"
                 android:hint="Username"/>
 
             <EditText
-                android:id="@+id/mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:ems="10"
-                android:hint="E-Mail"
-                android:inputType="textEmailAddress"/>
+                android:id="@+id/mail"
+                android:hint="E-Mail"/>
 
             <Button
-                android:id="@+id/dob"
                 android:layout_width="match_parent"
                 android:layout_height="37dp"
-                android:onClick="showDatePickerDialog"
-                android:text="Date of birth"/>
+                android:text="Date of birth"
+                android:id="@+id/dob"
+                android:onClick="showDatePickerDialog"/>
 
             <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
                 android:id="@+id/password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"/>
+                android:hint="Password"/>
 
             <EditText
-                android:id="@+id/password2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:ems="10"
-                android:hint="confirm password"
-                android:inputType="textPassword"/>
+                android:id="@+id/password2"
+                android:hint="confirm password"/>
 
             <Button
-                android:id="@+id/RegisterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Register"
+                android:id="@+id/RegisterButton"
                 android:layout_gravity="center_horizontal"
-                android:onClick="LoginAttempt"
-                android:text="Register"/>
+                android:onClick="RegisterAttempt"/>
 
         </LinearLayout>
     </ScrollView>
 
     <TextView
-        android:id="@+id/Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/Status"
+        android:layout_gravity="center_horizontal"
         android:visibility="invisible" />
 
 </LinearLayout>

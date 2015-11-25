@@ -1,16 +1,14 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
-import android.app.Application;
-
 import java.io.Serializable;
-import java.util.List;
+import java.sql.Date;
 
 /**
  * Created by quint_000 on 12.11.2015.
  */
-public class User implements Serializable{
+public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 6529685098267757690L;
 
     private int ID;
     private String userName;
@@ -19,8 +17,9 @@ public class User implements Serializable{
     private String bets;
     private boolean admin;
     private boolean active;
+    private Date dob;
 
-    public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active) {
+    public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
         this.ID = ID;
         this.userName = userName;
         this.email = email;
@@ -28,9 +27,36 @@ public class User implements Serializable{
         this.bets = bets;
         this.admin = admin;
         this.active = active;
+        this.dob = dob;
+    }
+    public User(String userName, String password){
+        this.ID = -1;
+        this.userName = userName;
+        this.email = "";
+        this.password = password;
+        this.bets = "";
+        this.admin = false;
+        this.active = false;
+        this.dob = null;
     }
 
     public User(){}
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
 
     public int getID() {
         return ID;

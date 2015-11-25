@@ -17,7 +17,7 @@ import de.blogsiteloremipsum.gamingbets.communication.communication_types;
  */
 public class CommunicationPackage implements Serializable{
 
-    private static final long serialVerssionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private communication_types type;
     private User user;
@@ -33,7 +33,7 @@ public class CommunicationPackage implements Serializable{
     }
 
     public static long getSerialVerssionUID() {
-        return serialVerssionUID;
+        return serialVersionUID;
     }
 
     public UnregisteredUser getUnregisteredUser() {

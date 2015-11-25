@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     public boolean LoginAttempt(View v) {
+        System.out.println("LoginAttempt!");
         EditText MailEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
         Globals g = (Globals) getApplication();

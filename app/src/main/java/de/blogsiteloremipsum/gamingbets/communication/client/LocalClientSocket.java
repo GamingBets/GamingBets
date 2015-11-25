@@ -21,16 +21,21 @@ import de.blogsiteloremipsum.gamingbets.communication.communication_types;
 public class LocalClientSocket implements ClientMethods{
 
     public final static int port = 4567;
+
     private final static String serverAdress = "134.255.218.20";
+    //private final static String serverAdress = "10.0.2.2";
+    //private final static String serverAdress = "localhost";
 
     public static void main(String args[]){
 
         LocalClientSocket lc = new LocalClientSocket();
-        System.out.println(lc.register("Felix", "felix@cool.de", "1234", null));
+        System.out.println(lc.login(new User()));
 
     }
 
     public boolean send(CommunicationPackage cp){
+
+        System.out.println("send!");
 
         String response = "";
 

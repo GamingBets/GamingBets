@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity{
         EditText PwEdit = (EditText) findViewById(R.id.password);
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        u.setEmail(MailEdit.getText().toString());
+        u.setUserName(MailEdit.getText().toString());
         u.setPassword(PwEdit.getText().toString());
         new LoginTask().execute(u);
         return true;

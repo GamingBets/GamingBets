@@ -35,8 +35,6 @@ public class LocalClientSocket implements ClientMethods{
 
     public boolean send(CommunicationPackage cp){
 
-        System.out.println("send!");
-
         String response = "";
 
         try {

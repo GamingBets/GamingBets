@@ -6,53 +6,53 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.blogsiteloremipsum.gamingbets.LoginActivity"
-    android:weightSum="1">
+    android:weightSum="1"
+    tools:context="de.blogsiteloremipsum.gamingbets.activity.LoginActivity">
 
     <ScrollView
+        android:id="@+id/LoginForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/LoginForm"
         android:fillViewport="false">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
                 android:id="@+id/mail"
-                android:hint="E-Mail"/>
-
-            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:ems="10"
+                android:hint="E-Mail"
+                android:inputType="textEmailAddress"/>
+
+            <EditText
                 android:id="@+id/password"
-                android:hint="Password"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"/>
 
             <Button
+                android:id="@+id/LoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
-                android:id="@+id/LoginButton"
                 android:layout_gravity="center_horizontal"
-                android:onClick="RegisterAttempt"/>
+                android:onClick="RegisterAttempt"
+                android:text="Sign In"/>
 
         </LinearLayout>
     </ScrollView>
 
     <TextView
+        android:id="@+id/Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/Status"
         android:layout_gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="invisible" />
 
 </LinearLayout>

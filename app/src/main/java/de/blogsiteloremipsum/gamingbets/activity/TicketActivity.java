@@ -1,7 +1,9 @@
-package de.blogsiteloremipsum.gamingbets;
+package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import de.blogsiteloremipsum.gamingbets.R;
 
 public class TicketActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets;
+package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
 public class Welcome extends AppCompatActivity {

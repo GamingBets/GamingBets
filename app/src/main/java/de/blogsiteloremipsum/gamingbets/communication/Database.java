@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets;
+package de.blogsiteloremipsum.gamingbets.communication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

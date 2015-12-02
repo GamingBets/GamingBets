@@ -34,13 +34,10 @@ public class Welcome extends AppCompatActivity {
     }
 
     public void buttonOnClick(View v){
-        Button b=(Button) v;
-        b.setText("Boom!");
-        TextView myTextView=(TextView) findViewById(R.id.textView);
-        Globals g  = (Globals)getApplication();
-        User u = g.getUser();
-        u.setUserName("Bob");
-        myTextView.setText(g.getUser().getUserName());
+
+        Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intentLogin);
+
     }
 
     @Override

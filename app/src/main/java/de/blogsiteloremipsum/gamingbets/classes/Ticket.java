@@ -9,20 +9,32 @@ import java.util.List;
 public class Ticket {
 
     private int ID;
-    private User user;
+    private int userID;
     private int status;
     private Date date;
     private List<User> processors;
-    private List<String[]> messages;
+    private String content;
+    private String email;
 
-    public Ticket(int ID, User user, int status, Date date, List<User> processors, List<String[]> messages) {
+    public Ticket(int ID, int userID, int status, Date date, List<User> processors, String content) {
         this.ID = ID;
-        this.user = user;
+        this.userID = userID;
         this.status = status;
         this.date = date;
         this.processors = processors;
-        this.messages = messages;
+        this.content = content;
     }
+
+
+    public String getContent() {
+        return content;
+    }
+
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 
     public int getID() {
         return ID;
@@ -32,9 +44,6 @@ public class Ticket {
         this.ID = ID;
     }
 
-    public User getUser() {
-        return user;
-    }
 
     public int getStatus() {
         return status;
@@ -48,13 +57,6 @@ public class Ticket {
         return processors;
     }
 
-    public List<String[]> getMessages() {
-        return messages;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public void setStatus(int status) {
         this.status = status;
@@ -68,7 +70,5 @@ public class Ticket {
         this.processors = processors;
     }
 
-    public void setMessages(List<String[]> messages) {
-        this.messages = messages;
-    }
+
 }

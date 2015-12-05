@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.TicketActivity"
+            android:name=".activity.TicketGuest"
             android:label="Write a ticket"
             android:parentActivityName=".activity.Welcome" >
         </activity>
@@ -39,7 +39,15 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register"
-            android:parentActivityName=".activity.Welcome">
+            android:parentActivityName=".activity.Welcome" >
+        </activity>
+        <activity android:name=".activity.UserLandingActivity" >
+        </activity>
+        <activity android:name=".activity.GuestLandingActivity" >
+        </activity>
+        <activity android:name=".activity.ManageUserActivity" >
+        </activity>
+        <activity android:name=".activity.LeaderboardActivity" >
         </activity>
     </application>
 

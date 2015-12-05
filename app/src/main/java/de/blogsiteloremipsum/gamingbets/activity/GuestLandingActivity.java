@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import de.blogsiteloremipsum.gamingbets.R;
 
-public class TicketActivity extends AppCompatActivity {
+public class GuestLandingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket);
+        setContentView(R.layout.activity_guest_landing);
     }
 }

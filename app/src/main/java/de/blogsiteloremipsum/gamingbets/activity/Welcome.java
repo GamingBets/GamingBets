@@ -7,8 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
@@ -35,7 +33,7 @@ public class Welcome extends AppCompatActivity {
 
     public void buttonOnClick(View v){
 
-        Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent intentLogin = new Intent(getApplicationContext(), UserLandingActivity.class);
         startActivity(intentLogin);
 
     }
@@ -61,7 +59,7 @@ public class Welcome extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_Ticket){
-            Intent intentTicket = new Intent(getApplicationContext(), TicketActivity.class);
+            Intent intentTicket = new Intent(getApplicationContext(), TicketGuest.class);
             startActivity(intentTicket);
             return true;
         }

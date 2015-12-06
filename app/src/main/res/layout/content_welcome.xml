@@ -9,17 +9,37 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_welcome" tools:context=".Welcome">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
+    <TextView android:text="Hello! What would you like to do?" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login?"
-        android:id="@+id/button"
-        android:onClick="buttonOnClick"
+        android:text="Login"
+        android:id="@+id/LoginButton"
+        android:onClick="LoginButtonOnClick"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login as a guest"
+        android:id="@+id/GuestButton"
+        android:layout_alignTop="@+id/LoginButton"
+        android:layout_toLeftOf="@+id/LoginButton"
+        android:layout_toStartOf="@+id/LoginButton"
+        android:onClick="GuestButtonOnClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/RegisterButton"
+        android:layout_alignTop="@+id/LoginButton"
+        android:layout_toRightOf="@+id/LoginButton"
+        android:layout_toEndOf="@+id/LoginButton"
+        android:onClick="RegisterButtonOnClick" />
 
 </RelativeLayout>

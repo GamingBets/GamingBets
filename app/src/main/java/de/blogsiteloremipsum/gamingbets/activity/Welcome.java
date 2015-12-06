@@ -31,11 +31,19 @@ public class Welcome extends AppCompatActivity {
         g.setUnregisteredUser(uu);
     }
 
-    public void buttonOnClick(View v){
-
-        Intent intentLogin = new Intent(getApplicationContext(), UserLandingActivity.class);
+    public void LoginButtonOnClick(View v){
+        Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intentLogin);
+    }
 
+    public void RegisterButtonOnClick(View v){
+        Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(intentRegister);
+    }
+
+    public void GuestButtonOnClick(View v){
+        Intent intentGuest = new Intent(getApplicationContext(), GuestLandingActivity.class);
+        startActivity(intentGuest);
     }
 
     @Override

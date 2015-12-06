@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import de.blogsiteloremipsum.gamingbets.R;
 
-public class EditUserActivity extends AppCompatActivity {
+public class TicketGuestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user);
+        setContentView(R.layout.activity_ticket_guest);
     }
 }

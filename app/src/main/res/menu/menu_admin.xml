@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Welcome">
+    <item android:id="@+id/action_Ticket" android:title="Write a ticket"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_TicketAnswer" android:title="Answer a ticket"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_Leaderboard" android:title="Leaderboard"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_UserEdit" android:title="Edit your data"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_ManageUser" android:title="Manage user data"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>

@@ -5,6 +5,8 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_Register" android:title="Register"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_Ticket" android:title="Write a Ticket"
+    <item android:id="@+id/action_Ticket" android:title="Write a ticket"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_Leaderboard" android:title="Leaderboard"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

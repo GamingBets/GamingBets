@@ -49,6 +49,13 @@
             android:ems="10"
             android:id="@+id/NewPWEditConfirm"
             android:hint="confirm new password"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm changes"
+            android:id="@+id/confirmButton"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 </RelativeLayout>

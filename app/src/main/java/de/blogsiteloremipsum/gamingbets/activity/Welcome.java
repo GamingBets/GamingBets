@@ -41,7 +41,7 @@ public class Welcome extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
+        getMenuInflater().inflate(R.menu.menu_guest, menu);
         return true;
     }
 
@@ -59,7 +59,7 @@ public class Welcome extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_Ticket){
-            Intent intentTicket = new Intent(getApplicationContext(), TicketGuest.class);
+            Intent intentTicket = new Intent(getApplicationContext(), TicketGuestActivity.class);
             startActivity(intentTicket);
             return true;
         }

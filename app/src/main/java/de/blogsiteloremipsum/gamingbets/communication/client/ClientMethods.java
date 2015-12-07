@@ -1,5 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.communication.client;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
@@ -24,4 +25,12 @@ public interface ClientMethods {
     boolean placeBet(Bet bet);
 
     boolean sendTicket(Ticket ticket);
+
+    ArrayList<User> getUsers();
+
+    User getUser(String userName);
+
+    ArrayList<Ticket> getTickets();
+
+    ArrayList<User> getLeaderboard();
 }

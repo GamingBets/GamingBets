@@ -1,6 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.communication;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -17,24 +18,51 @@ import de.blogsiteloremipsum.gamingbets.communication.communication_types;
  */
 public class CommunicationPackage implements Serializable{
 
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
+
+
+
+
 
     private communication_types type;
     private User user;
     private Bet bet;
     private Ticket ticket;
     private UnregisteredUser unregisteredUser;
+    private ArrayList<User> allUser;
+    private ArrayList<Ticket> allTickets;
 
-    public CommunicationPackage(communication_types type, User user, Bet bet, Ticket ticket, UnregisteredUser unregisteredUser) {
+    public CommunicationPackage(communication_types type, User user, Bet bet, Ticket ticket, UnregisteredUser unregisteredUser, ArrayList<User> allUUser) {
         this.type = type;
         this.user = user;
         this.bet = bet;
         this.ticket = ticket;
         this.unregisteredUser = unregisteredUser;
+        this.allUser = allUser;
+    }
+
+
+    public ArrayList<Ticket> getAllTickets() {
+        return allTickets;
+    }
+
+
+    public void setAllTickets(ArrayList<Ticket> allTickets) {
+        this.allTickets = allTickets;
+    }
+    public ArrayList<User> getAllUser() {
+        return allUser;
+    }
+
+    public void setAllUser(ArrayList<User> allUser) {
+        this.allUser = allUser;
     }
 
     public static long getSerialVerssionUID() {
-        return serialVersionUID;
+        return getSerialVerssionUID();
     }
 
     public UnregisteredUser getUnregisteredUser() {

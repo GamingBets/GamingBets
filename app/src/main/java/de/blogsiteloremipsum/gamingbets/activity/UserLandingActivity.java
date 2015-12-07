@@ -62,7 +62,15 @@ public class UserLandingActivity extends AppCompatActivity {
             startActivity(intentEditUser);
             return true;
         }
-
+        /*
+        if (id == R.id.achtion_SignIn){
+            Globals g = (Globals) getApplication();
+            g.setUser(null);
+            Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intentLogin);
+            return true;
+        }
+*/
         return super.onOptionsItemSelected(item);
     }
 }

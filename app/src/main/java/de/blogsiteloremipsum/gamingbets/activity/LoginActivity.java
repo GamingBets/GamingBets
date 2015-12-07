@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity{
         @Override
         protected Boolean doInBackground(User... params) {
             Log.d("Login Atempt","Attempt started");
-            if (true/*login(params[0])*/){
+            if (login(params[0])){
                 return true;
             }
             else{

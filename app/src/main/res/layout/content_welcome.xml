@@ -19,27 +19,33 @@
         android:text="Login"
         android:id="@+id/LoginButton"
         android:onClick="LoginButtonOnClick"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login as a guest"
-        android:id="@+id/GuestButton"
-        android:layout_alignTop="@+id/LoginButton"
-        android:layout_toLeftOf="@+id/LoginButton"
-        android:layout_toStartOf="@+id/LoginButton"
-        android:onClick="GuestButtonOnClick" />
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="101dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/RegisterButton"
-        android:layout_alignTop="@+id/LoginButton"
-        android:layout_toRightOf="@+id/LoginButton"
-        android:layout_toEndOf="@+id/LoginButton"
-        android:onClick="RegisterButtonOnClick" />
+        android:onClick="RegisterButtonOnClick"
+        android:layout_below="@+id/unregLogin"
+        android:layout_alignLeft="@+id/unregLogin"
+        android:layout_alignStart="@+id/unregLogin"
+        android:layout_marginTop="79dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/unregLogin"
+        android:layout_below="@+id/LoginButton"
+        android:layout_alignLeft="@+id/LoginButton"
+        android:layout_alignStart="@+id/LoginButton"
+        android:layout_alignRight="@+id/LoginButton"
+        android:layout_alignEnd="@+id/LoginButton"
+        android:text="not now?"
+        android:onClick="GuestButtonOnClick"
+        android:editable="false"
+        android:textIsSelectable="false" />
 
 </RelativeLayout>

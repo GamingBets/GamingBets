@@ -18,7 +18,7 @@
         android:weightSum="1">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/message"
             android:layout_width="334dp"
             android:layout_height="127dp"
             android:hint="What's your problem?"/>
@@ -37,7 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="send" />
+            android:text="send"
+            android:onClick="sendTicket" />
     </TableRow>
 
 </RelativeLayout>

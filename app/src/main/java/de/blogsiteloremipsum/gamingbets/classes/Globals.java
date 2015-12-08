@@ -1,6 +1,8 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
+import android.app.Activity;
 import android.app.Application;
+import android.view.inputmethod.InputMethodManager;
 
 import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
@@ -34,5 +36,10 @@ public class Globals extends Application{
 
     public LocalClientSocket getClient(){
         return client;
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

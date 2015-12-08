@@ -18,6 +18,7 @@ public class User implements Serializable {
     private boolean admin;
     private boolean active;
     private Date dob;
+    private int score;
 
     public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
         this.ID = ID;
@@ -49,6 +50,14 @@ public class User implements Serializable {
         admin = false;
         active = false;
         dob = null;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public boolean isActive() {

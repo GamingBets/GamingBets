@@ -1,5 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
 public class ManageUserActivity extends AppCompatActivity {
 
+    public ArrayList<User> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,33 +29,37 @@ public class ManageUserActivity extends AppCompatActivity {
 
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        ArrayList<User> scores = null;
+        users = null;
         try {
-            scores = new ManageUserTask().execute(u).get();
+            users = new ManageUserTask().execute(u).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        String[] leaderBoardArray = new String [scores.size()];
+        String[] userArray = new String [users.size()];
 
-        for (int i=0;i< scores.size();i++){
-            leaderBoardArray[i] = scores.get(i).getUserName();
+        for (int i=0;i< users.size();i++){
+            userArray[i] = users.get(i).getUserName();
         }
 
-        ListAdapter leaderboardAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                leaderBoardArray);
+        ListAdapter userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                userArray);
 
-        ListView leaderboardView = (ListView) findViewById(R.id.listView);
-        leaderboardView.setAdapter(leaderboardAdapter);
+        ListView leaderboardView = (ListView) findViewById(R.id.listView1);
+        leaderboardView.setAdapter(userAdapter);
 
         leaderboardView.setOnItemClickListener(new
             AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                     String tvShowPicked = "You selected" + String.valueOf(adapterView.getItemAtPosition(position));
+                    String tvShowPicked = "You selected" + String.valueOf(adapterView.getItemAtPosition(position));
 
-                     Toast.makeText(ManageUserActivity.this, tvShowPicked, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManageUserActivity.this, tvShowPicked, Toast.LENGTH_SHORT).show();
+                    Globals g = (Globals) getApplication();
+                    g.setUsereditName(users.get(position).getUserName());
+                    Intent i = new Intent(getApplicationContext(), EditUserActivity.class);
+                    startActivity(i);
                 }
             });
 

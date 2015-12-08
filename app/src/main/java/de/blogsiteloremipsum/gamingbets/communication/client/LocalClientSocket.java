@@ -65,10 +65,6 @@ public class LocalClientSocket implements ClientMethods{
     public CommunicationPackage sendObject(CommunicationPackage cp){
 
         try {
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-
             Socket socket = new Socket(serverAdress, port);
 
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -146,6 +142,8 @@ public class LocalClientSocket implements ClientMethods{
     @Override
     public ArrayList<User> getLeaderboard() {
         CommunicationPackage cp = sendObject(new CommunicationPackage(communication_types.SENDLEADERBOARD, null, null, null, null, null));
+
         return cp.getAllUser();
+
     }
 }

@@ -25,6 +25,21 @@ public class Ticket {
         this.content = content;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getContent() {
         return content;
@@ -34,16 +49,6 @@ public class Ticket {
     public void setContent(String content) {
         this.content = content;
     }
-
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
 
     public int getStatus() {
         return status;

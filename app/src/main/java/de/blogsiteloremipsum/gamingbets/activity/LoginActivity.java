@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity{
         LocalClientSocket client = g.getClient();
         return client.login(user);
     }
-
+    //Eingabe, Abfrage while, Abfrage After
     private class LoginTask extends AsyncTask<User, Void, Boolean>{
 
         @Override
@@ -53,8 +53,10 @@ public class LoginActivity extends AppCompatActivity{
 
         @Override
         protected Boolean doInBackground(User... params) {
+
+            //For debugging
             Log.d("Login Atempt","Attempt started");
-            if (true/*login(params[0])*/){
+            if (login(params[0])){
                 return true;
             }
             else{

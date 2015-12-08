@@ -7,4 +7,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_UserEdit" android:title="Edit your data"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_SignIn" android:title="Logout"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

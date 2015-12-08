@@ -19,7 +19,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
 import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,12 @@ public class LoginActivity extends AppCompatActivity{
         LocalClientSocket client = g.getClient();
         return client.login(user);
     }
+
     //Eingabe, Abfrage while, Abfrage After
-    private class LoginTask extends AsyncTask<User, Void, Boolean>{
+    private class LoginTask extends AsyncTask<User, Void, Boolean> {
 
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
 
         }
 
@@ -55,28 +56,28 @@ public class LoginActivity extends AppCompatActivity{
         protected Boolean doInBackground(User... params) {
 
             //For debugging
-            Log.d("Login Atempt","Attempt started");
-            if (login(params[0])){
+            Log.d("Login Atempt", "Attempt started");
+            if (login(params[0])) {
+                Globals g = (Globals) getApplication();
+                User u = g.getUser();
+                g.setUser(g.getClient().getUser(u.getUserName()));
+                u.setLoggedin(true);
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
         }
 
         @Override
-        protected void onPostExecute(Boolean b){
+        protected void onPostExecute(Boolean b) {
             TextView Status = (TextView) findViewById(R.id.Status);
-            if(b) {
-                Globals g = (Globals) getApplication();
-                User u = g.getUser();
-                u.setLoggedin(true);
+            if (b) {
+
                 Status.setText("Login successful");
                 Status.setVisibility(View.VISIBLE);
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
-            }
-            else{
+            } else {
                 Status.setText("Login unsuccessful");
                 Status.setVisibility(View.VISIBLE);
             }

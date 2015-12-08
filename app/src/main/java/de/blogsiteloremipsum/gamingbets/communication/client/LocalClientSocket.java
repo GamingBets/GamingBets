@@ -129,7 +129,7 @@ public class LocalClientSocket implements ClientMethods{
 
     @Override
     public User getUser(String userName) {
-            CommunicationPackage cp = sendObject(new CommunicationPackage(communication_types.LOGIN, new User(userName, ""), null, null, null, null));
+            CommunicationPackage cp = sendObject(new CommunicationPackage(communication_types.SENDUSER, new User(userName, ""), null, null, null, null));
             return cp.getUser();
     }
 

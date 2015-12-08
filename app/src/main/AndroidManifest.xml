@@ -48,26 +48,28 @@
         </activity>
         <activity
             android:name=".activity.UserLandingActivity"
-            android:label="Welcome">
+            android:label="Welcome" >
         </activity>
         <activity
             android:name=".activity.GuestLandingActivity"
-            android:label="Welcome">
+            android:label="Welcome" >
         </activity>
         <activity
             android:name=".activity.ManageUserActivity"
             android:label="User Management"
-            android:parentActivityName=".activity.UserLandingActivity">
+            android:parentActivityName=".activity.UserLandingActivity" >
         </activity>
         <activity
             android:name=".activity.LeaderboardActivity"
             android:label="Leaderboard"
-            android:parentActivityName=".activity.UserLandingActivity">
+            android:parentActivityName=".activity.UserLandingActivity" >
         </activity>
         <activity
             android:name=".activity.EditUserActivity"
             android:label="Edit your data"
-            android:parentActivityName=".activity.UserLandingActivity">
+            android:parentActivityName=".activity.UserLandingActivity" >
+        </activity>
+        <activity android:name=".activity.PlacebetActivity" >
         </activity>
     </application>
 

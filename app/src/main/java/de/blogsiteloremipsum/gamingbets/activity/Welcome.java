@@ -42,7 +42,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     public void GuestButtonOnClick(View v){
-        Intent intentGuest = new Intent(getApplicationContext(), GuestLandingActivity.class);
+        Intent intentGuest = new Intent(getApplicationContext(), PlacebetActivity.class);
         startActivity(intentGuest);
     }
 

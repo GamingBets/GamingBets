@@ -1,6 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Welcome">
+    <item android:id="@+id/action_PlaceBet" android:title="Place a bet"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_Ticket" android:title="Write a ticket"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_Leaderboard" android:title="Leaderboard"

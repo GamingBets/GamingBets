@@ -45,6 +45,11 @@ public class UserLandingActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_PlaceBet){
+            Intent intentPlaceBet = new Intent(getApplicationContext(), PlacebetActivity.class);
+            startActivity(intentPlaceBet);
+            return true;
+        }
         if (id == R.id.action_Ticket){
             Intent intentTicket = new Intent(getApplicationContext(), TicketUserActivity.class);
             startActivity(intentTicket);

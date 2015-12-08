@@ -1,5 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,12 +27,12 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
     }
 
-    public boolean LoginAttempt(View v) {
-        EditText MailEdit = (EditText) findViewById(R.id.mail);
+    public boolean LoginAttemptOnClick(View v) {
+        EditText UsernameEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        u.setUserName(MailEdit.getText().toString());
+        u.setUserName(UsernameEdit.getText().toString());
         u.setPassword(PwEdit.getText().toString());
         new LoginTask().execute(u);
         return true;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity{
         LocalClientSocket client = g.getClient();
         return client.login(user);
     }
-
+    //Eingabe, Abfrage while, Abfrage After
     private class LoginTask extends AsyncTask<User, Void, Boolean>{
 
         @Override
@@ -52,6 +53,8 @@ public class LoginActivity extends AppCompatActivity{
 
         @Override
         protected Boolean doInBackground(User... params) {
+
+            //For debugging
             Log.d("Login Atempt","Attempt started");
             if (login(params[0])){
                 return true;
@@ -70,6 +73,8 @@ public class LoginActivity extends AppCompatActivity{
                 u.setLoggedin(true);
                 Status.setText("Login successful");
                 Status.setVisibility(View.VISIBLE);
+                Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
+                startActivity(intentUser);
             }
             else{
                 Status.setText("Login unsuccessful");

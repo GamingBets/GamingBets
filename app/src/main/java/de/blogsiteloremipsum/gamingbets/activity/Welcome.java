@@ -7,8 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
@@ -33,20 +31,25 @@ public class Welcome extends AppCompatActivity {
         g.setUnregisteredUser(uu);
     }
 
-    public void buttonOnClick(View v){
-        Button b=(Button) v;
-        b.setText("Boom!");
-        TextView myTextView=(TextView) findViewById(R.id.textView);
-        Globals g  = (Globals)getApplication();
-        User u = g.getUser();
-        u.setUserName("Bob");
-        myTextView.setText(g.getUser().getUserName());
+    public void LoginButtonOnClick(View v){
+        Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intentLogin);
+    }
+
+    public void RegisterButtonOnClick(View v){
+        Intent intentRegister = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(intentRegister);
+    }
+
+    public void GuestButtonOnClick(View v){
+        Intent intentGuest = new Intent(getApplicationContext(), GuestLandingActivity.class);
+        startActivity(intentGuest);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
+        getMenuInflater().inflate(R.menu.menu_guest, menu);
         return true;
     }
 
@@ -64,7 +67,7 @@ public class Welcome extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_Ticket){
-            Intent intentTicket = new Intent(getApplicationContext(), TicketActivity.class);
+            Intent intentTicket = new Intent(getApplicationContext(), TicketGuestActivity.class);
             startActivity(intentTicket);
             return true;
         }

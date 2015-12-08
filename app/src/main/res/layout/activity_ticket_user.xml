@@ -5,7 +5,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="de.blogsiteloremipsum.gamingbets.activity.TicketActivity">
+    tools:context="de.blogsiteloremipsum.gamingbets.activity.TicketGuestActivity">
 
     <TableRow
         android:id="@+id/tableRow"
@@ -26,33 +26,11 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="match_parent"
-        android:layout_height="144dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="bottom">
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:hint="E-Mail"
-            android:inputType="textEmailAddress" />
-
-    </TableRow>
-
-    <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/tableRow2">
+        android:layout_centerVertical="true">
 
         <Button
             android:id="@+id/button2"

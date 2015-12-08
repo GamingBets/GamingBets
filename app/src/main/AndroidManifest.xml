@@ -27,19 +27,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.TicketActivity"
+            android:name=".activity.TicketGuestActivity"
             android:label="Write a ticket"
-            android:parentActivityName=".activity.Welcome" >
+            android:parentActivityName=".activity.GuestLandingActivity" >
+        </activity>
+        <activity
+            android:name=".activity.TicketUserActivity"
+            android:label="Write a ticket"
+            android:parentActivityName=".activity.UserLandingActivity" >
         </activity>
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".activity.Welcome" >
+            android:parentActivityName=".activity.GuestLandingActivity" >
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register"
-            android:parentActivityName=".activity.Welcome">
+            android:parentActivityName=".activity.GuestLandingActivity" >
+        </activity>
+        <activity
+            android:name=".activity.UserLandingActivity"
+            android:label="Welcome" >
+        </activity>
+        <activity
+            android:name=".activity.GuestLandingActivity"
+            android:label="Welcome" >
+        </activity>
+        <activity
+            android:name=".activity.ManageUserActivity"
+            android:label="User Management"
+            android:parentActivityName=".activity.UserLandingActivity" >
+        </activity>
+        <activity
+            android:name=".activity.LeaderboardActivity"
+            android:label="Leaderboard"
+            android:parentActivityName=".activity.UserLandingActivity" >
+        </activity>
+        <activity
+            android:name=".activity.EditUserActivity"
+            android:label="Edit your data"
+            android:parentActivityName=".activity.UserLandingActivity" >
+        </activity>
+        <activity android:name=".activity.PlacebetActivity" >
         </activity>
     </application>
 

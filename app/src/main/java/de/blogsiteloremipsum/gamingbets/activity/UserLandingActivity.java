@@ -68,7 +68,7 @@ public class UserLandingActivity extends AppCompatActivity {
         if (id == R.id.action_SignIn){
             Globals g = (Globals) getApplication();
             g.setUser(null);
-            Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
+            Intent intentLogin = new Intent(getApplicationContext(), Welcome.class);
             startActivity(intentLogin);
             return true;
         }

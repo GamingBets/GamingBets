@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -30,7 +33,8 @@ public class TicketGuestActivity extends AppCompatActivity {
         EditText edittextMail = (EditText) findViewById(R.id.mail);
         String mail = edittextMail.getText().toString();
 
-        Ticket ticket = new Ticket(message, mail);
+        Date date = new Date(Calendar.getInstance().getTimeInMillis());
+        Ticket ticket = new Ticket(message, mail, date);
 
         new SendTicket().execute(ticket);
 

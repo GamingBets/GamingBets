@@ -1,13 +1,15 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
  * Created by quint_000 on 12.11.2015.
  */
 public class Ticket implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private int ID;
     private int userID;
@@ -27,9 +29,11 @@ public class Ticket implements Serializable{
         this.email = email;
     }
 
-    public Ticket(String content, String email) {
+    public Ticket(String content, String email, Date date) {
         this.content = content;
         this.email = email;
+        this.ID = 0;
+        this.date = date;
     }
 
     public int getID() {

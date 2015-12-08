@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
     }
 
-    public boolean LoginAttempt(View v) {
+    public boolean LoginAttemptOnClick(View v) {
         EditText UsernameEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
         Globals g = (Globals) getApplication();

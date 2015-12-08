@@ -40,7 +40,16 @@ public class User implements Serializable {
         this.dob = null;
     }
 
-    public User(){}
+    public User(){
+        ID = -1;
+        userName = "";
+        email = "";
+        password = "";
+        bets = "";
+        admin = false;
+        active = false;
+        dob = null;
+    }
 
     public boolean isActive() {
         return active;

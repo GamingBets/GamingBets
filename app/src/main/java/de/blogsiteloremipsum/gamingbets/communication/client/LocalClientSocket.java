@@ -122,7 +122,7 @@ public class LocalClientSocket implements ClientMethods{
 
     @Override
     public boolean sendTicket(Ticket ticket) {
-        return send(new CommunicationPackage(communication_types.EDIT, null, null, ticket, null, null));
+        return send(new CommunicationPackage(communication_types.POSTTICKET, null, null, ticket, null, null));
     }
 
     @Override

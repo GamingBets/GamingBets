@@ -61,6 +61,8 @@ public class UserLandingActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_UserEdit){
+            Globals g = (Globals) getApplication();
+            g.setUsereditName(g.getUser().getUserName());
             Intent intentEditUser = new Intent(getApplicationContext(), EditUserActivity.class);
             startActivity(intentEditUser);
             return true;

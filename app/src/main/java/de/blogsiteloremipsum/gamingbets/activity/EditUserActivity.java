@@ -36,7 +36,13 @@ public class EditUserActivity extends AppCompatActivity {
 
         //Get User
         Globals g = (Globals) getApplication();
-        User u = g.getUser();
+        User u;
+        if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())){
+            u = g.getUser();
+        }else {
+            u = g.getClient().getUser(g.getUsereditName());
+        }
+
 
         //Set email and Name
         userEdit.setText(u.getUserName());
@@ -106,6 +112,8 @@ public class EditUserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean b) {
             TextView Status = (TextView) findViewById(R.id.Status);
+            Globals g = (Globals) getApplication();
+            g.setUsereditName(g.getUser().getUserName());
             if (b) {
 
                 Status.setText(op + " successful");

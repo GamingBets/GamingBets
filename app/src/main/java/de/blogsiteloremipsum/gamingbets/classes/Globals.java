@@ -16,6 +16,16 @@ public class Globals extends Application{
     private UnregisteredUser unregisteredUser;
     private LocalClientSocket client;
 
+    private String usereditName = "";
+
+    public String getUsereditName() {
+        return usereditName;
+    }
+
+    public void setUsereditName(String usereditName) {
+        this.usereditName = usereditName;
+    }
+
     public void setUser (User u){
         user=u;
     }

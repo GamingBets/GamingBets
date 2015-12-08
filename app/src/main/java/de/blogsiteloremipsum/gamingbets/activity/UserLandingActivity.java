@@ -17,7 +17,9 @@ public class UserLandingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_landing);
         Globals g = (Globals) getApplication();
-        g.getUser().setUserName("Bob");
+        if (g.getUser().getUserName()==null || g.getUser().getUserName().equalsIgnoreCase("")) {
+            g.getUser().setUserName("User");
+        }
         String username = g.getUser().getUserName();
         TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
         WelcomeMessage.setText("Hello "+username+"! What would you like to do?");

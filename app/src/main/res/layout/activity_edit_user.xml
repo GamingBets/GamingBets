@@ -15,7 +15,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/UserEdit" />
+            android:id="@+id/UserEdit"
+            android:hint="Username" />
 
         <EditText
             android:layout_width="match_parent"
@@ -24,7 +25,8 @@
             android:ems="10"
             android:id="@+id/MailEdit"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:hint="E-Mail" />
 
         <EditText
             android:layout_width="match_parent"

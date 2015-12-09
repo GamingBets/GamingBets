@@ -77,7 +77,7 @@ public class ManageUserActivity extends AppCompatActivity {
         protected ArrayList<User> doInBackground(User... params) {
 
             //For debugging
-            return new LocalClientSocket().getUsers();
+            return new LocalClientSocket().getLeaderboard();
 
 
 

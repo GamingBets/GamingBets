@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,6 +97,8 @@ public class RegisterActivity extends AppCompatActivity {
             if (b){
                 Status.setText("Registration successful");
                 Status.setVisibility(View.VISIBLE);
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
             }
             else{
                 Status.setText("Registration unsuccessful");

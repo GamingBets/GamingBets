@@ -58,7 +58,7 @@ public class TicketUserActivity extends AppCompatActivity {
             if (b) {
                 Status.setText("Ticket successfully send!");
                 Status.setVisibility(View.VISIBLE);
-                Intent intentUser = new Intent(getApplicationContext(), GuestLandingActivity.class);
+                Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             } else {
                 Status.setText("Internal Error");

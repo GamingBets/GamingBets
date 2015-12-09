@@ -26,6 +26,8 @@ public interface ClientMethods {
 
     boolean sendTicket(Ticket ticket);
 
+    boolean setStatus(Ticket ticket);
+
     ArrayList<User> getUsers();
 
     User getUser(String userName);
@@ -33,4 +35,6 @@ public interface ClientMethods {
     ArrayList<Ticket> getTickets();
 
     ArrayList<User> getLeaderboard();
+
+
 }

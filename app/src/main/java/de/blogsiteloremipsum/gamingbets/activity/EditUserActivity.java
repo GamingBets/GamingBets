@@ -38,7 +38,9 @@ public class EditUserActivity extends AppCompatActivity {
 
         //Get User
         Globals g = (Globals) getApplication();
+
         User u;
+
         try {
 
             if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())) {

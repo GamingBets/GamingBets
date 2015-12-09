@@ -57,7 +57,7 @@
         <activity
             android:name=".activity.ManageUserActivity"
             android:label="User Management"
-            android:parentActivityName=".activity.UserLandingActivity" >
+            android:parentActivityName=".activity.LeaderboardActivity" >
         </activity>
         <activity
             android:name=".activity.LeaderboardActivity"

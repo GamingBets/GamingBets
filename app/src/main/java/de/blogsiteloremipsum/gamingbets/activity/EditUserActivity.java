@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.concurrent.ExecutionException;
+
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
@@ -37,19 +39,29 @@ public class EditUserActivity extends AppCompatActivity {
         //Get User
         Globals g = (Globals) getApplication();
         User u;
-        if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())){
-            u = g.getUser();
-        }else {
-            u = g.getClient().getUser(g.getUsereditName());
+        try {
+
+            if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())) {
+                u = g.getUser();
+            } else {
+                GetUser gu = new GetUser();
+                u = gu.execute(g.getUsereditName()).get();
+            }
+
+
+            //Set email and Name
+            userEdit.setText(u.getUserName());
+            mailEdit.setText(u.getEmail());
+
+            //TODO Handle Exception properly
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
-
-
-        //Set email and Name
-        userEdit.setText(u.getUserName());
-        mailEdit.setText(u.getEmail());
-
-
     }
+
 
     public void submitPW(View view) {
 
@@ -127,6 +139,16 @@ public class EditUserActivity extends AppCompatActivity {
         }
 
 
+    }
+
+
+    private class GetUser extends AsyncTask<String, Void, User>{
+
+        @Override
+        protected User doInBackground(String... params) {
+            Globals g = (Globals) getApplication();
+            return g.getClient().getUser(params[0]);
+        }
     }
 
 

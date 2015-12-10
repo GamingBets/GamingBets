@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -56,8 +57,7 @@ public class TicketUserActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b) {
             TextView Status = (TextView) findViewById(R.id.Status);
             if (b) {
-                Status.setText("Ticket successfully send!");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(TicketUserActivity.this, "Ticket sent", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             } else {

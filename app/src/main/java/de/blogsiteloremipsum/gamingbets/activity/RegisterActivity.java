@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
@@ -95,8 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b){
             TextView Status = (TextView) findViewById(R.id.Status);
             if (b){
-                Status.setText("Registration successful");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             }

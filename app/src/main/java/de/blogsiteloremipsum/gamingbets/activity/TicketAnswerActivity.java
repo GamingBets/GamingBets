@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.sql.Date;
@@ -84,6 +85,11 @@ public class TicketAnswerActivity extends AppCompatActivity {
         protected Boolean doInBackground(Ticket... params) {
             Globals g = (Globals) getApplication();
             return g.getClient().setStatus(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            Toast.makeText(TicketAnswerActivity.this, "Ticket answered", Toast.LENGTH_SHORT).show();
         }
     }
 }

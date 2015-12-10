@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void showDatePickerDialog(View v){
+        Globals.hideSoftKeyboard(this);
         DialogFragment dialog = new DatePickerFragment();
         FragmentManager fm = getFragmentManager();
         dialog.show(fm, "datePicker");

@@ -1,8 +1,8 @@
-Feature: aaa
+Feature: Login
 
   Scenario Outline: LogIn
     Given I wait for the "Welcome" screen to appear
-    When I press "button"
+    When I press "LoginButton"
     And I enter "<User>" into input field number 1
     And I press the enter button
     And I enter "<Password>" into input field number 2
@@ -18,7 +18,7 @@ Feature: aaa
 
   Scenario Outline: LogIn Failed
     Given I wait for the "Welcome" screen to appear
-    When I press "button"
+    When I press "LoginButton"
     And I enter "<User>" into input field number 1
     And I press the enter button
     And I enter "<Password>" into input field number 2

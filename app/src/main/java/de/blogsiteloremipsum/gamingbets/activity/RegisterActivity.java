@@ -57,6 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
         EditText PwEdit2 = (EditText) findViewById(R.id.password2);
         TextView Status = (TextView) findViewById(R.id.Status);
 
+        if (PwEdit.getText().toString().compareTo(PwEdit2.getText().toString())!=0) {
+            Toast.makeText(RegisterActivity.this, "Passwords don´t match!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         UnregisteredUser ur = new UnregisteredUser();
 
         ur.setUserName(UserEdit.getText().toString());
@@ -102,8 +107,8 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(i);
             }
             else{
-                Status.setText("Registration unsuccessful");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+
             }
         }
     }

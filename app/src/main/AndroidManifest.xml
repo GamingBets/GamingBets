@@ -69,7 +69,17 @@
             android:label="Edit your data"
             android:parentActivityName=".activity.UserLandingActivity" >
         </activity>
-        <activity android:name=".activity.PlacebetActivity" >
+        <activity
+            android:name=".activity.PlacebetActivity"
+            android:label="Place a bet"
+            android:parentActivityName=".activity.UserLandingActivity"
+            >
+        </activity>
+        <activity
+            android:name=".activity.TicketAnswerActivity"
+            android:label="Answer a ticket"
+            android:parentActivityName=".activity.UserLandingActivity"
+            >
         </activity>
     </application>
 

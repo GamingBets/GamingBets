@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
@@ -45,9 +48,12 @@ public class EditUserActivity extends AppCompatActivity {
 
             if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())) {
                 u = g.getUser();
+
             } else {
                 GetUser gu = new GetUser();
                 u = gu.execute(g.getUsereditName()).get();
+
+
             }
 
 
@@ -65,7 +71,7 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
 
-    public void submitPW(View view) {
+    public void submitPW(View view) throws NoSuchAlgorithmException {
 
         Globals.hideSoftKeyboard(this);
 
@@ -76,9 +82,32 @@ public class EditUserActivity extends AppCompatActivity {
 
 
         if (pw1.equalsIgnoreCase(pw2) && !pw1.equalsIgnoreCase("")) {
+            String generatedPassword = "";
+
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(pw1.getBytes());
+            //Get the hash's bytes
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+
             Globals g = (Globals) getApplication();
-            User u = g.getUser();
-            u.setPassword(pw1);
+            User u= null;
+            try {
+                u = new GetUser().execute(g.getUsereditName()).get();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            u.setPassword(generatedPassword);
             new SubmitChanges().execute(u);
 
         }
@@ -94,8 +123,14 @@ public class EditUserActivity extends AppCompatActivity {
 
         String username = userEdit.getText().toString();
         String email = mailEdit.getText().toString();
+
         Globals g = (Globals) getApplication();
-        User u = g.getUser();
+        User u= null;
+        try {
+            u = new GetUser().execute(g.getUsereditName()).get();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         u.setEmail(email);
         u.setUserName(username);
 
@@ -114,7 +149,7 @@ public class EditUserActivity extends AppCompatActivity {
             Globals g = (Globals) getApplication();
             LocalClientSocket client = g.getClient();
             if (client.edit(params[0])) {
-                g.setUser(params[0]);
+
                 return true;
             } else {
                 return false;
@@ -126,12 +161,11 @@ public class EditUserActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean b) {
             TextView Status = (TextView) findViewById(R.id.Status);
-            Globals g = (Globals) getApplication();
-            g.setUsereditName(g.getUser().getUserName());
+
+
             if (b) {
 
-                Status.setText(op + " successful");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(EditUserActivity.this, "User edited", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             } else {

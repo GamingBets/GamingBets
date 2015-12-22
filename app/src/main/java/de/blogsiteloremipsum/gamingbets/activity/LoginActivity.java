@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -73,8 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             TextView Status = (TextView) findViewById(R.id.Status);
             if (b) {
 
-                Status.setText("Login successful");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             } else {

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
@@ -41,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void showDatePickerDialog(View v){
+        Globals.hideSoftKeyboard(this);
         DialogFragment dialog = new DatePickerFragment();
         FragmentManager fm = getFragmentManager();
         dialog.show(fm, "datePicker");
@@ -94,8 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b){
             TextView Status = (TextView) findViewById(R.id.Status);
             if (b){
-                Status.setText("Registration successful");
-                Status.setVisibility(View.VISIBLE);
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
             }
             else{
                 Status.setText("Registration unsuccessful");

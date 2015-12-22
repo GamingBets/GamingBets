@@ -84,6 +84,11 @@ public class LocalClientSocket implements ClientMethods{
     }
 
     @Override
+    public boolean setStatus(Ticket ticket) {
+        return send(new CommunicationPackage(communication_types.SETSTATUS, null, null, ticket, null, null));
+    }
+
+    @Override
     public boolean login(User user) {
        return send(new CommunicationPackage(communication_types.LOGIN, user, null, null, null, null));
     }

@@ -32,7 +32,7 @@ Feature: Register
     And I enter "NichtDasPW" into input field number 4
     And I press the enter button
     And I press "RegisterButton"
-    Then I should see "Registration unsuccessful"
+    Then I should see "Passwords don´t match!"
 
     Examples:
       | User  | Password | Mail|

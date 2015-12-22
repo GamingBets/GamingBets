@@ -1,6 +1,6 @@
 Feature: Login
 
-  Scenario Outline: LogIn
+  Scenario Outline: Login Success
     Given I wait for the "Welcome" screen to appear
     When I press "LoginButton"
     And I enter "<User>" into input field number 1
@@ -12,8 +12,8 @@ Feature: Login
 
     Examples:
       | User  | Password |
+      | admin | admin    |
       | Felix | pass     |
-      | Test  | test     |
 
 
   Scenario Outline: LogIn Failed

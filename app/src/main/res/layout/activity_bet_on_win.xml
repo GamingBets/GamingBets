@@ -10,13 +10,38 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout">
 
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="110dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Tournament:"
+                android:id="@+id/tournament" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="LCS"
+                android:id="@+id/tournament_2" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/GameNameEdit"
-            android:hint="enter game name"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Game Description"
+            android:id="@+id/description"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -40,6 +65,7 @@
             android:text="Place bet"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 
 </RelativeLayout>

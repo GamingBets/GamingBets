@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class EditUserActivity extends AppCompatActivity {
 
@@ -39,7 +39,7 @@ public class EditUserActivity extends AppCompatActivity {
         newPWEdit = (EditText) findViewById(R.id.NewPWEdit);
         newPWConfirmEdit = (EditText) findViewById(R.id.NewPWEditConfirm);
 
-        //Get User
+        //Get UserModel
         Globals g = (Globals) getApplication();
 
         User u;
@@ -167,7 +167,7 @@ public class EditUserActivity extends AppCompatActivity {
 
             if (b) {
 
-                Toast.makeText(EditUserActivity.this, "User edited", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditUserActivity.this, "UserModel edited", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             } else {

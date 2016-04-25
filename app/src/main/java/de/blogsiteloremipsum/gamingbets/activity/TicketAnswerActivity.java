@@ -4,24 +4,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
-import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class TicketAnswerActivity extends AppCompatActivity {
 
@@ -43,7 +38,7 @@ public class TicketAnswerActivity extends AppCompatActivity {
         }
         if(allTickets.size()!=0){
             t = allTickets.get(0);
-            String text = "Ticket ID: " + t.getID() + " User ID: " + t.getUserID() + " Date: " +t.getDate();
+            String text = "Ticket ID: " + t.getID() + " UserModel ID: " + t.getUserID() + " Date: " +t.getDate();
             head.setText(text);
             messageContent.setText(t.getContent());
         }else{

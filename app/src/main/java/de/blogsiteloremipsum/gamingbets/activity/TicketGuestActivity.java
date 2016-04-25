@@ -15,8 +15,7 @@ import java.util.Calendar;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
-import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class TicketGuestActivity extends AppCompatActivity {
 

@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class ManageUserActivity extends AppCompatActivity {
 

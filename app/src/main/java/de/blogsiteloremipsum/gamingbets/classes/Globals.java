@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.view.inputmethod.InputMethodManager;
 
-import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 /**
  * Created by Niclas on 24.11.2015.

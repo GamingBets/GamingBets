@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.communication;
+package de.blogsiteloremipsum.gamingbets.communication.old.client;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.communication_types;
 
 /**
  * Created by Felix on 17.11.2015.

@@ -1,26 +1,26 @@
-package de.blogsiteloremipsum.gamingbets.communication.client;
+package de.blogsiteloremipsum.gamingbets.communication.old.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.CommunicationPackage;
-import de.blogsiteloremipsum.gamingbets.communication.communication_types;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.ClientMethods;
+import de.blogsiteloremipsum.gamingbets.model.UserModel;
 
 /**
  * Created by Felix Morsbach on 16.11.2015.
  */
-public class LocalClientSocket implements ClientMethods{
+public class LocalClientSocket implements ClientMethods {
 
     public final static int port = 4567;
 
@@ -98,6 +98,8 @@ public class LocalClientSocket implements ClientMethods{
         return send(new CommunicationPackage(communication_types.LOGOUT, user, null, null, null, null));
     }
 
+
+
     @Override
     public boolean register(String username, String email, String pw, Date dob) {
         UnregisteredUser u = new UnregisteredUser(username, email, pw, dob);
@@ -105,6 +107,8 @@ public class LocalClientSocket implements ClientMethods{
 
         return send(cp);
     }
+
+
 
     @Override
     public boolean edit(User user) {
@@ -142,6 +146,11 @@ public class LocalClientSocket implements ClientMethods{
     public ArrayList<Ticket> getTickets() {
         CommunicationPackage cp = sendObject(new CommunicationPackage(communication_types.SENDTICKETS, null, null, null, null, null));
         return cp.getAllTickets();
+    }
+
+    @Override
+    public ArrayList<UserModel> getLeaderboards() {
+        return null;
     }
 
     @Override

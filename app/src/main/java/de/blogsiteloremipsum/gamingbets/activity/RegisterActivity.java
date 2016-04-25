@@ -14,11 +14,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 import java.sql.Date;
-import java.util.GregorianCalendar;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -26,8 +23,7 @@ import android.widget.Toast;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
-import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class RegisterActivity extends AppCompatActivity {
 

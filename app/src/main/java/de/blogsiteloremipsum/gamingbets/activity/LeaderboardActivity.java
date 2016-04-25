@@ -1,6 +1,5 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +16,9 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.model.UserModel;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        ArrayList<User> score = new ArrayList<>();
+        ArrayList<UserModel> score = new ArrayList<>();
         score = null;
         try {
             score = new LeaderboardTask().execute(u).get();
@@ -61,18 +62,17 @@ public class LeaderboardActivity extends AppCompatActivity {
             });
     }
 
-    private class LeaderboardTask extends AsyncTask<User ,Void, ArrayList<User>> {
-
+    private class LeaderboardTask extends AsyncTask<User ,Void, ArrayList<UserModel>> {
         @Override
         protected void onPreExecute() {
 
         }
 
         @Override
-        protected ArrayList<User> doInBackground(User... params) {
+        protected ArrayList<UserModel> doInBackground(User... params) {
 
             //For debugging
-            return new LocalClientSocket().getLeaderboard();
+            return new LocalClient().getLeaderboards();
 
 
 

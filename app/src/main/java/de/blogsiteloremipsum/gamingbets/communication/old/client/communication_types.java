@@ -1,4 +1,4 @@
-package de.blogsiteloremipsum.gamingbets.communication;
+package de.blogsiteloremipsum.gamingbets.communication.old.client;
 
 /**
  * Created by Felix on 17.11.2015.

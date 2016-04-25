@@ -1,18 +1,20 @@
-package de.blogsiteloremipsum.gamingbets.communication.client;
+package de.blogsiteloremipsum.gamingbets.communication.clientREST;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.model.UserModel;
 
 /**
  * Created by Felix Morsbach on 13.11.2015.
  */
 public interface ClientMethods {
 
-    boolean login(User user);
+    boolean  login(User user);
 
     boolean logout(User user);
 
@@ -34,7 +36,8 @@ public interface ClientMethods {
 
     ArrayList<Ticket> getTickets();
 
-    ArrayList<User> getLeaderboard();
+    ArrayList<UserModel> getLeaderboards();
 
+    ArrayList<User> getLeaderboard();
 
 }

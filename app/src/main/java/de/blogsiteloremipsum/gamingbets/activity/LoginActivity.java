@@ -10,15 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
-
 import de.blogsiteloremipsum.gamingbets.R;
-import de.blogsiteloremipsum.gamingbets.classes.Bet;
-import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
-import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class LoginActivity extends AppCompatActivity {
 

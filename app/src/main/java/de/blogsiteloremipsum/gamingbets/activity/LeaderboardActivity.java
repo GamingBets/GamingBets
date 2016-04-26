@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.model.UserModel;
+
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
@@ -29,7 +29,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        ArrayList<UserModel> score = new ArrayList<>();
+        ArrayList<User> score = new ArrayList<>();
         score = null;
         try {
             score = new LeaderboardTask().execute(u).get();
@@ -62,17 +62,17 @@ public class LeaderboardActivity extends AppCompatActivity {
             });
     }
 
-    private class LeaderboardTask extends AsyncTask<User ,Void, ArrayList<UserModel>> {
+    private class LeaderboardTask extends AsyncTask<User ,Void, ArrayList<User>> {
         @Override
         protected void onPreExecute() {
 
         }
 
         @Override
-        protected ArrayList<UserModel> doInBackground(User... params) {
+        protected ArrayList<User> doInBackground(User... params) {
 
             //For debugging
-            return new LocalClient().getLeaderboards();
+            return new LocalClient().getLeaderboard();
 
 
 

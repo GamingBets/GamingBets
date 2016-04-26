@@ -7,7 +7,6 @@ import java.util.List;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.model.UserModel;
 import de.blogsiteloremipsum.gamingbets.communication.HttpManager;
 import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
 import de.blogsiteloremipsum.gamingbets.parser.UserJSONParser;
@@ -77,15 +76,12 @@ public class LocalClient implements ClientMethods {
 
     @Override
     public ArrayList<User> getLeaderboard() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<UserModel> getLeaderboards() {
         RequestPackage p = new RequestPackage();
         p.setUri("http://192.168.204.1:8080/gamingBetRESTServer/webresources/users");
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         return UserJSONParser.parseFeed(content);
     }
+
+
 }

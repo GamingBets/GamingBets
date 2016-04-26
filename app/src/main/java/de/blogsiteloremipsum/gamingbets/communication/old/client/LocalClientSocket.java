@@ -15,7 +15,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.ClientMethods;
-import de.blogsiteloremipsum.gamingbets.model.UserModel;
+
 
 /**
  * Created by Felix Morsbach on 16.11.2015.
@@ -148,10 +148,6 @@ public class LocalClientSocket implements ClientMethods {
         return cp.getAllTickets();
     }
 
-    @Override
-    public ArrayList<UserModel> getLeaderboards() {
-        return null;
-    }
 
     @Override
     public ArrayList<User> getLeaderboard() {

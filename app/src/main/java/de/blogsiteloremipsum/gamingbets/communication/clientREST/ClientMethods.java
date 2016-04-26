@@ -7,7 +7,7 @@ import java.util.List;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.model.UserModel;
+
 
 /**
  * Created by Felix Morsbach on 13.11.2015.
@@ -35,8 +35,6 @@ public interface ClientMethods {
     User getUser(String userName);
 
     ArrayList<Ticket> getTickets();
-
-    ArrayList<UserModel> getLeaderboards();
 
     ArrayList<User> getLeaderboard();
 

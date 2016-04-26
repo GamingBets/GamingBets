@@ -11,44 +11,45 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.blogsiteloremipsum.gamingbets.model.UserModel;
+import de.blogsiteloremipsum.gamingbets.classes.User;
+
 
 /**
  * Created by Andre on 21.04.2016.
  */
 public class UserJSONParser {
 
-    public static ArrayList<UserModel> parseFeed(String content){
+    public static ArrayList<User> parseFeed(String content){
 
         try{
             JSONArray ar = new JSONArray(content);
-            ArrayList<UserModel> userModelList = new ArrayList<>();
+            ArrayList<User> userList = new ArrayList<>();
 
             for(int i = 0; i<ar.length(); i++){
 
                 JSONObject obj = ar.getJSONObject(i);
-                UserModel userModel = new UserModel();
+                User user = new User();
 
-                userModel.setId(obj.getInt("iD"));
-                userModel.setUserName(obj.getString("userName"));
-                userModel.setPassword(obj.getString("password"));
-                userModel.setBets(obj.getString("bets"));
-                userModel.setLoggedIn(obj.getBoolean("loggedIn"));
-                userModel.setAdmin(obj.getBoolean("admin"));
-                userModel.setActive(obj.getBoolean("active"));
+                user.setID(obj.getInt("iD"));
+                user.setUserName(obj.getString("userName"));
+                user.setPassword(obj.getString("password"));
+                user.setBets(obj.getString("bets"));
+                user.setLoggedin(obj.getBoolean("loggedIn"));
+                user.setAdmin(obj.getBoolean("admin"));
+                user.setActive(obj.getBoolean("active"));
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
                 Date parsed = format.parse(obj.getString("dob"));
                 java.sql.Date sql = new java.sql.Date(parsed.getTime());
-                userModel.setDob(sql);
+                user.setDob(sql);
 
-                userModel.setEmail(obj.getString("email"));
-                userModel.setScore(obj.getInt("score"));
+                user.setEmail(obj.getString("email"));
+                user.setScore(obj.getInt("score"));
 
-                userModelList.add(userModel);
+                userList.add(user);
             }
 
-            return userModelList;
+            return userList;
 
         } catch (JSONException e) {
             e.printStackTrace();

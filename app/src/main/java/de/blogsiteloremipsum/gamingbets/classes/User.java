@@ -10,7 +10,7 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 6529685098267757690L;
 
-    private int ID;
+    private int id;
     private String userName;
     private String email;
     private String password;
@@ -20,8 +20,8 @@ public class User implements Serializable {
     private Date dob;
     private int score;
 
-    public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
-        this.ID = ID;
+    public User(int id, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
+        this.id = id;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -31,7 +31,7 @@ public class User implements Serializable {
         this.dob = dob;
     }
     public User(String userName, String password){
-        this.ID = -1;
+        this.id = -1;
         this.userName = userName;
         this.email = "";
         this.password = password;
@@ -42,7 +42,7 @@ public class User implements Serializable {
     }
 
     public User(){
-        ID = -1;
+        id = -1;
         userName = "";
         email = "";
         password = "";
@@ -77,11 +77,11 @@ public class User implements Serializable {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getUserName() {

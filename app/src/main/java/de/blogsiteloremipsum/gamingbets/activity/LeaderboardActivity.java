@@ -31,6 +31,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         User u = g.getUser();
         ArrayList<User> score = new ArrayList<>();
         score = null;
+
         try {
             score = new LeaderboardTask().execute(u).get();
         } catch (InterruptedException e) {
@@ -38,6 +39,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
         String[] leaderBoardArray = new String [score.size()];
 
         for (int i=0;i< score.size();i++){
@@ -73,8 +75,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
             //For debugging
             return new LocalClient().getLeaderboard();
-
-
 
         }
 

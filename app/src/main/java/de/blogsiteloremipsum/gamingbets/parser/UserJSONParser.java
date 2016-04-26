@@ -21,16 +21,19 @@ public class UserJSONParser {
 
     public static ArrayList<User> parseFeed(String content){
 
-        try{
-            JSONArray ar = new JSONArray(content);
+        try {
+
             ArrayList<User> userList = new ArrayList<>();
 
-            for(int i = 0; i<ar.length(); i++){
+            JSONObject parentObject = new JSONObject(content);
+            JSONArray ar = parentObject.getJSONArray("user");
+
+
+            for (int i = 0; i < ar.length(); i++) {
 
                 JSONObject obj = ar.getJSONObject(i);
                 User user = new User();
-
-                user.setID(obj.getInt("iD"));
+                user.setID(obj.getInt("ID"));
                 user.setUserName(obj.getString("userName"));
                 user.setPassword(obj.getString("password"));
                 user.setBets(obj.getString("bets"));
@@ -38,10 +41,10 @@ public class UserJSONParser {
                 user.setAdmin(obj.getBoolean("admin"));
                 user.setActive(obj.getBoolean("active"));
 
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-                Date parsed = format.parse(obj.getString("dob"));
-                java.sql.Date sql = new java.sql.Date(parsed.getTime());
-                user.setDob(sql);
+//                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+//                Date parsed = format.parse(obj.getString("dob"));
+//                java.sql.Date sql = new java.sql.Date(parsed.getTime());
+//                user.setDob(sql);
 
                 user.setEmail(obj.getString("email"));
                 user.setScore(obj.getInt("score"));
@@ -54,10 +57,10 @@ public class UserJSONParser {
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
-        } catch (ParseException e) {
+        } /*catch (ParseException e) {
             e.printStackTrace();
             return null;
-        }
+        }*/
 
     }
 }

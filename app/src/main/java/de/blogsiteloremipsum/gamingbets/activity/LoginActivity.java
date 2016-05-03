@@ -13,6 +13,7 @@ import android.widget.Toast;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,8 +36,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean login(User user) {
-        Globals g = (Globals) getApplication();
-        LocalClientSocket client = g.getClient();
+        //Globals g = (Globals) getApplication();
+        //LocalClientSocket client = g.getClient();
+        LocalClient client = new LocalClient();
         return client.login(user);
     }
 

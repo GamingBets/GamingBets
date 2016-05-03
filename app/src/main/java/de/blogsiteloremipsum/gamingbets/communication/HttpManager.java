@@ -19,7 +19,7 @@ public class HttpManager {
 
         switch(p.getMethod()){
             case "GET":
-                uri+= "?" + p.getEncodedParams();
+                uri+=  p.getEncodedParams();
                 break;
             case "PUT": break;
             case "DELETE": break;

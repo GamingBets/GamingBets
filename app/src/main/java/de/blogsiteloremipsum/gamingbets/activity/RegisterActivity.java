@@ -23,6 +23,7 @@ import android.widget.Toast;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -72,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public boolean register(UnregisteredUser ur) {
         Globals g = (Globals) getApplication();
-        LocalClientSocket client = g.getClient();
+        LocalClient client = new LocalClient();
         return client.register(ur.getUserName(),ur.getEmail(),ur.getPassword(),ur.getDob());
     }
 

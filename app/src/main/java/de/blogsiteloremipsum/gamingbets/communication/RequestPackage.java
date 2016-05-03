@@ -14,12 +14,15 @@ public class RequestPackage {
     private String method = "GET";
     private Map<String, String> params = new HashMap<>();
 
+    public RequestPackage(){
+        uri = "http://192.168.204.1:8080/gamingBetRESTServer/api";
+    }
     public String getUri() {
         return uri;
     }
 
     public void setUri(String uri) {
-        this.uri = uri;
+        this.uri += uri;
     }
 
     public String getMethod() {
@@ -53,10 +56,10 @@ public class RequestPackage {
             }
 
             if(sb.length()>0){
-                sb.append("&");
+                //sb.append("&");
             }
-
-            sb.append(key + "=" +value);
+            sb.append("/" + value);
+            //sb.append(key + "=" +value);
 
         }
         return sb.toString();

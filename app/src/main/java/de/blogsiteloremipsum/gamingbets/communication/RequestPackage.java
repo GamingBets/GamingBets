@@ -13,6 +13,7 @@ public class RequestPackage {
     private String uri;
     private String method = "GET";
     private Map<String, String> params = new HashMap<>();
+    private String user="";
 
     public RequestPackage(){
         uri = "http://192.168.204.1:8080/gamingBetRESTServer/api";
@@ -43,6 +44,14 @@ public class RequestPackage {
 
     public void setParam(String key, String value)  {
         params.put(key, value);
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getEncodedParams(){

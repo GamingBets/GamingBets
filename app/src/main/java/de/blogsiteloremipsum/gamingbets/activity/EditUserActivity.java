@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class EditUserActivity extends AppCompatActivity {
@@ -47,7 +48,7 @@ public class EditUserActivity extends AppCompatActivity {
         try {
 
             if (g.getUsereditName().equalsIgnoreCase(g.getUser().getUserName())) {
-                u = g.getUser();
+                u = new GetUser().execute(g.getUser().getUserName()).get();
 
             } else {
                 GetUser gu = new GetUser();
@@ -133,10 +134,15 @@ public class EditUserActivity extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
-        u.setEmail(email);
-        u.setUserName(username);
+        if(u==null){
+            System.out.println("FEEEEEEEEEEEHHHHHHHLLLLLERRRR");
+        }else{
+            u.setEmail(email);
+            u.setUserName(username);
 
-        new SubmitChanges().execute(u);
+            new SubmitChanges().execute(u);
+        }
+
 
 
     }
@@ -149,7 +155,7 @@ public class EditUserActivity extends AppCompatActivity {
 
 
             Globals g = (Globals) getApplication();
-            LocalClientSocket client = g.getClient();
+            LocalClient client = new LocalClient();
             if (client.edit(params[0])) {
 
                 return true;
@@ -185,7 +191,8 @@ public class EditUserActivity extends AppCompatActivity {
         @Override
         protected User doInBackground(String... params) {
             Globals g = (Globals) getApplication();
-            return g.getClient().getUser(params[0]);
+            LocalClient client = new LocalClient();
+            return client.getUser(params[0]);
         }
     }
 

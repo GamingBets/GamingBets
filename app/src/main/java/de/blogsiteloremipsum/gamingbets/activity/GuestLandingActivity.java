@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import de.blogsiteloremipsum.gamingbets.R;
+import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.User;
 
 public class GuestLandingActivity extends AppCompatActivity {
 
@@ -14,6 +16,8 @@ public class GuestLandingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_landing);
+        Globals g = (Globals) getApplication();
+        g.setUser(new User(0, null, null, null, null, false, false));
     }
 
     @Override

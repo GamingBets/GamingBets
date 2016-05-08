@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.User;
 
 public class UserLandingActivity extends AppCompatActivity {
 
@@ -21,6 +23,9 @@ public class UserLandingActivity extends AppCompatActivity {
         String username = g.getUser().getUserName();
         TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
         WelcomeMessage.setText("Hello "+username+"! What would you like to do?");
+        User u = g.getUser();
+        
+
     }
 
     @Override

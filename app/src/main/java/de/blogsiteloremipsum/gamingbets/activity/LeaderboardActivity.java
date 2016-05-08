@@ -3,6 +3,7 @@ package de.blogsiteloremipsum.gamingbets.activity;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -62,6 +63,21 @@ public class LeaderboardActivity extends AppCompatActivity {
                     Globals g = (Globals) getApplication();
                 }
             });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
+        if(u.getID()==0){
+            getMenuInflater().inflate(R.menu.menu_guest, menu);
+        }else if(u.isAdmin()){
+            getMenuInflater().inflate(R.menu.menu_admin, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.menu_user, menu);
+        }
+        return true;
     }
 
     private class LeaderboardTask extends AsyncTask<User ,Void, ArrayList<User>> {

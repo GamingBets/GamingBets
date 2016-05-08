@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
-import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class TicketAnswerActivity extends AppCompatActivity {
 
@@ -69,7 +69,7 @@ public class TicketAnswerActivity extends AppCompatActivity {
         @Override
         protected ArrayList<Ticket> doInBackground(Void... params) {
             Globals g = (Globals) getApplication();
-            LocalClientSocket client = g.getClient();
+            LocalClient client = g.getClient();
             return client.getTickets();
         }
     }

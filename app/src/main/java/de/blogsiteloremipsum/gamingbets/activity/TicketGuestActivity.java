@@ -15,7 +15,7 @@ import java.util.Calendar;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
-import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class TicketGuestActivity extends AppCompatActivity {
 
@@ -45,7 +45,7 @@ public class TicketGuestActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Ticket... params) {
             Globals g = (Globals) getApplication();
-            LocalClientSocket client = g.getClient();
+            LocalClient client = g.getClient();
             return client.sendTicket(params[0]);
         }
 

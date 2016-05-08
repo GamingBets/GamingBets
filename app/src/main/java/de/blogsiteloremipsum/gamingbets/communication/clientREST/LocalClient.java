@@ -26,7 +26,9 @@ public class LocalClient implements ClientMethods {
     public boolean login(User user) {
 
         User testee = getUser(user.getUserName());
-
+        if(testee==null){
+            return false;
+        }
         String generatedPassword = "";
         try {
             // Create MessageDigest instance for MD5
@@ -63,7 +65,7 @@ public class LocalClient implements ClientMethods {
     }
 
     @Override
-    public boolean register(String username, String email, String pw, Date dob) {
+    public boolean register(String username, String email, String pw) {
         String generatedPassword = "";
         try {
             // Create MessageDigest instance for MD5
@@ -86,7 +88,7 @@ public class LocalClient implements ClientMethods {
         {
             e.printStackTrace();
         }
-        UnregisteredUser u = new UnregisteredUser(username, email, generatedPassword, dob);
+        UnregisteredUser u = new UnregisteredUser(username, email, generatedPassword);
         RequestPackage p = new RequestPackage();
         p.setUri("/users");
         p.setMethod("POST");
@@ -103,6 +105,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/users");
         p.setMethod("PUT");
         p.setUser(UserToJSONParser.parseFeed(user));
+        p.setParam("id", ""+user.getID());
 
         HttpManager.getData(p);
 
@@ -142,7 +145,13 @@ public class LocalClient implements ClientMethods {
         p.setParam("id", ""+userName);
         p.setMethod("GET");
         String content = HttpManager.getData(p);
-        return UserSpecJSONParser.parseFeed(content);
+        if(content!=null){
+            User u = UserSpecJSONParser.parseFeed(content);
+            System.out.println(content+"?????????????????");
+            System.out.println(u.isAdmin()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return u;
+        }
+        return null;
     }
 
 

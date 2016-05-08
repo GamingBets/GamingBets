@@ -17,10 +17,9 @@ public class User implements Serializable {
     private String bets;
     private boolean admin;
     private boolean active;
-    private Date dob;
     private int score;
 
-    public User(int id, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
+    public User(int id, String userName, String email, String password, String bets, boolean admin, boolean active) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -28,7 +27,6 @@ public class User implements Serializable {
         this.bets = bets;
         this.admin = admin;
         this.active = active;
-        this.dob = dob;
     }
     public User(String userName, String password){
         this.id = -1;
@@ -38,7 +36,6 @@ public class User implements Serializable {
         this.bets = "";
         this.admin = false;
         this.active = false;
-        this.dob = null;
     }
 
     public User(){
@@ -49,7 +46,6 @@ public class User implements Serializable {
         bets = "";
         admin = false;
         active = false;
-        dob = null;
     }
 
     public int getScore() {
@@ -66,14 +62,6 @@ public class User implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
     }
 
     public int getID() {

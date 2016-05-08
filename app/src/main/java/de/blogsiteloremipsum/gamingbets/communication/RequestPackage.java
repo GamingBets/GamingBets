@@ -16,7 +16,7 @@ public class RequestPackage {
     private String user="";
 
     public RequestPackage(){
-        uri = "http://192.168.204.1:8080/gamingBetRESTServer/api";
+        uri = "http://134.255.218.20:8080/gamingBetRestServer-1.0/api";
     }
     public String getUri() {
         return uri;

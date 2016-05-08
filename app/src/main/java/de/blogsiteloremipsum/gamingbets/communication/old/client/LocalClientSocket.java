@@ -31,7 +31,7 @@ public class LocalClientSocket implements ClientMethods {
     public static void main(String args[]){
 
         LocalClientSocket lc = new LocalClientSocket();
-        System.out.println(lc.register("Test", "test", "test", null));
+        System.out.println(lc.register("Test", "test", "test"));
 
     }
 
@@ -101,8 +101,8 @@ public class LocalClientSocket implements ClientMethods {
 
 
     @Override
-    public boolean register(String username, String email, String pw, Date dob) {
-        UnregisteredUser u = new UnregisteredUser(username, email, pw, dob);
+    public boolean register(String username, String email, String pw) {
+        UnregisteredUser u = new UnregisteredUser(username, email, pw);
         CommunicationPackage cp = new CommunicationPackage(communication_types.REGISTER, null, null, null, u, null);
 
         return send(cp);

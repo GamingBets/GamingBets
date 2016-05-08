@@ -18,7 +18,7 @@ public interface ClientMethods {
 
     boolean logout(User user);
 
-    boolean register(String username, String email, String pw, Date dob);
+    boolean register(String username, String email, String pw);
 
     boolean edit(User user);
 

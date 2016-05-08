@@ -19,7 +19,7 @@ public class HttpManager {
 
         BufferedReader in = null;
         String uri = p.getUri();
-        if(p.getMethod().equals("GET")){
+        if((p.getMethod().equals("GET"))||(p.getMethod().equals("PUT"))){
             uri+=  p.getEncodedParams();
         }
 
@@ -33,6 +33,8 @@ public class HttpManager {
                 con.setRequestProperty("Accept", "application/json");
                 con.setRequestProperty("Accept-Charset", "UTF-8");
                 System.out.println(url);
+                System.out.println(con.getRequestMethod());
+                System.out.println(p.getUser());
                 OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
                 wr.write(p.getUser());
                 wr.flush();
@@ -45,18 +47,18 @@ public class HttpManager {
             if (statusCode >= 200 && statusCode < 400) {
                 // Create an InputStream in order to extract the response object
                 is = con.getInputStream();
+                StringBuilder sb =  new StringBuilder();
+                in = new BufferedReader(new InputStreamReader(is));
+
+                String inputLine ="";
+                while ((inputLine = in.readLine()) != null)
+                    sb.append(inputLine + "\n");
+
+                return sb.toString();
             }
             else {
-                is = con.getErrorStream();
+                return null;
             }
-            StringBuilder sb =  new StringBuilder();
-            in = new BufferedReader(new InputStreamReader(is));
-
-            String inputLine ="";
-            while ((inputLine = in.readLine()) != null)
-                sb.append(inputLine + "\n");
-
-            return sb.toString();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

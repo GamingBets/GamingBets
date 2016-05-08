@@ -27,6 +27,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean LoginAttemptOnClick(View v) {
         EditText UsernameEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
+        if(UsernameEdit.getText().toString().equals("")){
+            Toast.makeText(LoginActivity.this, "Enter a UserName!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(PwEdit.getText().toString().equals("")){
+            Toast.makeText(LoginActivity.this, "Enter a Password!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Globals g = (Globals) getApplication();
         User u = g.getUser();
         u.setUserName(UsernameEdit.getText().toString());

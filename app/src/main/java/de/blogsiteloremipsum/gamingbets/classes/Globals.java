@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.view.inputmethod.InputMethodManager;
 
-import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
+
 
 /**
  * Created by Niclas on 24.11.2015.
@@ -13,7 +14,7 @@ public class Globals extends Application{
 
     private User user;
     private UnregisteredUser unregisteredUser;
-    private LocalClientSocket client;
+    private LocalClient client;
 
     private String usereditName = "";
 
@@ -39,11 +40,11 @@ public class Globals extends Application{
 
     public UnregisteredUser getUnregisteredUser(){return unregisteredUser;}
 
-    public void setClient(LocalClientSocket c){
+    public void setClient(LocalClient c){
         client=c;
     }
 
-    public LocalClientSocket getClient(){
+    public LocalClient getClient(){
         return client;
     }
 

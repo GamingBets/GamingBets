@@ -54,19 +54,11 @@ public class UserToJSONParser {
             obj.put("bets", "");
             obj.put("dob", "3915-12-10T00:00:00+01:00");
 
-
-//                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-//                Date parsed = format.parse(obj.getString("dob"));
-//                java.sql.Date sql = new java.sql.Date(parsed.getTime());
-//                user.setDob(sql);
             return obj.toString();
 
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
-        } /*catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }*/
+        }
     }
 }

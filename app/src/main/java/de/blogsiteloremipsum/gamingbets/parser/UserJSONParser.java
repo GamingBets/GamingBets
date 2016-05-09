@@ -39,12 +39,6 @@ public class UserJSONParser {
                 user.setLoggedin(obj.getBoolean("loggedIn"));
                 user.setAdmin(obj.getBoolean("admin"));
                 user.setActive(obj.getBoolean("active"));
-
-//                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-//                Date parsed = format.parse(obj.getString("dob"));
-//                java.sql.Date sql = new java.sql.Date(parsed.getTime());
-//                user.setDob(sql);
-
                 user.setEmail(obj.getString("email"));
                 user.setScore(obj.getInt("score"));
 
@@ -56,10 +50,7 @@ public class UserJSONParser {
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
-        } /*catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }*/
+        }
 
     }
 }

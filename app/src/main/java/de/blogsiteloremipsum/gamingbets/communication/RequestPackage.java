@@ -5,6 +5,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.blogsiteloremipsum.gamingbets.classes.Ticket;
+
 /**
  * Created by Andre on 21.04.2016.
  */
@@ -14,6 +16,7 @@ public class RequestPackage {
     private String method = "GET";
     private Map<String, String> params = new HashMap<>();
     private String user="";
+    private String ticket="";
 
     public RequestPackage(){
         uri = "http://134.255.218.20:8080/gamingBetRestServer-1.0/api";
@@ -72,5 +75,9 @@ public class RequestPackage {
 
         }
         return sb.toString();
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
     }
 }

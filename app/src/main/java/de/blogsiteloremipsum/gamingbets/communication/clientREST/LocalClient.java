@@ -12,6 +12,8 @@ import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.HttpManager;
 import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
+import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.TicketToJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserToJSONParser;
@@ -114,7 +116,7 @@ public class LocalClient implements ClientMethods {
 
     @Override
     public boolean editAdmin(User user) {
-        return false;
+        return edit(user);
     }
 
 
@@ -125,7 +127,12 @@ public class LocalClient implements ClientMethods {
 
     @Override
     public boolean sendTicket(Ticket ticket) {
-        return false;
+        RequestPackage p = new RequestPackage();
+        p.setMethod("POST");
+        p.setUri("/tickets");
+        p.setTicket(TicketToJSONParser.parseFeed(ticket));
+        HttpManager.getData(p);
+        return true;
     }
 
     @Override
@@ -135,7 +142,11 @@ public class LocalClient implements ClientMethods {
 
     @Override
     public ArrayList<User> getUsers() {
-        return null;
+        RequestPackage p = new RequestPackage();
+        p.setUri("/users");
+        p.setMethod("GET");
+
+        return UserJSONParser.parseFeed(HttpManager.getData(p));
     }
 
     @Override
@@ -157,7 +168,10 @@ public class LocalClient implements ClientMethods {
 
     @Override
     public ArrayList<Ticket> getTickets() {
-        return null;
+        RequestPackage p = new RequestPackage();
+        p.setMethod("GET");
+        p.setUri("/tickets");
+        return TicketJSONParser.parseFeed(HttpManager.getData(p));
     }
 
     @Override

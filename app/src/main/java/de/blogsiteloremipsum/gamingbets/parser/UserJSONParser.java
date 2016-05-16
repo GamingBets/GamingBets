@@ -24,9 +24,9 @@ public class UserJSONParser {
         try {
 
             ArrayList<User> userList = new ArrayList<>();
-            JSONArray ar;
-                JSONObject parentobj = new JSONObject(content);
-                ar = parentobj.getJSONArray("user");
+            JSONArray ar = new JSONArray(content);
+               // JSONObject parentobj = new JSONObject(content);
+                //ar = parentobj.getJSONArray("user");
 
             for (int i = 0; i < ar.length(); i++) {
 

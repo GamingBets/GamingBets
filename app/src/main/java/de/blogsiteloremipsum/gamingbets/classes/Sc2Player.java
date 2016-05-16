@@ -8,12 +8,12 @@ import java.util.Date;
 public class Sc2Player {
 
     private int id;
-    private int race;
-    private int team;
+    private Sc2Races race;
+    private Sc2Team team;
     private Date dob;
-    private int nationality;
-    private String ingame_name;
-    private String real_name;
+    private Sc2Nationality nationality;
+    private String ingameName;
+    private String realName;
 
     public int getId() {
         return id;
@@ -23,19 +23,19 @@ public class Sc2Player {
         this.id = id;
     }
 
-    public int getRace() {
+    public Sc2Races getRace() {
         return race;
     }
 
-    public void setRace(int race) {
+    public void setRace(Sc2Races race) {
         this.race = race;
     }
 
-    public int getTeam() {
+    public Sc2Team getTeam() {
         return team;
     }
 
-    public void setTeam(int team) {
+    public void setTeam(Sc2Team team) {
         this.team = team;
     }
 
@@ -47,27 +47,27 @@ public class Sc2Player {
         this.dob = dob;
     }
 
-    public int getNationality() {
+    public Sc2Nationality getNationality() {
         return nationality;
     }
 
-    public void setNationality(int nationality) {
+    public void setNationality(Sc2Nationality nationality) {
         this.nationality = nationality;
     }
 
-    public String getIngame_name() {
-        return ingame_name;
+    public String getIngameName() {
+        return ingameName;
     }
 
-    public void setIngame_name(String ingame_name) {
-        this.ingame_name = ingame_name;
+    public void setIngameName(String ingameName) {
+        this.ingameName = ingameName;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }

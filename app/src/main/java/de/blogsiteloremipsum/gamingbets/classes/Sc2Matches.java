@@ -9,12 +9,12 @@ public class Sc2Matches {
 
     private int id;
     private int result;
-    private int player1;
-    private int player2;
+    private Sc2Player player1;
+    private Sc2Player player2;
     private Date date;
     private String comment;
-    private boolean bet_created;
-    private int tournament_id;
+    private boolean betCreated;
+    private Sc2Tournament tournamentId;
     private int type;
     private boolean finished;
 
@@ -34,19 +34,19 @@ public class Sc2Matches {
         this.result = result;
     }
 
-    public int getPlayer1() {
+    public Sc2Player getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(int player1) {
+    public void setPlayer1(Sc2Player player1) {
         this.player1 = player1;
     }
 
-    public int getPlayer2() {
+    public Sc2Player getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(int player2) {
+    public void setPlayer2(Sc2Player player2) {
         this.player2 = player2;
     }
 
@@ -66,20 +66,20 @@ public class Sc2Matches {
         this.comment = comment;
     }
 
-    public boolean isBet_created() {
-        return bet_created;
+    public boolean isbetCreated() {
+        return betCreated;
     }
 
-    public void setBet_created(boolean bet_created) {
-        this.bet_created = bet_created;
+    public void setbetCreated(boolean betCreated) {
+        this.betCreated = betCreated;
     }
 
-    public int getTournament_id() {
-        return tournament_id;
+    public Sc2Tournament getTournamentId() {
+        return tournamentId;
     }
 
-    public void setTournament_id(int tournament_id) {
-        this.tournament_id = tournament_id;
+    public void setTournamentId(Sc2Tournament tournamentId) {
+        this.tournamentId = tournamentId;
     }
 
     public int getType() {

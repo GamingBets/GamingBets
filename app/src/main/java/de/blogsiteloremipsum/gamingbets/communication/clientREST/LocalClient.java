@@ -15,12 +15,14 @@ import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.HttpManager;
 import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
+import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.BetJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2BetToJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketToJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.UserFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserToJSONParser;
@@ -102,7 +104,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/users");
         p.setMethod("POST");
         p.setUser(UserToJSONParser.parseFeed(u));
-
+        System.out.println(p.getUser()+"iiiiiiiiiiiiiiiiiiiiiii");
         HttpManager.getData(p);
 
         return true;
@@ -165,8 +167,7 @@ public class LocalClient implements ClientMethods {
         String content = HttpManager.getData(p);
         if(content!=null){
             User u = UserSpecJSONParser.parseFeed(content);
-            System.out.println(content+"?????????????????");
-            System.out.println(u.isAdmin()+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             return u;
         }
         return null;
@@ -184,19 +185,19 @@ public class LocalClient implements ClientMethods {
     @Override
     public ArrayList<User> getLeaderboard() {
         RequestPackage p = new RequestPackage();
-        p.setUri("/users");
+        p.setUri("/users/getLeaderboard");
         p.setMethod("GET");
         String content = HttpManager.getData(p);
-        return UserJSONParser.parseFeed(content);
+        return UserFromJSONParser.parseFeed(content);
     }
 
     @Override
     public ArrayList<Sc2AvailableBets> getAvailableBets() {
         RequestPackage p = new RequestPackage();
-        p.setUri("sc2AvailableBets");
+        p.setUri("/sc2availablebets/notFinished");
         p.setMethod("GET");
         String content = HttpManager.getData(p);
-        ArrayList<Sc2AvailableBets> bets = AvailableBetsJSONParser.parseFeed(content);
+        ArrayList<Sc2AvailableBets> bets = AvailableBetsFromJSONParser.parseFeed(content);
         if(bets!=null){
             return bets;
         }
@@ -232,10 +233,10 @@ public class LocalClient implements ClientMethods {
     @Override
     public boolean createBet(Sc2Bet bet) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/sc2Bet");
+        p.setUri("/sc2bet");
         p.setMethod("POST");
         p.setBet(Sc2BetToJSONParser.parseFeed(bet));
-
+        System.out.println(p.getBet());
         HttpManager.getData(p);
 
         return true;

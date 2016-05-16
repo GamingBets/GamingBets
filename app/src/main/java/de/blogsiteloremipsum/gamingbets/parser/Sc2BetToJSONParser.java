@@ -1,5 +1,8 @@
 package de.blogsiteloremipsum.gamingbets.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,21 +14,15 @@ import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
 public class Sc2BetToJSONParser {
     public static String parseFeed(Sc2Bet bet) {
 
-
+        ObjectMapper mapper = new ObjectMapper();
             try {
-                JSONObject obj = new JSONObject();
-                obj.put("user_id", bet.getUser_id());
-                obj.put("bet_id", bet.getBet_id());
-                obj.put("betted_result", bet.getBetted_result());
-                obj.put("status", 0);
-                obj.put("processed", 0);
+                String jsonbet = mapper.writeValueAsString(bet);
+                System.out.println(jsonbet);
+                return jsonbet;
 
-                return obj.toString();
-
-            } catch (JSONException e) {
+            } catch (JsonProcessingException e) {
                 e.printStackTrace();
-                return null;
             }
-
+        return null;
     }
 }

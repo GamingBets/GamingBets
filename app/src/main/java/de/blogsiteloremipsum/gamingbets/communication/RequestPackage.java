@@ -20,8 +20,22 @@ public class RequestPackage {
     private String bet="";
 
     public RequestPackage(){
-        uri = "http://134.255.218.20:8080/gamingBetRestServer-1.0/api";
+        uri = "http://134.255.218.20:8080/gamingBetRestServer/api";
+        //uri = "http://192.168.204.1:8080/Gaming-Bets-Server/api";
     }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public String getBet() {
+        return bet;
+    }
+
+    public void setBet(String bet) {
+        this.bet = bet;
+    }
+
     public String getUri() {
         return uri;
     }
@@ -82,15 +96,5 @@ public class RequestPackage {
         this.ticket = ticket;
     }
 
-    public String getTicket() {
-        return ticket;
-    }
 
-    public String getBet() {
-        return bet;
-    }
-
-    public void setBet(String bet) {
-        this.bet = bet;
-    }
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.ArrayList;
+
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 
@@ -15,8 +17,35 @@ public class Globals extends Application{
     private User user;
     private UnregisteredUser unregisteredUser;
     private LocalClient client;
+    private Sc2Matches match;
+    private Sc2AvailableBets availableBet;
+    private ArrayList<Sc2AvailableBets> availableBets;
 
     private String usereditName = "";
+
+    public ArrayList<Sc2AvailableBets> getAvailableBets() {
+        return availableBets;
+    }
+
+    public void setAvailableBets(ArrayList<Sc2AvailableBets> availableBets) {
+        this.availableBets = availableBets;
+    }
+
+    public Sc2Matches getMatch() {
+        return match;
+    }
+
+    public void setMatch(Sc2Matches match) {
+        this.match = match;
+    }
+
+    public Sc2AvailableBets getAvailableBet() {
+        return availableBet;
+    }
+
+    public void setAvailableBet(Sc2AvailableBets availableBet) {
+        this.availableBet = availableBet;
+    }
 
     public String getUsereditName() {
         return usereditName;

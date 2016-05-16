@@ -51,7 +51,7 @@ public class UserLandingActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), PlacebetActivity.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
             startActivity(intentPlaceBet);
             return true;
         }

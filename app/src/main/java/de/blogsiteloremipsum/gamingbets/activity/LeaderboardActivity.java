@@ -40,21 +40,20 @@ public class LeaderboardActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        if(score!=null){
+            String[] leaderBoardArray = new String [score.size()];
 
-        String[] leaderBoardArray = new String [score.size()];
+            for (int i=0;i< score.size();i++){
+                leaderBoardArray[i] = score.get(i).getUserName() + "                            " + score.get(i).getScore();
+            }
 
-        for (int i=0;i< score.size();i++){
-            leaderBoardArray[i] = score.get(i).getUserName() + "                    " + score.get(i).getScore();
-        }
+            ListAdapter leaderboardAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                    leaderBoardArray);
 
-        ListAdapter leaderboardAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                leaderBoardArray);
+            ListView leaderboardView = (ListView) findViewById(R.id.listView);
+            leaderboardView.setAdapter(leaderboardAdapter);
 
-        ListView leaderboardView = (ListView) findViewById(R.id.listView);
-        leaderboardView.setAdapter(leaderboardAdapter);
-
-        leaderboardView.setOnItemClickListener(new
-            AdapterView.OnItemClickListener() {
+            leaderboardView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     String tvShowPicked = "You selected" + String.valueOf(adapterView.getItemAtPosition(position));
@@ -63,6 +62,10 @@ public class LeaderboardActivity extends AppCompatActivity {
                     Globals g = (Globals) getApplication();
                 }
             });
+        }else{
+            Toast.makeText(LeaderboardActivity.this, "Kein Leaderboard gefunden", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

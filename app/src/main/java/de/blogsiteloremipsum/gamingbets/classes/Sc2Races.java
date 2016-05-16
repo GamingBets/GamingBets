@@ -7,6 +7,7 @@ public class Sc2Races {
 
     private int idraces;
     private String shortcut;
+    private String name;
 
     public int getIdraces() {
         return idraces;
@@ -22,5 +23,13 @@ public class Sc2Races {
 
     public void setShortcut(String shortcut) {
         this.shortcut = shortcut;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

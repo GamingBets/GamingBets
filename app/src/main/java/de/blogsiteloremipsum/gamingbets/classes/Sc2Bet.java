@@ -5,43 +5,43 @@ package de.blogsiteloremipsum.gamingbets.classes;
  */
 public class Sc2Bet {
 
-    private int idsc2_bet;
-    private int bet_id;
-    private int user_id;
-    private int betted_result;
+    private int idsc2Bet;
+    private Sc2AvailableBets betId;
+    private int userId;
+    private int bettedResult;
     private int status;
     private boolean processed;
 
-    public int getIdsc2_bet() {
-        return idsc2_bet;
+    public int getIdsc2Bet() {
+        return idsc2Bet;
     }
 
-    public void setIdsc2_bet(int idsc2_bet) {
-        this.idsc2_bet = idsc2_bet;
+    public void setIdsc2Bet(int idsc2_bet) {
+        this.idsc2Bet = idsc2_bet;
     }
 
-    public int getBet_id() {
-        return bet_id;
+    public Sc2AvailableBets getBet_id() {
+        return betId;
     }
 
-    public void setBet_id(int bet_id) {
-        this.bet_id = bet_id;
+    public void setBetId(Sc2AvailableBets betId) {
+        this.betId = betId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
-    public int getBetted_result() {
-        return betted_result;
+    public int getBettedResult() {
+        return bettedResult;
     }
 
-    public void setBetted_result(int betted_result) {
-        this.betted_result = betted_result;
+    public void setBettedResult(int bettedResult) {
+        this.bettedResult = bettedResult;
     }
 
     public int getStatus() {

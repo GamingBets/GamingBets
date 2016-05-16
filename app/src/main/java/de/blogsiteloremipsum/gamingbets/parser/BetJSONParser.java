@@ -26,10 +26,11 @@ public class BetJSONParser {
 
                 JSONObject obj = ar.getJSONObject(i);
                 Sc2Bet bet = new Sc2Bet();
-                bet.setIdsc2_bet(obj.getInt("idsc2_bet"));
-                bet.setBet_id(obj.getInt("bet_id"));
-                bet.setUser_id(obj.getInt("user_id"));
-                bet.setBetted_result(obj.getInt("betted_result"));
+                bet.setIdsc2Bet(obj.getInt("idsc2_bet"));
+
+                //bet.setBet_id(obj.getInt("bet_id"));
+                bet.setUserId(obj.getInt("user_id"));
+                bet.setBettedResult(obj.getInt("betted_result"));
                 bet.setStatus(obj.getInt("status"));
                 bet.setProcessed(obj.getBoolean("processed"));
 

@@ -25,5 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:design:23.1.0'
     compile 'commons-codec:commons-codec:1.9'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
     //compile files('src/main/res/libs/mysql-connector-java-5.1.30-bin.jar')
 }

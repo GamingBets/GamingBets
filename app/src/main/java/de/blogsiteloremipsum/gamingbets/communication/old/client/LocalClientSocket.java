@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
@@ -155,5 +158,25 @@ public class LocalClientSocket implements ClientMethods {
 
         return cp.getAllUser();
 
+    }
+
+    @Override
+    public ArrayList<Sc2AvailableBets> getAvailableBets() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Sc2Bet> getUserBets(int userId) {
+        return null;
+    }
+
+    @Override
+    public Sc2Tournament getTournament(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean createBet(Sc2Bet bet) {
+        return false;
     }
 }

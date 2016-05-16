@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
@@ -37,5 +40,13 @@ public interface ClientMethods {
     ArrayList<Ticket> getTickets();
 
     ArrayList<User> getLeaderboard();
+
+    ArrayList<Sc2AvailableBets> getAvailableBets();
+
+    ArrayList<Sc2Bet> getUserBets(int userId);
+
+    Sc2Tournament getTournament(int id);
+
+    boolean createBet(Sc2Bet bet);
 
 }

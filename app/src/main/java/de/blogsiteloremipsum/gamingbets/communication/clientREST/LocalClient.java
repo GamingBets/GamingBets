@@ -7,11 +7,18 @@ import java.util.Date;
 import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.HttpManager;
 import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
+import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.BetJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.Sc2BetToJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketToJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserJSONParser;
@@ -183,5 +190,54 @@ public class LocalClient implements ClientMethods {
         return UserJSONParser.parseFeed(content);
     }
 
+    @Override
+    public ArrayList<Sc2AvailableBets> getAvailableBets() {
+        RequestPackage p = new RequestPackage();
+        p.setUri("sc2AvailableBets");
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        ArrayList<Sc2AvailableBets> bets = AvailableBetsJSONParser.parseFeed(content);
+        if(bets!=null){
+            return bets;
+        }
+        return null;
+    }
 
+    @Override
+    public ArrayList<Sc2Bet> getUserBets(int userId) {
+        RequestPackage p = new RequestPackage();
+        p.setUri("/sc2Bet/userId/"+userId);
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        ArrayList<Sc2Bet> bets = BetJSONParser.parseFeed(content);
+        if(bets!=null){
+            return bets;
+        }
+        return null;
+    }
+
+    @Override
+    public Sc2Tournament getTournament(int id) {
+        RequestPackage p = new RequestPackage();
+        p.setUri("/sc2Tournament/"+id);
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        Sc2Tournament tournament = Sc2TournamentSpecJSONParser.parseFeed(content);
+        if(tournament!=null){
+            return tournament;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean createBet(Sc2Bet bet) {
+        RequestPackage p = new RequestPackage();
+        p.setUri("/sc2Bet");
+        p.setMethod("POST");
+        p.setBet(Sc2BetToJSONParser.parseFeed(bet));
+
+        HttpManager.getData(p);
+
+        return true;
+    }
 }

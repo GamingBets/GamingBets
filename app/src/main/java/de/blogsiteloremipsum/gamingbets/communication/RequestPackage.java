@@ -17,6 +17,7 @@ public class RequestPackage {
     private Map<String, String> params = new HashMap<>();
     private String user="";
     private String ticket="";
+    private String bet="";
 
     public RequestPackage(){
         uri = "http://134.255.218.20:8080/gamingBetRestServer-1.0/api";
@@ -79,5 +80,17 @@ public class RequestPackage {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public String getBet() {
+        return bet;
+    }
+
+    public void setBet(String bet) {
+        this.bet = bet;
     }
 }

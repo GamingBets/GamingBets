@@ -12,7 +12,7 @@ public class PlacebetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_placebet);
+        setContentView(R.layout.activity_placebet);
     }
 
     public void placeBet(){

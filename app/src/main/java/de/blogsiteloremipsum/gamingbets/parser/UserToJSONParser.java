@@ -52,7 +52,6 @@ public class UserToJSONParser {
             obj.put("admin", false);
             obj.put("active", true);
             obj.put("bets", "");
-            obj.put("dob", "3915-12-10T00:00:00+01:00");
 
             return obj.toString();
 

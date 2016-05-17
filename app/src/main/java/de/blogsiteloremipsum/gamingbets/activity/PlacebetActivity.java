@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,12 +40,41 @@ public class PlacebetActivity extends AppCompatActivity {
         player2.setText(bet.getMatchId().getPlayer2().getIngameName());
         tournament.setText(bet.getMatchId().getTournamentId().getName() + " in " + bet.getMatchId().getTournamentId().getLocation());
         desc.setText(bet.getMatchId().getPlayer1().getIngameName() + " VS " + bet.getMatchId().getPlayer2().getIngameName());
+
+        //Get User Score and adjust range of Seek Bar
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        sb.setMax(u.getScore());
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int value = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                value = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(PlacebetActivity.this, "" + (value+10), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
     }
 
     public void placeBetOnClick(View v){
 
         RadioButton player1 = (RadioButton) findViewById(R.id.Team1RadioButton);
         RadioButton player2 = (RadioButton) findViewById(R.id.Team2RadioButton);
+        Switch wager_flag = (Switch) findViewById(R.id.flag_wager_bet);
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
         Globals g = (Globals) getApplication();
 
         Sc2Bet bet = new Sc2Bet();
@@ -54,6 +85,13 @@ public class PlacebetActivity extends AppCompatActivity {
         }else {
             bet.setBettedResult(2);
         }
+
+        if (wager_flag.isChecked()){
+            bet.setInput(sb.getProgress()+10);
+        }else{
+            bet.setInput(0);
+        }
+
         bet.setProcessed(false);
         bet.setStatus(0);
         new PlaceBetTask().execute(bet);

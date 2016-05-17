@@ -68,6 +68,28 @@
                 android:checked="false"
                 android:layout_gravity="bottom|center" />
         </RadioGroup>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="104dp">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wager Bet?"
+                android:id="@+id/flag_wager_bet"
+                android:layout_gravity="center_horizontal" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekBar"
+                android:layout_gravity="center_horizontal"
+                android:max="7" />
+        </LinearLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -110,7 +110,7 @@ public class LocalClient implements ClientMethods {
     @Override
     public boolean edit(User user) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/users/"+user.getId());
+        p.setUri("/users/" + user.getId());
         p.setMethod("PUT");
         p.setUser(UserToJSONParser.parseFeed(user));
 
@@ -158,7 +158,7 @@ public class LocalClient implements ClientMethods {
     public User getUser(String userName) {
         RequestPackage p = new RequestPackage();
         p.setUri("/users/name");
-        p.setParam("id", ""+userName);
+        p.setParam("id", "" + userName);
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         if(content!=null){
@@ -242,6 +242,19 @@ public class LocalClient implements ClientMethods {
         p.setMethod("POST");
         p.setBet(Sc2BetToJSONParser.parseFeed(bet));
         System.out.println(p.getBet());
+        HttpManager.getData(p);
+
+        return true;
+    }
+
+    public boolean updateScore(int id, int score){
+        RequestPackage p = new RequestPackage();
+        p.setUri("/users/score/"+id);
+        p.setMethod("PUT");
+        User u = new User();
+        u.setScore(score);
+        u.setId(id);
+        p.setUser(UserToJSONParser.parseFeed(u));
         HttpManager.getData(p);
 
         return true;

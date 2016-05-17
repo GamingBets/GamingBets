@@ -49,11 +49,10 @@ public class PlacebetActivity extends AppCompatActivity {
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TextView txt_value = (TextView) findViewById(R.id.wager_value);
-                txt_value.setText("You are risiking "+(progress+10)+"  Points!");
+                txt_value.setText("You are risiking " + (progress + 10) + "  Points!");
             }
 
             @Override
@@ -78,10 +77,10 @@ public class PlacebetActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
                 TextView txt_value = (TextView) findViewById(R.id.wager_value);
-                if (isChecked){
+                if (isChecked) {
                     sb.setVisibility(View.VISIBLE);
                     txt_value.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     sb.setVisibility(View.INVISIBLE);
                     txt_value.setVisibility(View.INVISIBLE);
                 }
@@ -110,6 +109,9 @@ public class PlacebetActivity extends AppCompatActivity {
 
         if (wager_flag.isChecked()){
             bet.setInput(sb.getProgress()+10);
+            User u = g.getUser();
+            u.setScore(u.getScore()-sb.getProgress()+10);
+            new UpdateScore().execute(u);
         }else{
             bet.setInput(0);
         }
@@ -212,6 +214,17 @@ public class PlacebetActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Sc2Bet... params) {
             if(new LocalClient().createBet(params[0])){
+                return true;
+            }
+            return false;
+
+        }
+    }
+    private class UpdateScore extends AsyncTask<User, Void, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(User... params) {
+            if(new LocalClient().updateScore(params[0].getId(), params[0].getScore())){
                 return true;
             }
             return false;

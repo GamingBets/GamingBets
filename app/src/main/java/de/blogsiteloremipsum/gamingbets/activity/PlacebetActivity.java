@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -44,13 +45,15 @@ public class PlacebetActivity extends AppCompatActivity {
         //Get User Score and adjust range of Seek Bar
         SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
         sb.setMax(u.getScore());
+        sb.setVisibility(View.INVISIBLE);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-            int value = 0;
+
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                value = progress;
+                TextView txt_value = (TextView) findViewById(R.id.wager_value);
+                txt_value.setText("You are risiking "+(progress+10)+"  Points!");
             }
 
             @Override
@@ -60,11 +63,30 @@ public class PlacebetActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(PlacebetActivity.this, "" + (value+10), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PlacebetActivity.this, "" + (value+10), Toast.LENGTH_SHORT).show();
+
             }
         });
 
+        TextView txt_value = (TextView) findViewById(R.id.wager_value);
+        txt_value.setVisibility(View.INVISIBLE);
 
+        Switch wager_flag = (Switch) findViewById(R.id.flag_wager_bet);
+        wager_flag.setChecked(false);
+        wager_flag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+                TextView txt_value = (TextView) findViewById(R.id.wager_value);
+                if (isChecked){
+                    sb.setVisibility(View.VISIBLE);
+                    txt_value.setVisibility(View.VISIBLE);
+                }else{
+                    sb.setVisibility(View.INVISIBLE);
+                    txt_value.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
 
     }

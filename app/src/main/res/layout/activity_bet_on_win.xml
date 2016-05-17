@@ -88,6 +88,13 @@
                 android:id="@+id/seekBar"
                 android:layout_gravity="center_horizontal"
                 android:max="7" />
+
+            <TextView
+                android:layout_width="126dp"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/wager_value"
+                android:layout_gravity="right" />
         </LinearLayout>
 
         <Button

@@ -69,7 +69,8 @@
             android:layout_height="match_parent"
             android:id="@+id/txt_score_value"
             android:layout_gravity="right"
-            android:layout_weight="0.21" />
+            android:layout_weight="0.21"
+            android:gravity="center" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

@@ -22,8 +22,9 @@ public class ProfileActivity extends AppCompatActivity {
         username.setText(u.getUserName());
 
         TextView score = (TextView) findViewById(R.id.txt_score_value);
-        score.setText("60");
-        //score.setText(u.getScore());
+        //score.setText("60");
+        int value = u.getScore();
+        score.setText(""+value);
 
 
     }

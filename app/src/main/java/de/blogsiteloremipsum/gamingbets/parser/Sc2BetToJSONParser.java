@@ -6,6 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
 
 /**
@@ -16,11 +20,17 @@ public class Sc2BetToJSONParser {
 
         ObjectMapper mapper = new ObjectMapper();
             try {
+
                 String jsonbet = mapper.writeValueAsString(bet);
                 System.out.println(jsonbet);
-                return jsonbet;
+                JSONObject fail = new JSONObject(jsonbet);
+                fail.remove("processed");
+                fail.put("processed", 0);
+                              return fail.toString();
 
             } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         return null;

@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Player;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
-import de.blogsiteloremipsum.gamingbets.classes.User;
 
 /**
  * Created by Andre on 16.05.2016.

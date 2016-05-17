@@ -34,9 +34,17 @@ public class HttpManager {
                 con.setRequestProperty("Accept-Charset", "UTF-8");
                 System.out.println(url);
                 System.out.println(con.getRequestMethod());
-                System.out.println(p.getUser());
+
                 OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-                wr.write(p.getUser());
+                if(p.getUser()!=null){
+                    wr.write(p.getUser());
+                }
+                if(p.getBet()!=null){
+                    wr.write(p.getBet());
+                }
+                if(p.getTicket()!=null){
+                    wr.write(p.getTicket());
+                }
                 wr.flush();
             }
 

@@ -15,9 +15,9 @@ public class RequestPackage {
     private String uri;
     private String method = "GET";
     private Map<String, String> params = new HashMap<>();
-    private String user="";
-    private String ticket="";
-    private String bet="";
+    private String user=null;
+    private String ticket=null;
+    private String bet=null;
 
     public RequestPackage(){
         uri = "http://134.255.218.20:8080/gamingBetRestServer/api";

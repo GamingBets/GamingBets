@@ -45,7 +45,6 @@ public class UserToJSONParser {
             obj.put("loggedIn", false);
             obj.put("admin", false);
             obj.put("active", true);
-            obj.put("bets", "");
 
             return obj.toString();
 

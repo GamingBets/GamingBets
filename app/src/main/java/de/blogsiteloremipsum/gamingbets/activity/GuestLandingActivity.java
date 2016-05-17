@@ -17,7 +17,12 @@ public class GuestLandingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_landing);
         Globals g = (Globals) getApplication();
-        g.setUser(new User(0, null, null, null, null, false, false));
+        User user = new User();
+        user.setId(0);
+        user.setAdmin(false);
+        user.setLoggedIn(false);
+        user.setUserName(null);
+        g.setUser(user);
     }
 
     @Override

@@ -1,10 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.parser;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
@@ -18,11 +15,10 @@ public class UserSpecJSONParser {
             JSONObject obj = new JSONObject(content);
 
             User user = new User();
-            user.setID(obj.getInt("ID"));
+            user.setId(obj.getInt("id"));
             user.setUserName(obj.getString("userName"));
             user.setPassword(obj.getString("password"));
-            user.setBets(obj.getString("bets"));
-            user.setLoggedin(obj.getBoolean("loggedIn"));
+            user.setLoggedIn(obj.getBoolean("loggedIn"));
             user.setAdmin(obj.getBoolean("admin"));
             user.setActive(obj.getBoolean("active"));
 

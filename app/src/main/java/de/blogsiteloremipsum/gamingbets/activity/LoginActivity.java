@@ -11,10 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.blogsiteloremipsum.gamingbets.R;
-import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
-import de.blogsiteloremipsum.gamingbets.communication.old.client.LocalClientSocket;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 Globals g = (Globals) getApplication();
                 User u = g.getUser();
                 g.setUser(g.getClient().getUser(u.getUserName()));
-                u.setLoggedin(true);
+                u.setLoggedIn(true);
                 return true;
             } else {
                 return false;

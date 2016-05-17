@@ -8,12 +8,12 @@ import java.util.Date;
 public class Server {
 
     public boolean login(User user){
-        user.setLoggedin(true);
+        user.setLoggedIn(true);
         return true;
     }
 
     public boolean logout(User user){
-        user.setLoggedin(false);
+        user.setLoggedIn(false);
         return true;
     }
 

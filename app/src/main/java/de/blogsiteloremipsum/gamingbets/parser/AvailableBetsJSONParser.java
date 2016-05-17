@@ -22,9 +22,15 @@ public class AvailableBetsJSONParser {
 
         try {
             ArrayList<Sc2AvailableBets> betList = new ArrayList<>();
-            JSONArray ar = new JSONArray(content);
-            //JSONObject parentobj = new JSONObject(content);
-            //ar = parentobj.getJSONArray("sc2AvailableBets");
+            JSONArray ar;
+            //    ar = new JSONArray(content);
+
+
+
+                JSONObject parentobj = new JSONObject(content);
+                ar = parentobj.getJSONArray("sc2AvailableBets");
+
+
 
             for (int i = 0; i < ar.length(); i++) {
 
@@ -55,28 +61,13 @@ public class AvailableBetsJSONParser {
 
                 player1.setIngameName(player1obj.getString("ingameName"));
                 player1.setId(player1obj.getInt("id"));
-                JSONObject raceobj = player1obj.getJSONObject("race");
-                Sc2Races race = new Sc2Races();
-                race.setIdraces(raceobj.getInt("idraces"));
-                race.setShortcut(raceobj.getString("shortcut"));
-                race.setName(raceobj.getString("name"));
-                player1.setRace(race);
-                player1.setRealName(player1obj.getString("realName"));
-
 
                 player2.setId(player2obj.getInt("id"));
                 player2.setIngameName(player2obj.getString("ingameName"));
-                raceobj = player2obj.getJSONObject("race");
-                race.setIdraces(raceobj.getInt("idraces"));
-                race.setShortcut(raceobj.getString("shortcut"));
-                race.setName(raceobj.getString("name"));
-                player2.setRace(race);
-                player2.setRealName(player2obj.getString("realName"));
 
                 match.setId(matchobj.getInt("id"));
                 match.setPlayer1(player1);
                 match.setPlayer2(player2);
-
 
                 bet.setIdsc2AvailableBets(obj.getInt("idsc2AvailableBets"));
                 bet.setMatchId(match);

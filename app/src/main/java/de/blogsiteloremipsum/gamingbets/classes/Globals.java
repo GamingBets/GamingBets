@@ -20,6 +20,7 @@ public class Globals extends Application{
     private Sc2Matches match;
     private Sc2AvailableBets availableBet;
     private ArrayList<Sc2AvailableBets> availableBets;
+    private ArrayList<Sc2Tournament> tournaments;
 
     private String usereditName = "";
 
@@ -29,6 +30,10 @@ public class Globals extends Application{
 
     public void setAvailableBets(ArrayList<Sc2AvailableBets> availableBets) {
         this.availableBets = availableBets;
+    }
+
+    public ArrayList<Sc2Tournament> getTournaments() {
+        return tournaments;
     }
 
     public Sc2Matches getMatch() {
@@ -80,5 +85,8 @@ public class Globals extends Application{
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public void setTournaments(ArrayList<Sc2Tournament> tournaments) {
     }
 }

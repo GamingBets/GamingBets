@@ -29,49 +29,57 @@
         <activity
             android:name=".activity.TicketGuestActivity"
             android:label="Write a ticket"
-            android:parentActivityName=".activity.GuestLandingActivity"></activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.TicketUserActivity"
             android:label="Write a ticket"
-            android:parentActivityName=".activity.UserLandingActivity"></activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".activity.GuestLandingActivity"></activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register"
-            android:parentActivityName=".activity.GuestLandingActivity"></activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.UserLandingActivity"
-            android:label="Welcome"></activity>
+            android:label="Welcome" />
         <activity
             android:name=".activity.GuestLandingActivity"
-            android:label="Welcome"></activity>
+            android:label="Welcome" />
         <activity
             android:name=".activity.ManageUserActivity"
             android:label="User Management"
-            android:parentActivityName=".activity.LeaderboardActivity"></activity>
+            android:parentActivityName=".activity.LeaderboardActivity" />
         <activity
             android:name=".activity.LeaderboardActivity"
             android:label="Leaderboard"
-            android:parentActivityName=".activity.UserLandingActivity"></activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.EditUserActivity"
             android:label="Edit your data"
-            android:parentActivityName=".activity.UserLandingActivity"></activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.PlacebetActivity"
             android:label="Place a bet"
-            android:parentActivityName=".activity.AvailableSc2Bets"></activity>
+            android:parentActivityName=".activity.AvailableSc2Bets" />
         <activity
             android:name=".activity.TicketAnswerActivity"
             android:label="Answer a ticket"
-            android:parentActivityName=".activity.UserLandingActivity"></activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.AvailableSc2Bets"
             android:label="Available Starcraft 2 Bets"
-            android:parentActivityName=".activity.UserLandingActivity"></activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
+        <activity
+            android:name=".activity.MyBetsActivity"
+            android:label="My Bets"
+            android:parentActivityName=".activity.UserLandingActivity"/>
+        <activity
+            android:name=".activity.ChooseSc2TournamentActivity"
+            android:label="Star Craft 2 Tournaments"
+            android:parentActivityName=".activity.UserLandingActivity"/>
     </application>
 
 </manifest>

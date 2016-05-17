@@ -19,35 +19,37 @@ import java.util.concurrent.ExecutionException;
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
-public class AvailableSc2Bets extends AppCompatActivity {
+public class ChooseSc2TournamentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_available_sc2_bets);
+        setContentView(R.layout.activity_choose_sc2_tournament);
 
         Globals g = (Globals) getApplication();
         User u = g.getUser();
-        ArrayList<Sc2AvailableBets> bets = new ArrayList<>();
-        bets = null;
+
+        ArrayList<Sc2Tournament> tournaments = new ArrayList<>();
+        tournaments = null;
 
         try{
-            bets = new AvailableSc2BetsTask().execute().get();
+            tournaments = new ChooseSc2TournamentActivityTask().execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        if(bets!=null){
-            g.setAvailableBets(bets);
-            String[] betsArray = new String [bets.size()];
+        if(tournaments!=null){
+            g.setTournaments(tournaments);
+            String[] betsArray = new String [tournaments.size()];
 
-            for(int i = 0; i<bets.size();i++){
-                betsArray[i] = "\t" + bets.get(i).getMatchId().getPlayer1().getIngameName() + " vs. " +bets.get(i).getMatchId().getPlayer2().getIngameName();
+            for(int i = 0; i<tournaments.size();i++){
+                betsArray[i] = tournaments.get(i).getName() + " in " + tournaments.get(i).getLocation();
             }
 
             ListAdapter availableBetsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, betsArray);
@@ -60,21 +62,31 @@ public class AvailableSc2Bets extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                     Globals g = (Globals) getApplication();
-                    g.setAvailableBet(g.getAvailableBets().get(position));
-                    Intent i = new Intent(getApplicationContext(), PlacebetActivity.class);
+
+                    Intent i = new Intent(getApplicationContext(), AvailableSc2Bets.class);
                     startActivity(i);
                 }
             });
         }else{
-            Toast.makeText(AvailableSc2Bets.this, "No available bets found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChooseSc2TournamentActivity.this, "No available bets found", Toast.LENGTH_SHORT).show();
         }
     }
 
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_user, menu);
-        return true;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        Globals g = (Globals) getApplication();
+        if (g.getUser().getAdmin()) {
+            getMenuInflater().inflate(R.menu.menu_admin, menu);
+            return true;
+        }
+        else{
+            getMenuInflater().inflate(R.menu.menu_user, menu);
+            return true;
+        }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -142,11 +154,12 @@ public class AvailableSc2Bets extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class AvailableSc2BetsTask extends AsyncTask<Void , Void, ArrayList<Sc2AvailableBets>>
-    {
+    private class ChooseSc2TournamentActivityTask extends AsyncTask<Void, Void, ArrayList<Sc2Tournament>>{
+
         @Override
-        protected ArrayList<Sc2AvailableBets> doInBackground(Void... params) {
-            return new LocalClient().getAvailableBets();
+        protected ArrayList<Sc2Tournament> doInBackground(Void... params) {
+            return new LocalClient().getAllTournaments();
+
         }
     }
 }

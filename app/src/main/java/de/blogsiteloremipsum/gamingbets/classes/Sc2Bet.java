@@ -20,7 +20,7 @@ public class Sc2Bet {
         this.idsc2Bet = idsc2_bet;
     }
 
-    public Sc2AvailableBets getBet_id() {
+    public Sc2AvailableBets getBetId() {
         return betId;
     }
 
@@ -32,8 +32,8 @@ public class Sc2Bet {
         return userId;
     }
 
-    public void setUserId(int user_id) {
-        this.userId = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getBettedResult() {

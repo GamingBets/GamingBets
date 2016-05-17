@@ -1,8 +1,6 @@
 package de.blogsiteloremipsum.gamingbets.communication.clientREST;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
@@ -49,4 +47,5 @@ public interface ClientMethods {
 
     boolean createBet(Sc2Bet bet);
 
+    ArrayList<Sc2Tournament> getAllTournaments();
 }

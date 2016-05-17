@@ -17,8 +17,8 @@ public class BetJSONParser {
     public static ArrayList<Sc2Bet> parseFeed(String content){
 
         try {
-
             ArrayList<Sc2Bet> betList = new ArrayList<>();
+
             JSONArray ar;
             JSONObject parentobj = new JSONObject(content);
             ar = parentobj.getJSONArray("sc2Bet");

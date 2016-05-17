@@ -14,13 +14,11 @@ public class UnregisteredUser implements Serializable {
     private String userName;
     private String email;
     private String password;
-    private Date dob;
 
-    public UnregisteredUser(String userName, String email, String password, Date dob) {
+    public UnregisteredUser(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.dob = dob;
     }
 
     public UnregisteredUser(){}
@@ -49,11 +47,4 @@ public class UnregisteredUser implements Serializable {
         this.password = password;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 }

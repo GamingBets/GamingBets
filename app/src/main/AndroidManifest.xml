@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.blogsiteloremipsum.gamingbets" >
+    package="de.blogsiteloremipsum.gamingbets">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- To auto-complete the email text field in the login form with the UserModel's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -15,11 +15,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.Welcome"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,58 +29,57 @@
         <activity
             android:name=".activity.TicketGuestActivity"
             android:label="Write a ticket"
-            android:parentActivityName=".activity.GuestLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.TicketUserActivity"
             android:label="Write a ticket"
-            android:parentActivityName=".activity.UserLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".activity.GuestLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Register"
-            android:parentActivityName=".activity.GuestLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.GuestLandingActivity" />
         <activity
             android:name=".activity.UserLandingActivity"
-            android:label="Welcome" >
-        </activity>
+            android:label="Welcome" />
         <activity
             android:name=".activity.GuestLandingActivity"
-            android:label="Welcome" >
-        </activity>
+            android:label="Welcome" />
         <activity
             android:name=".activity.ManageUserActivity"
             android:label="User Management"
-            android:parentActivityName=".activity.LeaderboardActivity" >
-        </activity>
+            android:parentActivityName=".activity.LeaderboardActivity" />
         <activity
             android:name=".activity.LeaderboardActivity"
             android:label="Leaderboard"
-            android:parentActivityName=".activity.UserLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.EditUserActivity"
             android:label="Edit your data"
-            android:parentActivityName=".activity.UserLandingActivity" >
-        </activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.PlacebetActivity"
             android:label="Place a bet"
-            android:parentActivityName=".activity.UserLandingActivity"
-            >
-        </activity>
+            android:parentActivityName=".activity.AvailableSc2Bets" />
         <activity
             android:name=".activity.TicketAnswerActivity"
             android:label="Answer a ticket"
-            android:parentActivityName=".activity.UserLandingActivity"
-            >
-        </activity>
+            android:parentActivityName=".activity.UserLandingActivity" />
+        <activity
+            android:name=".activity.AvailableSc2Bets"
+            android:label="Available Starcraft 2 Bets"
+            android:parentActivityName=".activity.ChooseSc2TournamentActivity" />
+        <activity
+            android:name=".activity.MyBetsActivity"
+            android:label="My Bets"
+            android:parentActivityName=".activity.UserLandingActivity"/>
+        <activity
+            android:name=".activity.ChooseSc2TournamentActivity"
+            android:label="Star Craft 2 Tournaments"
+            android:parentActivityName=".activity.UserLandingActivity"/>
     </application>
 
 </manifest>

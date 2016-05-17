@@ -11,7 +11,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -31,38 +32,47 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="LCS"
                 android:id="@+id/tournament_2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:text="Game Description"
+                android:id="@+id/description"
+                android:layout_above="@+id/linearLayout"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true" />
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Game Description"
-            android:id="@+id/description"
-            android:layout_above="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team 1"
-            android:id="@+id/Team1RadioButton"
-            android:checked="false"
-            android:layout_gravity="center_horizontal" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team 1"
+                android:id="@+id/Team1RadioButton"
+                android:checked="false"
+                android:layout_gravity="center_horizontal" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Team2"
-            android:id="@+id/Team2RadioButton"
-            android:checked="false"
-            android:layout_gravity="center_horizontal" />
-
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team2"
+                android:id="@+id/Team2RadioButton"
+                android:checked="false"
+                android:layout_gravity="bottom|center" />
+        </RadioGroup>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Place bet"
+            android:onClick="placeBetOnClick"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal" />
 

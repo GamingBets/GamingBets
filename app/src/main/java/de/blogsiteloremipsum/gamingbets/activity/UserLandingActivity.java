@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.User;
 
 public class UserLandingActivity extends AppCompatActivity {
 
@@ -21,13 +22,16 @@ public class UserLandingActivity extends AppCompatActivity {
         String username = g.getUser().getUserName();
         TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
         WelcomeMessage.setText("Hello "+username+"! What would you like to do?");
+        User u = g.getUser();
+        
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         Globals g = (Globals) getApplication();
-        if (g.getUser().isAdmin()) {
+        if (g.getUser().getAdmin()) {
             getMenuInflater().inflate(R.menu.menu_admin, menu);
             return true;
         }
@@ -46,7 +50,7 @@ public class UserLandingActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), PlacebetActivity.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -84,6 +88,24 @@ public class UserLandingActivity extends AppCompatActivity {
         if(id==R.id.action_TicketAnswer){
             Intent intentTicketAnswer = new Intent(getApplicationContext(), TicketAnswerActivity.class);
             startActivity(intentTicketAnswer);
+            return true;
+        }
+        if(id==R.id.action_Logout){
+            Globals g = (Globals) getApplication();
+            User user = new User();
+            user.setId(0);
+            user.setAdmin(false);
+            user.setLoggedIn(false);
+            user.setUserName(null);
+            g.setUser(user);
+
+            Intent intentWelcome = new Intent(getApplicationContext(), Welcome.class);
+            startActivity(intentWelcome);
+            return true;
+        }
+        if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
             return true;
         }
 

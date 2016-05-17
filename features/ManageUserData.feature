@@ -10,7 +10,7 @@ Feature: Manage User Data
     And I press "LoginButton"
     And I wait for "Login successful" to appear
     And I press the menu key
-    And I press "Manage user data"
+    And I press "Manage userModel data"
     And I press "reg1"
     And I wait for "You Selectedreg1"
     And I press "Confirm Changes"

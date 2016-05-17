@@ -1,22 +1,25 @@
-package de.blogsiteloremipsum.gamingbets.communication.client;
+package de.blogsiteloremipsum.gamingbets.communication.clientREST;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+
 
 /**
  * Created by Felix Morsbach on 13.11.2015.
  */
 public interface ClientMethods {
 
-    boolean login(User user);
+    boolean  login(User user);
 
     boolean logout(User user);
 
-    boolean register(String username, String email, String pw, Date dob);
+    boolean register(String username, String email, String pw);
 
     boolean edit(User user);
 
@@ -36,5 +39,13 @@ public interface ClientMethods {
 
     ArrayList<User> getLeaderboard();
 
+    ArrayList<Sc2AvailableBets> getAvailableBets(int idtournament);
 
+    ArrayList<Sc2Bet> getUserBets(int userId);
+
+    Sc2Tournament getTournament(int id);
+
+    boolean createBet(Sc2Bet bet);
+
+    ArrayList<Sc2Tournament> getAllTournaments();
 }

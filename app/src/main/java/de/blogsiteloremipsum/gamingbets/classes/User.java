@@ -1,63 +1,56 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
-import java.io.Serializable;
-import java.sql.Date;
-
 /**
- * Created by quint_000 on 12.11.2015.
+ * Created by Andre on 17.05.2016.
  */
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 6529685098267757690L;
-
-    private int ID;
+public class User {
+    private Integer id;
     private String userName;
-    private String email;
     private String password;
-    private String bets;
-    private boolean admin;
+    private Boolean loggedIn;
+    private Boolean admin;
     private boolean active;
-    private Date dob;
-    private int score;
+    private String email;
+    private Integer score;
 
-    public User(int ID, String userName, String email, String password, String bets, boolean admin, boolean active, Date dob) {
-        this.ID = ID;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
         this.userName = userName;
-        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
-        this.bets = bets;
+    }
+
+    public Boolean getLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(Boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
-        this.active = active;
-        this.dob = dob;
-    }
-    public User(String userName, String password){
-        this.ID = -1;
-        this.userName = userName;
-        this.email = "";
-        this.password = password;
-        this.bets = "";
-        this.admin = false;
-        this.active = false;
-        this.dob = null;
-    }
-
-    public User(){
-        ID = -1;
-        userName = "";
-        email = "";
-        password = "";
-        bets = "";
-        admin = false;
-        active = false;
-        dob = null;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public boolean isActive() {
@@ -68,67 +61,19 @@ public class User implements Serializable {
         this.active = active;
     }
 
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getBets() {
-        return bets;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public boolean isLoggedin() {
-        return active;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setBets(String bets) {
-        this.bets = bets;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
-    public void setLoggedin(boolean loggedin) {
-        this.active = loggedin;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 }

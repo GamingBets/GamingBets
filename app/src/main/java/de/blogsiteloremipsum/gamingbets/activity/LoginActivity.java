@@ -10,15 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
-
 import de.blogsiteloremipsum.gamingbets.R;
-import de.blogsiteloremipsum.gamingbets.classes.Bet;
-import de.blogsiteloremipsum.gamingbets.classes.Ticket;
-import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
-import de.blogsiteloremipsum.gamingbets.communication.client.ClientMethods;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +26,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean LoginAttemptOnClick(View v) {
         EditText UsernameEdit = (EditText) findViewById(R.id.mail);
         EditText PwEdit = (EditText) findViewById(R.id.password);
+        if(UsernameEdit.getText().toString().equals("")){
+            Toast.makeText(LoginActivity.this, "Enter a UserName!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(PwEdit.getText().toString().equals("")){
+            Toast.makeText(LoginActivity.this, "Enter a Password!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Globals g = (Globals) getApplication();
         User u = g.getUser();
         u.setUserName(UsernameEdit.getText().toString());
@@ -40,8 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean login(User user) {
-        Globals g = (Globals) getApplication();
-        LocalClientSocket client = g.getClient();
+        //Globals g = (Globals) getApplication();
+        //LocalClientSocket client = g.getClient();
+        LocalClient client = new LocalClient();
         return client.login(user);
     }
 
@@ -62,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 Globals g = (Globals) getApplication();
                 User u = g.getUser();
                 g.setUser(g.getClient().getUser(u.getUserName()));
-                u.setLoggedin(true);
+                u.setLoggedIn(true);
                 return true;
             } else {
                 return false;

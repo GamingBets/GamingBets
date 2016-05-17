@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
-import de.blogsiteloremipsum.gamingbets.communication.client.LocalClientSocket;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class Welcome extends AppCompatActivity {
 
@@ -25,7 +23,7 @@ public class Welcome extends AppCompatActivity {
         Globals g = (Globals)getApplication();
         User u = new User();
         UnregisteredUser uu = new UnregisteredUser();
-        LocalClientSocket client = new LocalClientSocket();
+        LocalClient client = new LocalClient();
         g.setClient(client);
         g.setUser(u);
         g.setUnregisteredUser(uu);

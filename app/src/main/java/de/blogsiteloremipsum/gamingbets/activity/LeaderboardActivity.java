@@ -45,7 +45,7 @@ public class LeaderboardActivity extends AppCompatActivity {
             String[] leaderBoardArray = new String [score.size()];
 
             for (int i=0;i< score.size();i++){
-                leaderBoardArray[i] = score.get(i).getUserName() + "                            " + score.get(i).getScore();
+                leaderBoardArray[i] = score.get(i).getUserName() + "\t\t\t\t\t\t\t" + score.get(i).getScore();
             }
 
             ListAdapter leaderboardAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
@@ -93,7 +93,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet) {
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -146,6 +146,12 @@ public class LeaderboardActivity extends AppCompatActivity {
             startActivity(intentWelcome);
             return true;
         }
+        if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

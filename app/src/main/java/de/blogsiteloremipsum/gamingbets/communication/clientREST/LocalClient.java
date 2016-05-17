@@ -13,7 +13,6 @@ import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.HttpManager;
 import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
-import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.BetJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2BetToJSONParser;
@@ -21,7 +20,6 @@ import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketToJSONParser;
-import de.blogsiteloremipsum.gamingbets.parser.UserFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserToJSONParser;
@@ -191,9 +189,9 @@ public class LocalClient implements ClientMethods {
     }
 
     @Override
-    public ArrayList<Sc2AvailableBets> getAvailableBets() {
+    public ArrayList<Sc2AvailableBets> getAvailableBets(int idtournament) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/sc2availablebets/notFinished");
+        p.setUri("/sc2availablebets/notFinished/" + idtournament);
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         ArrayList<Sc2AvailableBets> bets = AvailableBetsJSONParser.parseFeed(content);
@@ -206,7 +204,7 @@ public class LocalClient implements ClientMethods {
     @Override
     public ArrayList<Sc2Bet> getUserBets(int userId) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/sc2Bet/userId/"+userId);
+        p.setUri("/sc2bet/userId/"+userId);
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         ArrayList<Sc2Bet> bets = BetJSONParser.parseFeed(content);
@@ -235,7 +233,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/sc2tournament");
         p.setMethod("GET");
         String content = HttpManager.getData(p);
-        return Sc2TournamentFromJSONParser.parseFeed(content);
+        return Sc2TournamentFromJSONParser.parseFeed(content).getSc2Tournament();
     }
 
     @Override

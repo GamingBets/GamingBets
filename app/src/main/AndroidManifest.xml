@@ -71,7 +71,7 @@
         <activity
             android:name=".activity.AvailableSc2Bets"
             android:label="Available Starcraft 2 Bets"
-            android:parentActivityName=".activity.UserLandingActivity" />
+            android:parentActivityName=".activity.ChooseSc2TournamentActivity" />
         <activity
             android:name=".activity.MyBetsActivity"
             android:label="My Bets"

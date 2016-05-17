@@ -46,6 +46,7 @@ public class ChooseSc2TournamentActivity extends AppCompatActivity {
 
         if(tournaments!=null){
             g.setTournaments(tournaments);
+
             String[] betsArray = new String [tournaments.size()];
 
             for(int i = 0; i<tournaments.size();i++){
@@ -60,9 +61,9 @@ public class ChooseSc2TournamentActivity extends AppCompatActivity {
             betsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                    System.out.println(position);
                     Globals g = (Globals) getApplication();
-
+                    g.setTournament(g.getTournaments().get(position));
                     Intent i = new Intent(getApplicationContext(), AvailableSc2Bets.class);
                     startActivity(i);
                 }
@@ -96,7 +97,7 @@ public class ChooseSc2TournamentActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -148,7 +149,12 @@ public class ChooseSc2TournamentActivity extends AppCompatActivity {
             Intent intentWelcome = new Intent(getApplicationContext(), Welcome.class);
             startActivity(intentWelcome);
             return true;
+        }if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
+            return true;
         }
+
 
 
         return super.onOptionsItemSelected(item);

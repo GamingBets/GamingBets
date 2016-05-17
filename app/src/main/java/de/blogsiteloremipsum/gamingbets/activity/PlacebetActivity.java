@@ -84,7 +84,7 @@ public class PlacebetActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -135,6 +135,11 @@ public class PlacebetActivity extends AppCompatActivity {
 
             Intent intentWelcome = new Intent(getApplicationContext(), Welcome.class);
             startActivity(intentWelcome);
+            return true;
+        }
+        if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
             return true;
         }
 

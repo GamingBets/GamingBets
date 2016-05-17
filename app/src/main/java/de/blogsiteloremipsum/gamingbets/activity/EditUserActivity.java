@@ -148,6 +148,11 @@ public class EditUserActivity extends AppCompatActivity {
             startActivity(intentWelcome);
             return true;
         }
+        if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);

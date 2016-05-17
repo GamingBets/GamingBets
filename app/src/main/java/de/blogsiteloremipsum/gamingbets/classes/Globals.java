@@ -21,8 +21,16 @@ public class Globals extends Application{
     private Sc2AvailableBets availableBet;
     private ArrayList<Sc2AvailableBets> availableBets;
     private ArrayList<Sc2Tournament> tournaments;
-
+    private Sc2Tournament tournament;
     private String usereditName = "";
+
+    public Sc2Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Sc2Tournament tournament) {
+        this.tournament = tournament;
+    }
 
     public ArrayList<Sc2AvailableBets> getAvailableBets() {
         return availableBets;
@@ -88,5 +96,6 @@ public class Globals extends Application{
     }
 
     public void setTournaments(ArrayList<Sc2Tournament> tournaments) {
+        this.tournaments = tournaments;
     }
 }

@@ -1,14 +1,27 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class MyBetsActivity extends AppCompatActivity {
 
@@ -16,6 +29,53 @@ public class MyBetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bets);
+
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
+        ArrayList<Sc2Bet> bets = new ArrayList<>();
+        bets = null;
+
+        try{
+            bets = new MyBetsActivityTask().execute(u.getId()).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if(bets!=null){
+
+            String[] betsArray = new String [bets.size()];
+
+            for(int i = 0; i<bets.size();i++){
+                betsArray[i] = bets.get(i).getBetId().getMatchId().getTournamentId().getName() + " in " + bets.get(i).getBetId().getMatchId().getTournamentId().getLocation() + "\t"+bets.get(i).getBetId().getMatchId().getPlayer1().getIngameName() + " vs. " +bets.get(i).getBetId().getMatchId().getPlayer2().getIngameName() +"\t";
+                if(bets.get(i).getBettedResult()==1){
+                    betsArray[i]+="Betted Result: Player 1 wins";
+                }else{
+                    betsArray[i]+="Betted Result: Player 2 wins";
+
+                }
+
+            }
+
+            ListAdapter availableBetsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, betsArray);
+
+            ListView betsView = (ListView) findViewById(R.id.listViewBets);
+            betsView.setAdapter(availableBetsAdapter);
+            /*
+            betsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                    Globals g = (Globals) getApplication();
+                    g.setAvailableBet(g.getAvailableBets().get(position));
+                    Intent i = new Intent(getApplicationContext(), PlacebetActivity.class);
+                    startActivity(i);
+                }
+            });*/
+        }else{
+            Toast.makeText(MyBetsActivity.this, "No available bets found", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -41,7 +101,7 @@ public class MyBetsActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -94,8 +154,20 @@ public class MyBetsActivity extends AppCompatActivity {
             startActivity(intentWelcome);
             return true;
         }
+        if(id==R.id.action_MyBets){
+            Intent intentMyBets = new Intent(getApplicationContext(), MyBetsActivity.class);
+            startActivity(intentMyBets);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class MyBetsActivityTask extends AsyncTask<Integer, Void, ArrayList<Sc2Bet> > {
+        @Override
+        protected ArrayList<Sc2Bet> doInBackground(Integer... params) {
+            return new LocalClient().getUserBets(params[0]);
+        }
     }
 }

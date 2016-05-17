@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 
@@ -20,19 +21,24 @@ public class BetJSONParser {
             ArrayList<Sc2Bet> betList = new ArrayList<>();
             JSONArray ar;
             JSONObject parentobj = new JSONObject(content);
-            ar = parentobj.getJSONArray("ticket");
+            ar = parentobj.getJSONArray("sc2Bet");
 
             for (int i = 0; i < ar.length(); i++) {
 
                 JSONObject obj = ar.getJSONObject(i);
                 Sc2Bet bet = new Sc2Bet();
-                bet.setIdsc2Bet(obj.getInt("idsc2_bet"));
+                bet.setIdsc2Bet(obj.getInt("idsc2Bet"));
 
-                //bet.setBet_id(obj.getInt("bet_id"));
-                bet.setUserId(obj.getInt("user_id"));
-                bet.setBettedResult(obj.getInt("betted_result"));
+                ArrayList<Sc2AvailableBets> bets = AvailableBetsSpecJSONParser.parseFeed(obj.getJSONObject("betId").toString());
+                bet.setBetId(bets.get(0));
+                bet.setUserId(obj.getInt("userId"));
+                bet.setBettedResult(obj.getInt("bettedResult"));
                 bet.setStatus(obj.getInt("status"));
-                bet.setProcessed(obj.getBoolean("processed"));
+                if(obj.getInt("processed")==0){
+                    bet.setProcessed(false);
+                }else{
+                    bet.setProcessed(true);
+                }
 
 
                 betList.add(bet);

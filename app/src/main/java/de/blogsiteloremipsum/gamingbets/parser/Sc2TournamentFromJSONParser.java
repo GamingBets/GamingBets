@@ -7,16 +7,17 @@ import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2TournamentList;
 
 /**
  * Created by Andre on 17.05.2016.
  */
 public class Sc2TournamentFromJSONParser {
 
-    public static ArrayList<Sc2Tournament> parseFeed(String content){
+    public static Sc2TournamentList parseFeed(String content){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            ArrayList<Sc2Tournament> tournaments = mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(ArrayList.class, Sc2Tournament.class));
+            Sc2TournamentList tournaments = mapper.readValue(content, Sc2TournamentList.class);
             return tournaments;
         } catch (IOException e) {
             e.printStackTrace();

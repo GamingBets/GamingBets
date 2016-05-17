@@ -39,7 +39,7 @@ public interface ClientMethods {
 
     ArrayList<User> getLeaderboard();
 
-    ArrayList<Sc2AvailableBets> getAvailableBets();
+    ArrayList<Sc2AvailableBets> getAvailableBets(int idtournament);
 
     ArrayList<Sc2Bet> getUserBets(int userId);
 

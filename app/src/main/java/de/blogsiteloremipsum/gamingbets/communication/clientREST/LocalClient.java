@@ -110,10 +110,9 @@ public class LocalClient implements ClientMethods {
     @Override
     public boolean edit(User user) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/users");
+        p.setUri("/users/"+user.getId());
         p.setMethod("PUT");
         p.setUser(UserToJSONParser.parseFeed(user));
-        p.setParam("id", ""+user.getId());
 
         HttpManager.getData(p);
 

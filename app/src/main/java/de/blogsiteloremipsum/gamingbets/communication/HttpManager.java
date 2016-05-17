@@ -19,10 +19,9 @@ public class HttpManager {
 
         BufferedReader in = null;
         String uri = p.getUri();
-        if((p.getMethod().equals("GET"))||(p.getMethod().equals("PUT"))){
+        if((p.getMethod().equals("GET"))){
             uri+=  p.getEncodedParams();
         }
-
         try{
             URL url = new URL(uri);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -46,6 +45,7 @@ public class HttpManager {
                     wr.write(p.getTicket());
                 }
                 wr.flush();
+
             }
 
 

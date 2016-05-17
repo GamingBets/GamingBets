@@ -11,6 +11,7 @@ public class Sc2Bet {
     private int bettedResult;
     private int status;
     private boolean processed;
+    private int input;
 
     public int getIdsc2Bet() {
         return idsc2Bet;
@@ -59,4 +60,13 @@ public class Sc2Bet {
     public void setProcessed(boolean processed) {
         this.processed = processed;
     }
+
+    public void setInput(int input){
+        this.input = input;
+    }
+
+    public int getInput(){
+        return this.input;
+    }
+
 }

@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,12 +41,62 @@ public class PlacebetActivity extends AppCompatActivity {
         player2.setText(bet.getMatchId().getPlayer2().getIngameName());
         tournament.setText(bet.getMatchId().getTournamentId().getName() + " in " + bet.getMatchId().getTournamentId().getLocation());
         desc.setText(bet.getMatchId().getPlayer1().getIngameName() + " VS " + bet.getMatchId().getPlayer2().getIngameName());
+
+        //Get User Score and adjust range of Seek Bar
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        sb.setMax(u.getScore());
+        sb.setVisibility(View.INVISIBLE);
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TextView txt_value = (TextView) findViewById(R.id.wager_value);
+                txt_value.setText("You are risiking "+(progress+10)+"  Points!");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //Toast.makeText(PlacebetActivity.this, "" + (value+10), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        TextView txt_value = (TextView) findViewById(R.id.wager_value);
+        txt_value.setVisibility(View.INVISIBLE);
+
+        Switch wager_flag = (Switch) findViewById(R.id.flag_wager_bet);
+        wager_flag.setChecked(false);
+        wager_flag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+                TextView txt_value = (TextView) findViewById(R.id.wager_value);
+                if (isChecked){
+                    sb.setVisibility(View.VISIBLE);
+                    txt_value.setVisibility(View.VISIBLE);
+                }else{
+                    sb.setVisibility(View.INVISIBLE);
+                    txt_value.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+
     }
 
     public void placeBetOnClick(View v){
 
         RadioButton player1 = (RadioButton) findViewById(R.id.Team1RadioButton);
         RadioButton player2 = (RadioButton) findViewById(R.id.Team2RadioButton);
+        Switch wager_flag = (Switch) findViewById(R.id.flag_wager_bet);
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
         Globals g = (Globals) getApplication();
 
         Sc2Bet bet = new Sc2Bet();
@@ -54,6 +107,13 @@ public class PlacebetActivity extends AppCompatActivity {
         }else {
             bet.setBettedResult(2);
         }
+
+        if (wager_flag.isChecked()){
+            bet.setInput(sb.getProgress()+10);
+        }else{
+            bet.setInput(0);
+        }
+
         bet.setProcessed(false);
         bet.setStatus(0);
         new PlaceBetTask().execute(bet);

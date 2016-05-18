@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ public class PlacebetActivity extends AppCompatActivity {
         TextView tournament = (TextView) findViewById(R.id.tournament_2);
         TextView desc = (TextView) findViewById(R.id.description);
         RadioButton player1 = (RadioButton) findViewById(R.id.Team1RadioButton);
+        player1.setChecked(true);
         RadioButton player2 = (RadioButton) findViewById(R.id.Team2RadioButton);
 
         player1.setText(bet.getMatchId().getPlayer1().getIngameName());
@@ -44,7 +46,7 @@ public class PlacebetActivity extends AppCompatActivity {
 
         //Get User Score and adjust range of Seek Bar
         SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
-        sb.setMax(u.getScore());
+        sb.setMax(u.getScore()-10);
         sb.setVisibility(View.INVISIBLE);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -110,7 +112,9 @@ public class PlacebetActivity extends AppCompatActivity {
         if (wager_flag.isChecked()){
             bet.setInput(sb.getProgress()+10);
             User u = g.getUser();
-            u.setScore(u.getScore()-sb.getProgress()+10);
+            u.setScore(u.getScore()-bet.getInput());
+            //u.setScore(500);
+            Log.d("Input", ""+bet.getInput());
             new UpdateScore().execute(u);
         }else{
             bet.setInput(0);
@@ -228,6 +232,44 @@ public class PlacebetActivity extends AppCompatActivity {
                 return true;
             }
             return false;
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+            new RefreshUserTask().execute();
+
+        }
+    }
+
+    private class RefreshUserTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+            //TODO Set Flag: isRefreshing
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            Globals g = (Globals) getApplication();
+            String username = g.getUser().getUserName();
+            User u = new LocalClient().getUser(username);
+
+            if (u.getScore()!=null){
+                Log.d(u.getUserName(), "" + u.getScore());
+            }else{
+                Log.d(u.getUserName(), " Update failed!" );
+            }
+
+            g.setUser(u);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
 
         }
     }

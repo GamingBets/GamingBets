@@ -41,7 +41,7 @@ public class UserToJSONParser {
             obj.put("userName", user.getUserName());
             obj.put("password", user.getPassword());
             obj.put("email", user.getEmail());
-            obj.put("score", 0);
+            obj.put("score", user.getScore());
             obj.put("loggedIn", false);
             obj.put("admin", false);
             obj.put("active", true);

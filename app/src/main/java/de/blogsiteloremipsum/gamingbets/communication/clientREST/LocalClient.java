@@ -103,7 +103,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/users");
         p.setMethod("POST");
         p.setUser(UserToJSONParser.parseFeed(u));
-        System.out.println(p.getUser()+"iiiiiiiiiiiiiiiiiiiiiii");
+        System.out.println(p.getUser() + "iiiiiiiiiiiiiiiiiiiiiii");
         HttpManager.getData(p);
 
         return true;
@@ -237,6 +237,19 @@ public class LocalClient implements ClientMethods {
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         return Sc2TournamentFromJSONParser.parseFeed(content).getSc2Tournament();
+    }
+
+    @Override
+    public ArrayList<String> getNewsFeed() {
+
+        //Under Construction
+        ArrayList<String> newsfeed = new ArrayList<String>();
+        newsfeed.add("News1");
+        newsfeed.add("News2");
+        newsfeed.add("News3");
+        newsfeed.add("News4");
+
+        return newsfeed;
     }
 
     @Override

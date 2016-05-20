@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.view.inputmethod.InputMethodManager;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
@@ -23,6 +24,15 @@ public class Globals extends Application{
     private ArrayList<Sc2Tournament> tournaments;
     private Sc2Tournament tournament;
     private String usereditName = "";
+    private ArrayList<String> newsfeed;
+
+    public ArrayList<String> getNewsfeed(){
+        return this.newsfeed;
+    }
+
+    public void setNewsfeed(ArrayList<String> newsfeed){
+        this.newsfeed = newsfeed;
+    }
 
     public Sc2Tournament getTournament() {
         return tournament;

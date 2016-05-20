@@ -48,4 +48,6 @@ public interface ClientMethods {
     boolean createBet(Sc2Bet bet);
 
     ArrayList<Sc2Tournament> getAllTournaments();
+
+    ArrayList<String> getNewsFeed();
 }

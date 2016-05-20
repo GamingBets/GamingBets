@@ -1,15 +1,24 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class UserLandingActivity extends AppCompatActivity {
 
@@ -21,9 +30,25 @@ public class UserLandingActivity extends AppCompatActivity {
 
         String username = g.getUser().getUserName();
         TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
-        WelcomeMessage.setText("Hello "+username+"! What would you like to do?");
-        User u = g.getUser();
-        
+        WelcomeMessage.setText("Hello " + username + "! What would you like to do?\n\nHere are the most recent Result:\n");
+
+        ArrayList<String> newsFeed = null;
+        try {
+            newsFeed = new GetNewsFeed().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (newsFeed != null){
+            g.setNewsfeed(newsFeed);
+
+            ListView list = (ListView) findViewById(R.id.list_news_feed);
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, newsFeed);
+            list.setAdapter(listAdapter);
+        }
+
 
     }
 
@@ -116,5 +141,13 @@ public class UserLandingActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class GetNewsFeed extends AsyncTask<Void , Void, ArrayList<String>>
+    {
+        @Override
+        protected ArrayList<String> doInBackground(Void... params) {
+            return new LocalClient().getNewsFeed();
+        }
     }
 }

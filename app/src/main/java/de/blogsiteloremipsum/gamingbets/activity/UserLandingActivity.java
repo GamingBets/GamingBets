@@ -108,6 +108,11 @@ public class UserLandingActivity extends AppCompatActivity {
             startActivity(intentMyBets);
             return true;
         }
+        if(id==R.id.action_Profile){
+            Intent intentProfile = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intentProfile);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);

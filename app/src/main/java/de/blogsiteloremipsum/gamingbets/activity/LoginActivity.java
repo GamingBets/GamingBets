@@ -39,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         u.setUserName(UsernameEdit.getText().toString());
         u.setPassword(PwEdit.getText().toString());
         new LoginTask().execute(u);
+
+
         return true;
     }
 
@@ -48,6 +50,39 @@ public class LoginActivity extends AppCompatActivity {
         LocalClient client = new LocalClient();
         return client.login(user);
     }
+
+    private class RefreshUserTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+            //TODO Set Flag: isRefreshing
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            Globals g = (Globals) getApplication();
+            String username = g.getUser().getUserName();
+            User u = new LocalClient().getUser(username);
+
+            if (u.getScore()!=null){
+                Log.d(u.getUserName(), ""+u.getScore());
+            }else{
+                Log.d(u.getUserName(), " Update failed!" );
+            }
+
+            g.setUser(u);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+
+        }
+    }
+
 
     //Eingabe, Abfrage while, Abfrage After
     private class LoginTask extends AsyncTask<User, Void, Boolean> {
@@ -81,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
+                new RefreshUserTask().execute();
             } else {
                 Status.setText("Login unsuccessful");
                 Status.setVisibility(View.VISIBLE);

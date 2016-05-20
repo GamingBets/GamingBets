@@ -1,5 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.communication.clientREST;
 
+import android.util.Log;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -163,6 +165,8 @@ public class LocalClient implements ClientMethods {
         String content = HttpManager.getData(p);
         if(content!=null){
             User u = UserSpecJSONParser.parseFeed(content);
+            Log.d("User got:", u.getUserName());
+            Log.d("User Score:", ""+u.getScore());
 
             return u;
         }

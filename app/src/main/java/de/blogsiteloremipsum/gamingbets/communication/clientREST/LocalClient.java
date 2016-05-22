@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
@@ -18,6 +19,7 @@ import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
 import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.BetJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2BetToJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.Sc2MatchesFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
@@ -103,7 +105,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/users");
         p.setMethod("POST");
         p.setUser(UserToJSONParser.parseFeed(u));
-        System.out.println(p.getUser()+"iiiiiiiiiiiiiiiiiiiiiii");
+        System.out.println(p.getUser() + "iiiiiiiiiiiiiiiiiiiiiii");
         HttpManager.getData(p);
 
         return true;
@@ -237,6 +239,17 @@ public class LocalClient implements ClientMethods {
         p.setMethod("GET");
         String content = HttpManager.getData(p);
         return Sc2TournamentFromJSONParser.parseFeed(content).getSc2Tournament();
+    }
+
+    @Override
+    public ArrayList<Sc2Matches> getNewsFeed() {
+
+        RequestPackage p = new RequestPackage();
+        p.setUri("/sc2matches/newsFeed");
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        return Sc2MatchesFromJSONParser.parseFeed_manually(content).getSc2Matches();
+
     }
 
     @Override

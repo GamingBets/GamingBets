@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.UnregisteredUser;
@@ -18,6 +19,7 @@ import de.blogsiteloremipsum.gamingbets.communication.RequestPackage;
 import de.blogsiteloremipsum.gamingbets.parser.AvailableBetsJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.BetJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2BetToJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.Sc2MatchesFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketJSONParser;
@@ -240,16 +242,14 @@ public class LocalClient implements ClientMethods {
     }
 
     @Override
-    public ArrayList<String> getNewsFeed() {
+    public ArrayList<Sc2Matches> getNewsFeed() {
 
-        //Under Construction
-        ArrayList<String> newsfeed = new ArrayList<String>();
-        newsfeed.add("News1");
-        newsfeed.add("News2");
-        newsfeed.add("News3");
-        newsfeed.add("News4");
+        RequestPackage p = new RequestPackage();
+        p.setUri("/sc2matches/newsFeed");
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        return Sc2MatchesFromJSONParser.parseFeed_manually(content).getSc2Matches();
 
-        return newsfeed;
     }
 
     @Override

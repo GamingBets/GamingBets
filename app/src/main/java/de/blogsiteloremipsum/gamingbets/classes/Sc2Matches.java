@@ -1,5 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Date;
 
 /**
@@ -17,6 +19,44 @@ public class Sc2Matches {
     private Sc2Tournament tournamentId;
     private int type;
     private boolean finished;
+    private long lastUpdated;
+
+    public boolean isBetCreated() {
+        return betCreated;
+    }
+
+/*
+    public void setBetCreated(int value){
+        if(value == 1) {
+            this.betCreated = true;
+        }else{
+            this.betCreated = false;
+        }
+    }
+
+ */
+    public void setBetCreated(String string){
+        if(string.contains("1")) {
+            this.betCreated = true;
+        }else{
+            this.betCreated = false;
+        }
+    }
+
+
+    @JsonIgnore
+    public void setBetCreated(boolean betCreated) {
+        this.betCreated = betCreated;
+    }
+
+
+    public long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
 
     public int getId() {
         return id;
@@ -66,13 +106,6 @@ public class Sc2Matches {
         this.comment = comment;
     }
 
-    public boolean isbetCreated() {
-        return betCreated;
-    }
-
-    public void setbetCreated(boolean betCreated) {
-        this.betCreated = betCreated;
-    }
 
     public Sc2Tournament getTournamentId() {
         return tournamentId;
@@ -94,7 +127,16 @@ public class Sc2Matches {
         return finished;
     }
 
+    @JsonIgnore
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public void setFinished(String string){
+        if(string.contains("1")) {
+            this.betCreated = true;
+        }else{
+            this.betCreated = false;
+        }
     }
 }

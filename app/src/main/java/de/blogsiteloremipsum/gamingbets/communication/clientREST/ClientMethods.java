@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import de.blogsiteloremipsum.gamingbets.classes.Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
@@ -49,5 +50,5 @@ public interface ClientMethods {
 
     ArrayList<Sc2Tournament> getAllTournaments();
 
-    ArrayList<String> getNewsFeed();
+    ArrayList<Sc2Matches> getNewsFeed();
 }

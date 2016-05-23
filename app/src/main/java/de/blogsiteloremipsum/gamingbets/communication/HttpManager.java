@@ -65,6 +65,16 @@ public class HttpManager {
                 return sb.toString();
             }
             else {
+                is = con.getErrorStream();
+                StringBuilder sb =  new StringBuilder();
+                in = new BufferedReader(new InputStreamReader(is));
+
+                String inputLine ="";
+                while ((inputLine = in.readLine()) != null){
+                    sb.append(inputLine + "\n");
+                }
+
+                System.out.println(sb);
                 return null;
             }
 

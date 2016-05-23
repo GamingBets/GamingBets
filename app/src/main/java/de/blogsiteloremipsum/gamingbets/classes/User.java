@@ -12,6 +12,24 @@ public class User {
     private boolean active;
     private String email;
     private Integer score;
+    private Integer profilePic;
+    private Integer unlocks;
+
+    public Integer getUnlocks() {
+        return unlocks;
+    }
+
+    public void setUnlocks(Integer unlocks) {
+        this.unlocks = unlocks;
+    }
+
+    public Integer getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(Integer profilePic) {
+        this.profilePic = profilePic;
+    }
 
     public Integer getId() {
         return id;

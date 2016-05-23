@@ -18,11 +18,14 @@
         android:layout_gravity="center_horizontal"
         android:weightSum="1">
 
-        <ImageButton
-            android:layout_width="181dp"
-            android:layout_height="153dp"
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Some dudes Profile Pic"
             android:id="@+id/img_profilePic"
-            android:src="@drawable/abc_switch_track_mtrl_alpha" />
+            android:gravity="center"
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="match_parent"

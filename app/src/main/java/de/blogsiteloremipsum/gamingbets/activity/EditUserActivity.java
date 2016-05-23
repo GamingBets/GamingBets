@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
@@ -26,6 +30,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText newPWConfirmEdit;
     EditText userEdit;
     EditText mailEdit;
+    Spinner spinner_profile_pic;
 
     String op = "";
 
@@ -40,6 +45,22 @@ public class EditUserActivity extends AppCompatActivity {
         mailEdit = (EditText) findViewById(R.id.MailEdit);
         newPWEdit = (EditText) findViewById(R.id.NewPWEdit);
         newPWConfirmEdit = (EditText) findViewById(R.id.NewPWEditConfirm);
+        spinner_profile_pic = (Spinner) findViewById(R.id.spinner_profile_pic);
+
+        ArrayList<String> pics = new ArrayList<>();
+        pics.add("Profile Pic 1");
+        pics.add("Profile Pic 2");
+        pics.add("Profile Pic 3");
+        pics.add("Profile Pic 4");
+        pics.add("Profile Pic 5");
+        pics.add("Profile Pic 6");
+
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, pics);
+
+        spinner_profile_pic.setAdapter(listAdapter);
+
+
 
         //Get UserModel
         Globals g = (Globals) getApplication();
@@ -62,6 +83,7 @@ public class EditUserActivity extends AppCompatActivity {
             //Set email and Name
             userEdit.setText(u.getUserName());
             mailEdit.setText(u.getEmail());
+            spinner_profile_pic.setSelection(u.getProfilePic());
 
             //TODO Handle Exception properly
         } catch (InterruptedException e) {
@@ -213,6 +235,7 @@ public class EditUserActivity extends AppCompatActivity {
 
         String username = userEdit.getText().toString();
         String email = mailEdit.getText().toString();
+        int profile = spinner_profile_pic.getSelectedItemPosition();
 
         Globals g = (Globals) getApplication();
         User u= null;
@@ -226,6 +249,7 @@ public class EditUserActivity extends AppCompatActivity {
         }else{
             u.setEmail(email);
             u.setUserName(username);
+            u.setProfilePic(profile);
 
             new SubmitChanges().execute(u);
         }
@@ -259,10 +283,11 @@ public class EditUserActivity extends AppCompatActivity {
 
 
             if (b) {
-
+                new RefreshUserTask().execute();
                 Toast.makeText(EditUserActivity.this, "UserModel edited", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
+
             } else {
                 Status.setText(op + " unsuccessful");
                 Status.setVisibility(View.VISIBLE);
@@ -280,6 +305,38 @@ public class EditUserActivity extends AppCompatActivity {
             Globals g = (Globals) getApplication();
             LocalClient client = new LocalClient();
             return client.getUser(params[0]);
+        }
+    }
+
+    private class RefreshUserTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+            //TODO Set Flag: isRefreshing
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            Globals g = (Globals) getApplication();
+            String username = g.getUser().getUserName();
+            User u = new LocalClient().getUser(username);
+
+            if (u.getScore()!=null){
+                Log.d(u.getUserName() + " hat profil bild:  ", "" + u.getProfilePic());
+            }else{
+                Log.d(u.getUserName(), " Update failed!" );
+            }
+
+            g.setUser(u);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+
         }
     }
 

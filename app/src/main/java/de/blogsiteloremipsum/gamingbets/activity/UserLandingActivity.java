@@ -1,15 +1,25 @@
 package de.blogsiteloremipsum.gamingbets.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.User;
+import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class UserLandingActivity extends AppCompatActivity {
 
@@ -21,9 +31,43 @@ public class UserLandingActivity extends AppCompatActivity {
 
         String username = g.getUser().getUserName();
         TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
-        WelcomeMessage.setText("Hello "+username+"! What would you like to do?");
-        User u = g.getUser();
-        
+        WelcomeMessage.setText("Hello " + username + "! What would you like to do?\n\nHere are the most recent results:\n");
+
+        ArrayList<Sc2Matches> sc2Matches = null;
+        try {
+            sc2Matches = new GetNewsFeed().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        if (sc2Matches != null){
+
+            ArrayList<String> newsFeed = new ArrayList<>();
+
+            int limit = 25;
+            if (sc2Matches.size() < limit){
+                limit = sc2Matches.size();
+            }
+            for(int i = 0; i < limit; i++){
+
+                int result = sc2Matches.get(i).getResult();
+
+                int result_player1 = result/10;
+                int result_player2 = result % 10;
+
+                String temp = sc2Matches.get(i).getPlayer1().getIngameName() + " " + result_player1 +":" + result_player2 + " " + sc2Matches.get(i).getPlayer2().getIngameName();
+                newsFeed.add(temp);
+            }
+
+            g.setNewsfeed(newsFeed);
+
+            ListView list = (ListView) findViewById(R.id.list_news_feed);
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, newsFeed);
+            list.setAdapter(listAdapter);
+        }
+
 
     }
 
@@ -108,8 +152,21 @@ public class UserLandingActivity extends AppCompatActivity {
             startActivity(intentMyBets);
             return true;
         }
+        if(id==R.id.action_Profile){
+            Intent intentProfile = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intentProfile);
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class GetNewsFeed extends AsyncTask<Void , Void, ArrayList<Sc2Matches>>
+    {
+        @Override
+        protected ArrayList<Sc2Matches> doInBackground(Void... params) {
+            return new LocalClient().getNewsFeed();
+        }
     }
 }

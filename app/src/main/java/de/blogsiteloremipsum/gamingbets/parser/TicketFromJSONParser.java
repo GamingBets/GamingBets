@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
@@ -11,7 +12,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 /**
  * Created by Andre on 09.05.2016.
  */
-public class TicketJSONParser {
+public class TicketFromJSONParser {
 
     public static ArrayList<Ticket> parseFeed(String content){
 
@@ -26,12 +27,10 @@ public class TicketJSONParser {
 
                 JSONObject obj = ar.getJSONObject(i);
                 Ticket ticket = new Ticket();
-                ticket.setID(obj.getInt("ID"));
-                ticket.setContent(obj.getString("content"));
-                ticket.setEmail(obj.getString("email"));
+                ticket.setId(obj.getInt("id"));
                 ticket.setStatus(obj.getInt("status"));
-                ticket.setUserID(obj.getInt("userID"));
-
+                ticket.setUserId(obj.getInt("userId"));
+                ticket.setDate(obj.getString("date"));
 
                 ticketList.add(ticket);
             }

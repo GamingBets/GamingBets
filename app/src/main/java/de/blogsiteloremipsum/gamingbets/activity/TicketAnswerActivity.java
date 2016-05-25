@@ -41,9 +41,8 @@ public class TicketAnswerActivity extends AppCompatActivity {
         }
         if(allTickets.size()!=0){
             t = allTickets.get(0);
-            String text = "Ticket ID: " + t.getID() + " UserModel ID: " + t.getUserID() + " Date: " +t.getDate();
+            String text = "Ticket ID: " + t.getId() + " UserModel ID: " + t.getUserId() + " Date: " +t.getDate();
             head.setText(text);
-            messageContent.setText(t.getContent());
         }else{
             messageContent.setText("No Tickets need to be answered");
             EditText ticketAnswer = (EditText) findViewById(R.id.editTextAnswer);

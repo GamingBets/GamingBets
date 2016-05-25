@@ -8,6 +8,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
+import de.blogsiteloremipsum.gamingbets.classes.TicketMessages;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
 
@@ -28,7 +29,7 @@ public interface ClientMethods {
 
     boolean placeBet(Bet bet);
 
-    boolean sendTicket(Ticket ticket);
+    ArrayList<Ticket> sendTicket(Ticket ticket);
 
     boolean setStatus(Ticket ticket);
 
@@ -51,4 +52,9 @@ public interface ClientMethods {
     ArrayList<Sc2Tournament> getAllTournaments();
 
     ArrayList<Sc2Matches> getNewsFeed();
+
+    ArrayList<TicketMessages> getTicketMessages();
+
+    boolean sendTicketMessage(TicketMessages message);
+
 }

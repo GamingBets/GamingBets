@@ -8,12 +8,11 @@ import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
 import de.blogsiteloremipsum.gamingbets.classes.Sc2Bet;
-import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 
 /**
  * Created by Andre on 16.05.2016.
  */
-public class BetJSONParser {
+public class Sc2BetFromJSONParser {
     public static ArrayList<Sc2Bet> parseFeed(String content){
 
         try {
@@ -29,7 +28,7 @@ public class BetJSONParser {
                 Sc2Bet bet = new Sc2Bet();
                 bet.setIdsc2Bet(obj.getInt("idsc2Bet"));
 
-                ArrayList<Sc2AvailableBets> bets = AvailableBetsSpecJSONParser.parseFeed(obj.getJSONObject("betId").toString());
+                ArrayList<Sc2AvailableBets> bets = Sc2AvailableBetsSpecificFromJSONParser.parseFeed(obj.getJSONObject("betId").toString());
                 bet.setBetId(bets.get(0));
                 bet.setUserId(obj.getInt("userId"));
                 bet.setBettedResult(obj.getInt("bettedResult"));

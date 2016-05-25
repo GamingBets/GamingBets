@@ -1,32 +1,51 @@
 package de.blogsiteloremipsum.gamingbets.parser;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import de.blogsiteloremipsum.gamingbets.classes.User;
 
+
 /**
- * Created by Andre on 17.05.2016.
+ * Created by Andre on 21.04.2016.
  */
 public class UserFromJSONParser {
 
     public static ArrayList<User> parseFeed(String content){
-        ObjectMapper mapper = new ObjectMapper();
 
-        try{
-            ArrayList<User> user = mapper.readValue(content, mapper.getTypeFactory().constructCollectionType(ArrayList.class, User.class));
-            return user;
-        } catch (JsonParseException e) {
+        try {
+
+            ArrayList<User> userList = new ArrayList<>();
+            JSONArray ar;
+                JSONObject parentobj = new JSONObject(content);
+                ar = parentobj.getJSONArray("user");
+
+            for (int i = 0; i < ar.length(); i++) {
+
+                JSONObject obj = ar.getJSONObject(i);
+                User user = new User();
+                user.setId(obj.getInt("id"));
+                user.setUserName(obj.getString("userName"));
+                user.setPassword(obj.getString("password"));
+                user.setLoggedIn(obj.getBoolean("loggedIn"));
+                user.setAdmin(obj.getBoolean("admin"));
+                user.setActive(obj.getBoolean("active"));
+                user.setEmail(obj.getString("email"));
+                user.setScore(obj.getInt("score"));
+
+                userList.add(user);
+            }
+
+            return userList;
+
+        } catch (JSONException e) {
             e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
-        return null;
+
     }
 }

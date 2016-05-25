@@ -11,7 +11,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 /**
  * Created by Andre on 16.05.2016.
  */
-public class MatchesSpecJSONParser {
+public class Sc2MatchesSpecificFromJSONParser {
     public static Sc2Matches parseFeed(String content) {
 
         try {

@@ -1,7 +1,13 @@
 package de.blogsiteloremipsum.gamingbets.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 
@@ -13,17 +19,14 @@ public class TicketToJSONParser {
     public static String parseFeed(Ticket ticket) {
 
         try {
-            JSONObject obj = new JSONObject();
-            obj.put("content", ticket.getContent());
-            obj.put("email", ticket.getEmail());
-            obj.put("status", ticket.getStatus());
-            obj.put("userID", ticket.getUserID());
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonTicket = mapper.writeValueAsString(ticket);
+            System.out.println(jsonTicket);
+            return jsonTicket;
 
-            return obj.toString();
-
-        } catch (JSONException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }

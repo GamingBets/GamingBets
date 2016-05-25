@@ -8,7 +8,7 @@ import de.blogsiteloremipsum.gamingbets.classes.User;
 /**
  * Created by Andre on 03.05.2016.
  */
-public class UserSpecJSONParser {
+public class UserSpecificFromJSONParser {
     public static User parseFeed(String content) {
 
         try {

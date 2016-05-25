@@ -16,7 +16,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 /**
  * Created by Andre on 16.05.2016.
  */
-public class AvailableBetsJSONParser {
+public class Sc2AvailableBetsFromJSONParser {
 
     public static ArrayList<Sc2AvailableBets> parseFeed(String content) {
 

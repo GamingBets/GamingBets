@@ -18,10 +18,19 @@ public class RequestPackage {
     private String user=null;
     private String ticket=null;
     private String bet=null;
+    private String ticketmessage = null;
 
     public RequestPackage(){
         uri = "http://134.255.218.20:8080/gamingBetRestServer/api";
         //uri = "http://192.168.204.1:8080/Gaming-Bets-Server/api";
+    }
+
+    public String getTicketmessage() {
+        return ticketmessage;
+    }
+
+    public void setTicketmessage(String ticketmessage) {
+        this.ticketmessage = ticketmessage;
     }
 
     public String getTicket() {

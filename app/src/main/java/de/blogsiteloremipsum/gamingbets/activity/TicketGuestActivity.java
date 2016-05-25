@@ -9,12 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
 import de.blogsiteloremipsum.gamingbets.classes.Ticket;
+import de.blogsiteloremipsum.gamingbets.classes.TicketMessages;
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class TicketGuestActivity extends AppCompatActivity {
@@ -32,21 +35,35 @@ public class TicketGuestActivity extends AppCompatActivity {
 
         EditText edittextMail = (EditText) findViewById(R.id.mail);
         String mail = edittextMail.getText().toString();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:m:s");
+        String date = format1.format(Calendar.getInstance().getTime());
+        Ticket ticket = new Ticket();
+        ticket.setUserId(0);
+        ticket.setDate(date);
+        ticket.setStatus(2);
 
-        Date date = new Date(Calendar.getInstance().getTimeInMillis());
-        Ticket ticket = new Ticket(message, mail, date);
-
-        new SendTicket().execute(ticket);
-
+        try {
+            ticket =  new SendTicket().execute(ticket).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        System.out.println("TEEEEEEEEESSSSSSSST");
+        TicketMessages messages = new TicketMessages();
+        messages.setContent(message);
+        messages.setDatetime(ticket.getDate());
+        messages.setTicketId(ticket);
+        messages.setUserId(ticket.getUserId());
+        new SendTicketMessage().execute(messages);
     }
 
-    private class SendTicket extends AsyncTask<Ticket, Void, Boolean>{
-
+    private class SendTicketMessage extends AsyncTask<TicketMessages, Void, Boolean> {
         @Override
-        protected Boolean doInBackground(Ticket... params) {
-            Globals g = (Globals) getApplication();
-            LocalClient client = g.getClient();
-            return client.sendTicket(params[0]);
+        protected Boolean doInBackground(TicketMessages... params) {
+            new LocalClient().sendTicketMessage(params[0]);
+            return true;
+
         }
 
         @Override
@@ -62,5 +79,17 @@ public class TicketGuestActivity extends AppCompatActivity {
                 Status.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private class SendTicket extends AsyncTask<Ticket, Void, Ticket>{
+
+        @Override
+        protected Ticket doInBackground(Ticket... params) {
+            Globals g = (Globals) getApplication();
+            LocalClient client = g.getClient();
+            return client.sendTicket(params[0]).get(0);
+        }
+
+
     }
 }

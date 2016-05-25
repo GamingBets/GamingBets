@@ -9,7 +9,7 @@ import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
 /**
  * Created by Andre on 16.05.2016.
  */
-public class Sc2TournamentSpecJSONParser {
+public class Sc2TournamentSpecificFromJSONParser {
 
     public static Sc2Tournament parseFeed(String content) {
 

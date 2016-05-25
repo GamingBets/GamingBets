@@ -21,7 +21,8 @@ public class UserSpecificFromJSONParser {
             user.setLoggedIn(obj.getBoolean("loggedIn"));
             user.setAdmin(obj.getBoolean("admin"));
             user.setActive(obj.getBoolean("active"));
-
+            user.setProfilePic(obj.getInt("profilePic"));
+            user.setUnlocks(obj.getString("unlocks"));
             user.setEmail(obj.getString("email"));
             user.setScore(obj.getInt("score"));
 

@@ -80,8 +80,11 @@
             android:name=".activity.ChooseSc2TournamentActivity"
             android:label="Star Craft 2 Tournaments"
             android:parentActivityName=".activity.UserLandingActivity" />
-        <activity android:name=".activity.ProfileActivity"
-            android:label="See your Profile">
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:label="See your Profile" >
+        </activity>
+        <activity android:name=".activity.UnlocksActivity" >
         </activity>
     </application>
 

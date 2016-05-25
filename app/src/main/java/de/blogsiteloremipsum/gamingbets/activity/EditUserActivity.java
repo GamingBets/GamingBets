@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
@@ -26,6 +30,8 @@ public class EditUserActivity extends AppCompatActivity {
     EditText newPWConfirmEdit;
     EditText userEdit;
     EditText mailEdit;
+    Spinner spinner_profile_pic;
+    ArrayList<String> pics;
 
     String op = "";
 
@@ -40,11 +46,33 @@ public class EditUserActivity extends AppCompatActivity {
         mailEdit = (EditText) findViewById(R.id.MailEdit);
         newPWEdit = (EditText) findViewById(R.id.NewPWEdit);
         newPWConfirmEdit = (EditText) findViewById(R.id.NewPWEditConfirm);
+        spinner_profile_pic = (Spinner) findViewById(R.id.spinner_profile_pic);
+
+
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
+
+
+        pics = new ArrayList<>();
+        pics.add("Standard");
+
+        String user_locks = u.getUnlocks();
+        int i = 1;
+        for (char each : user_locks.toCharArray()){
+            if(each=='1'){
+                pics.add("Profile Image: "+ i);
+            }
+            i++;
+        }
+
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, pics);
+
+        spinner_profile_pic.setAdapter(listAdapter);
+
+
 
         //Get UserModel
-        Globals g = (Globals) getApplication();
-
-        User u;
+        u = null;
 
         try {
 
@@ -62,6 +90,7 @@ public class EditUserActivity extends AppCompatActivity {
             //Set email and Name
             userEdit.setText(u.getUserName());
             mailEdit.setText(u.getEmail());
+            spinner_profile_pic.setSelection(u.getProfilePic()-1);
 
             //TODO Handle Exception properly
         } catch (InterruptedException e) {
@@ -206,16 +235,44 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     public void submitChange(View view) {
-
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
         Globals.hideSoftKeyboard(this);
 
         op = "Personal Data Change";
 
         String username = userEdit.getText().toString();
         String email = mailEdit.getText().toString();
+        int position = spinner_profile_pic.getSelectedItemPosition();
 
-        Globals g = (Globals) getApplication();
-        User u= null;
+
+        int new_profile_img_id;
+        if (position == 0){
+            new_profile_img_id = -1;
+        }else {
+            new_profile_img_id = -1;
+            String unlocks = u.getUnlocks();
+
+            int i = 0;
+            int position_counter = 0;
+
+            for (char each : unlocks.toCharArray()) {
+                if (each == '1') {
+                    if (position_counter == position-1) {
+                        new_profile_img_id = i;
+                        break;
+                    } else {
+                        position_counter++;
+                    }
+
+                }
+                i++;
+            }
+
+
+        }
+
+        u= null;
         try {
             u = new GetUser().execute(g.getUsereditName()).get();
         }catch(Exception e){
@@ -226,6 +283,7 @@ public class EditUserActivity extends AppCompatActivity {
         }else{
             u.setEmail(email);
             u.setUserName(username);
+            u.setProfilePic(new_profile_img_id);
 
             new SubmitChanges().execute(u);
         }
@@ -259,10 +317,11 @@ public class EditUserActivity extends AppCompatActivity {
 
 
             if (b) {
-
+                new RefreshUserTask().execute();
                 Toast.makeText(EditUserActivity.this, "UserModel edited", Toast.LENGTH_SHORT).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
+
             } else {
                 Status.setText(op + " unsuccessful");
                 Status.setVisibility(View.VISIBLE);
@@ -280,6 +339,38 @@ public class EditUserActivity extends AppCompatActivity {
             Globals g = (Globals) getApplication();
             LocalClient client = new LocalClient();
             return client.getUser(params[0]);
+        }
+    }
+
+    private class RefreshUserTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+            //TODO Set Flag: isRefreshing
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            Globals g = (Globals) getApplication();
+            String username = g.getUser().getUserName();
+            User u = new LocalClient().getUser(username);
+
+            if (u.getScore()!=null){
+                Log.d(u.getUserName() + " hat profil bild:  ", "" + u.getProfilePic());
+            }else{
+                Log.d(u.getUserName(), " Update failed!" );
+            }
+
+            g.setUser(u);
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean b) {
+
         }
     }
 

@@ -37,6 +37,12 @@
             android:layout_centerHorizontal="true"
             android:hint="E-Mail" />
 
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_profile_pic"
+            android:spinnerMode="dialog" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

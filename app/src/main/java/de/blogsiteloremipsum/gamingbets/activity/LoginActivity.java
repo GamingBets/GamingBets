@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         return client.login(user);
     }
 
+
     private class RefreshUserTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             User u = new LocalClient().getUser(username);
 
             if (u.getScore()!=null){
-                Log.d(u.getUserName(), ""+u.getScore());
+                Log.d(u.getUserName() +" hat profil bild:  ", ""+u.getProfilePic());
             }else{
                 Log.d(u.getUserName(), " Update failed!" );
             }
@@ -121,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 Status.setText("Login unsuccessful");
                 Status.setVisibility(View.VISIBLE);
             }
+
         }
     }
 

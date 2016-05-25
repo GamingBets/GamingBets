@@ -157,6 +157,13 @@ public class UserLandingActivity extends AppCompatActivity {
             startActivity(intentProfile);
             return true;
         }
+        if(id==R.id.action_Unlock){
+            Intent intentUnlock = new Intent(getApplicationContext(), UnlocksActivity.class);
+            startActivity(intentUnlock);
+            return true;
+        }
+
+
 
 
         return super.onOptionsItemSelected(item);

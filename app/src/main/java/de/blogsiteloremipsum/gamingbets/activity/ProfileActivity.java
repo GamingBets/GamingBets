@@ -21,6 +21,15 @@ public class ProfileActivity extends AppCompatActivity {
         TextView username = (TextView) findViewById(R.id.txt_userName);
         username.setText(u.getUserName());
 
+        TextView img_profilePic = (TextView) findViewById(R.id.img_profilePic);
+        if (u.getProfilePic() == -1) {
+            img_profilePic.setText("#Standard!");
+
+        }else{
+            img_profilePic.setText("#"+(u.getProfilePic()+1));
+        }
+
+
         TextView score = (TextView) findViewById(R.id.txt_score_value);
         //score.setText("60");
         int value = u.getScore();

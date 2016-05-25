@@ -117,7 +117,7 @@ public class LocalClient implements ClientMethods {
         p.setUri("/users/" + user.getId());
         p.setMethod("PUT");
         p.setUser(UserToJSONParser.parseFeed(user));
-
+        System.out.println(p.getUser());
         HttpManager.getData(p);
 
         return true;
@@ -276,4 +276,5 @@ public class LocalClient implements ClientMethods {
 
         return true;
     }
-}
+
+    }

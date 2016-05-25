@@ -31,6 +31,7 @@ public class EditUserActivity extends AppCompatActivity {
     EditText userEdit;
     EditText mailEdit;
     Spinner spinner_profile_pic;
+    ArrayList<String> pics;
 
     String op = "";
 
@@ -47,14 +48,22 @@ public class EditUserActivity extends AppCompatActivity {
         newPWConfirmEdit = (EditText) findViewById(R.id.NewPWEditConfirm);
         spinner_profile_pic = (Spinner) findViewById(R.id.spinner_profile_pic);
 
-        ArrayList<String> pics = new ArrayList<>();
-        pics.add("Profile Pic 1");
-        pics.add("Profile Pic 2");
-        pics.add("Profile Pic 3");
-        pics.add("Profile Pic 4");
-        pics.add("Profile Pic 5");
-        pics.add("Profile Pic 6");
 
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
+
+
+        pics = new ArrayList<>();
+        pics.add("Standard");
+
+        String user_locks = u.getUnlocks();
+        int i = 1;
+        for (char each : user_locks.toCharArray()){
+            if(each=='1'){
+                pics.add("Profile Image: "+ i);
+            }
+            i++;
+        }
 
         ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, pics);
 
@@ -63,9 +72,7 @@ public class EditUserActivity extends AppCompatActivity {
 
 
         //Get UserModel
-        Globals g = (Globals) getApplication();
-
-        User u;
+        u = null;
 
         try {
 
@@ -83,7 +90,7 @@ public class EditUserActivity extends AppCompatActivity {
             //Set email and Name
             userEdit.setText(u.getUserName());
             mailEdit.setText(u.getEmail());
-            spinner_profile_pic.setSelection(u.getProfilePic());
+            spinner_profile_pic.setSelection(u.getProfilePic()-1);
 
             //TODO Handle Exception properly
         } catch (InterruptedException e) {
@@ -228,17 +235,44 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     public void submitChange(View view) {
-
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
         Globals.hideSoftKeyboard(this);
 
         op = "Personal Data Change";
 
         String username = userEdit.getText().toString();
         String email = mailEdit.getText().toString();
-        int profile = spinner_profile_pic.getSelectedItemPosition();
+        int position = spinner_profile_pic.getSelectedItemPosition();
 
-        Globals g = (Globals) getApplication();
-        User u= null;
+
+        int new_profile_img_id;
+        if (position == 0){
+            new_profile_img_id = -1;
+        }else {
+            new_profile_img_id = -1;
+            String unlocks = u.getUnlocks();
+
+            int i = 0;
+            int position_counter = 0;
+
+            for (char each : unlocks.toCharArray()) {
+                if (each == '1') {
+                    if (position_counter == position-1) {
+                        new_profile_img_id = i;
+                        break;
+                    } else {
+                        position_counter++;
+                    }
+
+                }
+                i++;
+            }
+
+
+        }
+
+        u= null;
         try {
             u = new GetUser().execute(g.getUsereditName()).get();
         }catch(Exception e){
@@ -249,7 +283,7 @@ public class EditUserActivity extends AppCompatActivity {
         }else{
             u.setEmail(email);
             u.setUserName(username);
-            u.setProfilePic(profile);
+            u.setProfilePic(new_profile_img_id);
 
             new SubmitChanges().execute(u);
         }

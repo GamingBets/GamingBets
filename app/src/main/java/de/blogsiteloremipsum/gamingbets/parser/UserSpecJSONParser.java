@@ -22,7 +22,7 @@ public class UserSpecJSONParser {
             user.setAdmin(obj.getBoolean("admin"));
             user.setActive(obj.getBoolean("active"));
             user.setProfilePic(obj.getInt("profilePic"));
-            user.setUnlocks(obj.getInt("unlocks"));
+            user.setUnlocks(obj.getString("unlocks"));
             user.setEmail(obj.getString("email"));
             user.setScore(obj.getInt("score"));
 

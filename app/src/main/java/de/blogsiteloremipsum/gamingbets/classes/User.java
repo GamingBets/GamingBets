@@ -13,13 +13,13 @@ public class User {
     private String email;
     private Integer score;
     private Integer profilePic;
-    private Integer unlocks;
+    private String unlocks;
 
-    public Integer getUnlocks() {
+    public String getUnlocks() {
         return unlocks;
     }
 
-    public void setUnlocks(Integer unlocks) {
+    public void setUnlocks(String unlocks) {
         this.unlocks = unlocks;
     }
 

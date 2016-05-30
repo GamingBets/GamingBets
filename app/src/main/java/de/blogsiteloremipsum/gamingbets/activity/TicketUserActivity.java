@@ -88,7 +88,7 @@ public class TicketUserActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -146,6 +146,23 @@ public class TicketUserActivity extends AppCompatActivity {
             startActivity(intentMyBets);
             return true;
         }
+        if(id==R.id.action_Profile){
+            Intent intentProfile = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intentProfile);
+            return true;
+        }
+        if(id==R.id.action_Unlock){
+            Intent intentUnlock = new Intent(getApplicationContext(), UnlocksActivity.class);
+            startActivity(intentUnlock);
+            return true;
+        }
+        if(id==R.id.action_MyTickets) {
+            Intent intentMyTickets = new Intent(getApplicationContext(), MyTicketsActivity.class);
+            startActivity(intentMyTickets);
+            return true;
+        }
+
+
 
 
         return super.onOptionsItemSelected(item);

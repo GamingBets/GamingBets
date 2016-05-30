@@ -25,6 +25,7 @@ import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.Sc2TournamentSpecificFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketMessageToJSONParser;
+import de.blogsiteloremipsum.gamingbets.parser.TicketMessagesFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketSpecificFromJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.TicketToJSONParser;
 import de.blogsiteloremipsum.gamingbets.parser.UserFromJSONParser;
@@ -179,7 +180,6 @@ public class LocalClient implements ClientMethods {
         return null;
     }
 
-
     @Override
     public ArrayList<Ticket> getTickets() {
         RequestPackage p = new RequestPackage();
@@ -282,16 +282,29 @@ public class LocalClient implements ClientMethods {
     }
 
     @Override
-    public ArrayList<TicketMessages> getTicketMessages() {
-        return null;
+    public ArrayList<Ticket> getTicketsByUserId(int id) {
+        RequestPackage p = new RequestPackage();
+        p.setMethod("GET");
+        p.setUri("/ticket/userId/" +id);
+        String content = HttpManager.getData(p);
+        return TicketFromJSONParser.parseFeed(content);
+    }
+    @Override
+    public ArrayList<TicketMessages> getTicketMessages(int id) {
+        RequestPackage p = new RequestPackage();
+        p.setMethod("GET");
+        p.setUri("/ticketmessages/ticketId/" +id);
+        String content = HttpManager.getData(p);
+        return TicketMessagesFromJSONParser.parseFeed(content);
     }
 
     @Override
     public boolean sendTicketMessage(TicketMessages message) {
         RequestPackage p = new RequestPackage();
-        p.setUri("/ticketmessages");
+
         p.setMethod("POST");
         p.setTicketmessage(TicketMessageToJSONParser.parseFeed(message));
+        p.setUri("/ticketmessages");
         HttpManager.getData(p);
         return true;
     }

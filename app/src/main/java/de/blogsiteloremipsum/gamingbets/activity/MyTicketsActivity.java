@@ -6,69 +6,70 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
 import de.blogsiteloremipsum.gamingbets.classes.Globals;
-import de.blogsiteloremipsum.gamingbets.classes.Sc2AvailableBets;
-import de.blogsiteloremipsum.gamingbets.classes.Sc2Matches;
+import de.blogsiteloremipsum.gamingbets.classes.Sc2Tournament;
+import de.blogsiteloremipsum.gamingbets.classes.Ticket;
 import de.blogsiteloremipsum.gamingbets.classes.User;
 import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
-public class UserLandingActivity extends AppCompatActivity {
+public class MyTicketsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_landing);
+        setContentView(R.layout.activity_my_tickets);
+
         Globals g = (Globals) getApplication();
+        User u = g.getUser();
 
-        String username = g.getUser().getUserName();
-        TextView WelcomeMessage = (TextView) findViewById(R.id.WelcomeMessage);
-        WelcomeMessage.setText("Hello " + username + "! What would you like to do?\n\nHere are the most recent results:\n");
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        tickets = null;
 
-        ArrayList<Sc2Matches> sc2Matches = null;
-        try {
-            sc2Matches = new GetNewsFeed().execute().get();
+        try{
+            tickets = new MyTicketsActivityTask().execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        if (sc2Matches != null){
+        if(tickets!=null){
+            g.setTickets(tickets);
 
-            ArrayList<String> newsFeed = new ArrayList<>();
+            String[] betsArray = new String [tickets.size()];
 
-            int limit = 25;
-            if (sc2Matches.size() < limit){
-                limit = sc2Matches.size();
-            }
-            for(int i = 0; i < limit; i++){
-
-                int result = sc2Matches.get(i).getResult();
-
-                int result_player1 = result/10;
-                int result_player2 = result % 10;
-
-                String temp = sc2Matches.get(i).getPlayer1().getIngameName() + " " + result_player1 +":" + result_player2 + " " + sc2Matches.get(i).getPlayer2().getIngameName();
-                newsFeed.add(temp);
+            for(int i = 0; i<tickets.size();i++){
+                betsArray[i] = tickets.get(i).getDate();
             }
 
-            g.setNewsfeed(newsFeed);
+            ListAdapter availableBetsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, betsArray);
 
-            ListView list = (ListView) findViewById(R.id.list_news_feed);
-            ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, newsFeed);
-            list.setAdapter(listAdapter);
+            ListView ticketView = (ListView) findViewById(R.id.listViewBets);
+            ticketView.setAdapter(availableBetsAdapter);
+
+            ticketView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Globals g = (Globals) getApplication();
+                    g.setTicket(g.getTickets().get(position));
+                    Intent i = new Intent(getApplicationContext(), TicketContentActivity.class);
+                    startActivity(i);
+                }
+            });
+        }else{
+            Toast.makeText(MyTicketsActivity.this, "No available tickets found", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     @Override
@@ -174,11 +175,13 @@ public class UserLandingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class GetNewsFeed extends AsyncTask<Void , Void, ArrayList<Sc2Matches>>
-    {
+    private class MyTicketsActivityTask extends AsyncTask<Void, Void, ArrayList<Ticket>>{
+
         @Override
-        protected ArrayList<Sc2Matches> doInBackground(Void... params) {
-            return new LocalClient().getNewsFeed();
+        protected ArrayList<Ticket> doInBackground(Void... params) {
+            Globals g = (Globals) getApplication();
+
+            return new LocalClient().getTicketsByUserId(g.getUser().getId());
         }
     }
 }

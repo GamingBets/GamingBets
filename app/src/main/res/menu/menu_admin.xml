@@ -7,6 +7,8 @@
         android:orderInCategory="100" app:showAsAction="never"/>
     <item android:id="@+id/action_Ticket" android:title="Write a ticket"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id ="@+id/action_MyTickets" android:title="My Tickets"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_TicketAnswer" android:title="Answer a ticket"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_Leaderboard" android:title="Leaderboard"

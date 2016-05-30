@@ -44,6 +44,9 @@ public class HttpManager {
                 if(p.getTicket()!=null){
                     wr.write(p.getTicket());
                 }
+                if(p.getTicketmessage()!=null) {
+                    wr.write(p.getTicketmessage());
+                }
                 wr.flush();
 
             }

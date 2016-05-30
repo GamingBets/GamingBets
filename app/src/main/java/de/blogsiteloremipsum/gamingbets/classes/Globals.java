@@ -25,6 +25,24 @@ public class Globals extends Application{
     private Sc2Tournament tournament;
     private String usereditName = "";
     private ArrayList<String> newsfeed;
+    private Ticket ticket;
+    private ArrayList<Ticket> tickets;
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
+    public ArrayList<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(ArrayList<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public ArrayList<String> getNewsfeed(){
         return this.newsfeed;

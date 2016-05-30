@@ -53,8 +53,11 @@ public interface ClientMethods {
 
     ArrayList<Sc2Matches> getNewsFeed();
 
-    ArrayList<TicketMessages> getTicketMessages();
+    ArrayList<TicketMessages> getTicketMessages(int id);
 
     boolean sendTicketMessage(TicketMessages message);
 
-}
+
+    ArrayList<Ticket> getTicketsByUserId(int id);
+
+    }

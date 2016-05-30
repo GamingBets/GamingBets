@@ -16,30 +16,54 @@ public class TicketFromJSONParser {
 
     public static ArrayList<Ticket> parseFeed(String content){
 
-        try {
+        if(content.startsWith("{\"ticket\":[")) {
+            try {
 
-            ArrayList<Ticket> ticketList = new ArrayList<>();
-            JSONArray ar;
-            JSONObject parentobj = new JSONObject(content);
-            ar = parentobj.getJSONArray("ticket");
+                ArrayList<Ticket> ticketList = new ArrayList<>();
+                JSONArray ar;
+                JSONObject parentobj = new JSONObject(content);
+                ar = parentobj.getJSONArray("ticket");
 
-            for (int i = 0; i < ar.length(); i++) {
+                for (int i = 0; i < ar.length(); i++) {
 
-                JSONObject obj = ar.getJSONObject(i);
-                Ticket ticket = new Ticket();
-                ticket.setId(obj.getInt("id"));
-                ticket.setStatus(obj.getInt("status"));
-                ticket.setUserId(obj.getInt("userId"));
-                ticket.setDate(obj.getString("date"));
+                    JSONObject obj = ar.getJSONObject(i);
+                    Ticket ticket = new Ticket();
+                    ticket.setId(obj.getInt("id"));
+                    ticket.setStatus(obj.getInt("status"));
+                    ticket.setUserId(obj.getInt("userId"));
+                    ticket.setDate(obj.getString("date"));
 
-                ticketList.add(ticket);
+                    ticketList.add(ticket);
+                }
+
+                return ticketList;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
             }
+        }else {
+            try {
 
-            return ticketList;
+                ArrayList<Ticket> ticketList = new ArrayList<>();
+                JSONObject parentobj = new JSONObject(content);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+                    JSONObject obj = parentobj.getJSONObject("ticket");
+                    Ticket ticket = new Ticket();
+                    ticket.setId(obj.getInt("id"));
+                    ticket.setStatus(obj.getInt("status"));
+                    ticket.setUserId(obj.getInt("userId"));
+                    ticket.setDate(obj.getString("date"));
+
+                    ticketList.add(ticket);
+
+
+                return ticketList;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
     }

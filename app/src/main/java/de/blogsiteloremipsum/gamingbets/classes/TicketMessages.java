@@ -1,5 +1,7 @@
 package de.blogsiteloremipsum.gamingbets.classes;
 
+import java.io.Serializable;
+
 /**
  * Created by Andre on 24.05.2016.
  */

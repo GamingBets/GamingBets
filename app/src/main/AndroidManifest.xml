@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.blogsiteloremipsum.gamingbets" >
+    package="de.blogsiteloremipsum.gamingbets">
 
     <!-- To auto-complete the email text field in the login form with the UserModel's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -15,11 +15,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.Welcome"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -82,10 +82,18 @@
             android:parentActivityName=".activity.UserLandingActivity" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:label="See your Profile" >
-        </activity>
-        <activity android:name=".activity.UnlocksActivity" >
-        </activity>
+            android:label="See your Profile"
+            android:parentActivityName=".activity.UserLandingActivity"/>
+        <activity android:name=".activity.UnlocksActivity" />
+        <activity
+            android:name=".activity.MyTicketsActivity"
+            android:label="My Tickets"
+            android:parentActivityName=".activity.UserLandingActivity"/>
+        <activity
+            android:name=".activity.TicketContentActivity"
+            android:label="Messages"
+            android:parentActivityName=".activity.MyTicketsActivity"
+            />
     </application>
 
 </manifest>

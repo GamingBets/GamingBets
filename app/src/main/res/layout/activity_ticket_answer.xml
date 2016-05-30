@@ -8,42 +8,10 @@
     tools:context="de.blogsiteloremipsum.gamingbets.activity.TicketAnswerActivity">
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewBets"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:weightSum="1">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewDetails"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.05" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/textViewContent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.37" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="118dp"
-            android:id="@+id/editTextAnswer"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/sendAnswer"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.05"
-            android:onClick="sendAnswer" />
-    </LinearLayout>
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

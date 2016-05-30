@@ -7,8 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,36 +27,53 @@ import de.blogsiteloremipsum.gamingbets.communication.clientREST.LocalClient;
 
 public class TicketAnswerActivity extends AppCompatActivity {
 
-    Ticket t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_answer);
 
-        TextView messageContent = (TextView) findViewById(R.id.textViewContent);
-        TextView head = (TextView) findViewById(R.id.textViewDetails);
-        ArrayList<Ticket> allTickets = null;
-        try {
-            allTickets = new getTicketTask().execute().get();
+        Globals g = (Globals) getApplication();
+        User u = g.getUser();
+
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        tickets = null;
+
+        try{
+            tickets = new TicketAnswerActivityTask().execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        if(allTickets.size()!=0){
-            t = allTickets.get(0);
-            String text = "Ticket ID: " + t.getId() + " UserModel ID: " + t.getUserId() + " Date: " +t.getDate();
-            head.setText(text);
+
+        if(tickets!=null){
+            g.setTickets(tickets);
+
+            String[] betsArray = new String [tickets.size()];
+
+            for(int i = 0; i<tickets.size();i++){
+                betsArray[i] = tickets.get(i).getDate();
+            }
+
+            ListAdapter availableBetsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, betsArray);
+
+            ListView ticketView = (ListView) findViewById(R.id.listViewBets);
+            ticketView.setAdapter(availableBetsAdapter);
+
+            ticketView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Globals g = (Globals) getApplication();
+                    g.setTicket(g.getTickets().get(position));
+                    Intent i = new Intent(getApplicationContext(), TicketContentActivity.class);
+                    startActivity(i);
+                }
+            });
         }else{
-            messageContent.setText("No Tickets need to be answered");
-            EditText ticketAnswer = (EditText) findViewById(R.id.editTextAnswer);
-            ticketAnswer.setVisibility(View.INVISIBLE);
-            Button sendAnswer = (Button) findViewById(R.id.sendAnswer);
-            sendAnswer.setVisibility(View.INVISIBLE);
+            Toast.makeText(TicketAnswerActivity.this, "No available tickets found", Toast.LENGTH_SHORT).show();
         }
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,7 +97,7 @@ public class TicketAnswerActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_PlaceBet){
-            Intent intentPlaceBet = new Intent(getApplicationContext(), AvailableSc2Bets.class);
+            Intent intentPlaceBet = new Intent(getApplicationContext(), ChooseSc2TournamentActivity.class);
             startActivity(intentPlaceBet);
             return true;
         }
@@ -134,44 +155,35 @@ public class TicketAnswerActivity extends AppCompatActivity {
             startActivity(intentMyBets);
             return true;
         }
+        if(id==R.id.action_Profile){
+            Intent intentProfile = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intentProfile);
+            return true;
+        }
+        if(id==R.id.action_Unlock){
+            Intent intentUnlock = new Intent(getApplicationContext(), UnlocksActivity.class);
+            startActivity(intentUnlock);
+            return true;
+        }
+        if(id==R.id.action_MyTickets) {
+            Intent intentMyTickets = new Intent(getApplicationContext(), MyTicketsActivity.class);
+            startActivity(intentMyTickets);
+            return true;
+        }
+
+
 
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendAnswer(View view) {
-
-        EditText ticketAnswer = (EditText) findViewById(R.id.editTextAnswer);
-        String answer = ticketAnswer.getText().toString();
-
-        t.setStatus(1);
-        new sendTicketAnswerTask().execute(t);
-        Intent i = new Intent(getApplicationContext(), TicketAnswerActivity.class);
-        startActivity(i);
-    }
-
-
-    private class getTicketTask extends AsyncTask<Void, Void, ArrayList<Ticket>> {
+    private class TicketAnswerActivityTask extends AsyncTask<Void, Void, ArrayList<Ticket>>{
 
         @Override
         protected ArrayList<Ticket> doInBackground(Void... params) {
             Globals g = (Globals) getApplication();
-            LocalClient client = g.getClient();
-            return client.getTickets();
-        }
-    }
 
-    private class sendTicketAnswerTask extends AsyncTask<Ticket, Void, Boolean>{
-
-        @Override
-        protected Boolean doInBackground(Ticket... params) {
-            Globals g = (Globals) getApplication();
-            return g.getClient().setStatus(params[0]);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            Toast.makeText(TicketAnswerActivity.this, "Ticket answered", Toast.LENGTH_SHORT).show();
+            return new LocalClient().getTickets();
         }
     }
 }

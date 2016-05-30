@@ -180,11 +180,26 @@ public class LocalClient implements ClientMethods {
         return null;
     }
 
+    public User getUser(int id) {
+        RequestPackage p = new RequestPackage();
+        p.setUri("/users/" + id);
+        p.setMethod("GET");
+        String content = HttpManager.getData(p);
+        if(content!=null){
+            User u = UserSpecificFromJSONParser.parseFeed(content);
+            Log.d("User got:", u.getUserName());
+            Log.d("User Score:", ""+u.getScore());
+
+            return u;
+        }
+        return null;
+    }
+
     @Override
     public ArrayList<Ticket> getTickets() {
         RequestPackage p = new RequestPackage();
         p.setMethod("GET");
-        p.setUri("/tickets");
+        p.setUri("/ticket");
         return TicketFromJSONParser.parseFeed(HttpManager.getData(p));
     }
 

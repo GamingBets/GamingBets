@@ -52,10 +52,17 @@ public class TicketContentActivity extends AppCompatActivity {
             String[] ticketsArray = new String [tickets.size()];
 
             for(int i = 0; i<tickets.size();i++){
-                if(tickets.get(i).getUserId()==u.getId())  {
+                /*if(tickets.get(i).getUserId()==u.getId())  {
                     ticketsArray[i] = u.getUserName()+": ";
                 } else {
                     ticketsArray[i] = "Admin: ";
+                }*/
+                try {
+                    ticketsArray[i] = tickets.get(i).getDatetime() +" " +new getUserTask().execute(tickets.get(i).getUserId()).get().getUserName() + ": ";
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
                 }
                 ticketsArray[i] += tickets.get(i).getContent();
                 System.out.println("!!!!!!!!"+ticketsArray[i]);
@@ -79,7 +86,7 @@ public class TicketContentActivity extends AppCompatActivity {
         EditText message = (EditText) findViewById(R.id.editText_ticketMessage);
         TicketMessages newMessage = new TicketMessages();
         newMessage.setContent(message.getText().toString());
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:m:s");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:mm:ss");
         String date = format1.format(Calendar.getInstance().getTime());
         newMessage.setDatetime(date);
 
@@ -210,6 +217,15 @@ public class TicketContentActivity extends AppCompatActivity {
         protected Void doInBackground(TicketMessages... params) {
             new LocalClient().sendTicketMessage(params[0]);
             return null;
+        }
+    }
+
+    private class getUserTask extends AsyncTask<Integer, Void, User> {
+
+        @Override
+        protected User doInBackground(Integer... params) {
+           return new LocalClient().getUser(params[0]);
+
         }
     }
 }

@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirm Changes"
-            android:id="@+id/button3"
+            android:id="@+id/btn_confirmChanges"
             android:layout_gravity="center_horizontal"
             android:onClick="submitChange" />
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirm Password"
-            android:id="@+id/confirmButton"
+            android:id="@+id/btn_confirmPW"
             android:layout_gravity="center_horizontal"
             android:onClick="submitPW" />
 

@@ -318,7 +318,7 @@ public class EditUserActivity extends AppCompatActivity {
 
             if (b) {
                 new RefreshUserTask().execute();
-                Toast.makeText(EditUserActivity.this, "UserModel edited", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditUserActivity.this, "UserModel edited", Toast.LENGTH_LONG).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
 

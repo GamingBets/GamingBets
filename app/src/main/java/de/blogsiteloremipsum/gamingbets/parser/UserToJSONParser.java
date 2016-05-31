@@ -22,6 +22,8 @@ public class UserToJSONParser {
             obj.put("admin", false);
             obj.put("active", true);
             obj.put("bets", "");
+            obj.put("profile_pic", "-1");
+            obj.put("unlocks", "0000000000");
 
             return obj.toString();
 

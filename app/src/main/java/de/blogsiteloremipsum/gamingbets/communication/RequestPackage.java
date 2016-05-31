@@ -23,6 +23,7 @@ public class RequestPackage {
     public RequestPackage(){
         uri = "http://134.255.218.20:8080/gamingBetRestServer/api";
         //uri = "http://192.168.204.1:8080/gamingBetRestServer/api";
+        //uri="http://localhost:8080/gamingBetRestServer/api";
     }
 
     public String getTicketmessage() {

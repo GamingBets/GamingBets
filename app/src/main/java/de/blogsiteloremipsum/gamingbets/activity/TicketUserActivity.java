@@ -42,7 +42,7 @@ public class TicketUserActivity extends AppCompatActivity {
         Globals g = (Globals) getApplication();
         User u = g.getUser();
 
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:m:s");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:mm:ss");
         String date = format1.format(Calendar.getInstance().getTime());
         Ticket ticket = new Ticket();
         ticket.setUserId(u.getId());

@@ -96,12 +96,12 @@ public class RegisterActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b){
             TextView Status = (TextView) findViewById(R.id.Status);
             if (b){
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             }
             else{
-                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Registered", Toast.LENGTH_LONG).show();
 
             }
         }

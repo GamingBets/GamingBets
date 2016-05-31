@@ -55,9 +55,9 @@ public class ManageUserActivity extends AppCompatActivity {
             AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    String tvShowPicked = "You selected" + String.valueOf(adapterView.getItemAtPosition(position));
+                    String tvShowPicked = "You selected " + String.valueOf(adapterView.getItemAtPosition(position));
 
-                    Toast.makeText(ManageUserActivity.this, tvShowPicked, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManageUserActivity.this, tvShowPicked, Toast.LENGTH_LONG).show();
                     Globals g = (Globals) getApplication();
                     g.setUsereditName(users.get(position).getUserName());
                     Intent i = new Intent(getApplicationContext(), EditUserActivity.class);

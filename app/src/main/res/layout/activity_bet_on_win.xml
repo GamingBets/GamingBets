@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:text="Place bet"
             android:onClick="placeBetOnClick"
-            android:id="@+id/button"
+            android:id="@+id/btn_PlaceBet"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

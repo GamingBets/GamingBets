@@ -109,7 +109,9 @@ public class PlacebetActivity extends AppCompatActivity {
             bet.setBettedResult(2);
         }
 
+        String output_message = "Bet placed!";
         if (wager_flag.isChecked()){
+            output_message = "Wager Bet placed!";
             bet.setInput(sb.getProgress()+10);
             User u = g.getUser();
             u.setScore(u.getScore()-bet.getInput());
@@ -123,7 +125,7 @@ public class PlacebetActivity extends AppCompatActivity {
         bet.setProcessed(false);
         bet.setStatus(0);
         new PlaceBetTask().execute(bet);
-        Toast.makeText(PlacebetActivity.this, "Bet placed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PlacebetActivity.this, output_message, Toast.LENGTH_LONG).show();
         Intent i = new Intent(getApplicationContext(), AvailableSc2Bets.class);
         startActivity(i);
     }

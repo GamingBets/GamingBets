@@ -1,8 +1,7 @@
-@manageuserdata
-Feature: Manage User Data
+@support
+Feature: Give Support
 
-  @this
-  Scenario: Manage Data
+  Scenario: Give Support
     Given I wait for the "Welcome" screen to appear
     When I press "Login"
     And I enter "admin" into input field number 1
@@ -10,9 +9,8 @@ Feature: Manage User Data
     And I press "LoginButton"
     And I wait for "Login successful" to appear
     And I press the menu key
-    And I press "Manage userModel data"
-    And I press "reg1"
-    And I wait for "You Selectedreg1"
-    And I press "Confirm Changes"
-    Then I should see "User edited"
-
+    And I press "Answer a ticket"
+    And I enter "Solution 1" into input field number 1
+    And I go back
+    And I press "Send"
+    Then I should see "Ticket answered"

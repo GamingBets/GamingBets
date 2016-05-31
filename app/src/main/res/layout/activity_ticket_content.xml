@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/listViewBets"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toLeftOf="@+id/button_sendTicketMessage"
+        android:layout_toStartOf="@+id/button_sendTicketMessage" />
 
     <EditText
         android:layout_width="match_parent"
@@ -30,11 +31,25 @@
         android:layout_height="wrap_content"
         android:text="Send"
         android:id="@+id/button_sendTicketMessage"
+        android:nestedScrollingEnabled="false"
+        android:onClick="sendTicketMessage"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close Ticket"
+        android:id="@+id/button_CloseTicket"
+        android:textSize="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:nestedScrollingEnabled="false"
-        android:onClick="sendTicketMessage" />
+        android:layout_toRightOf="@+id/listViewBets"
+        android:layout_toEndOf="@+id/listViewBets"
+        android:onClick="closeTicket" />
 
 
 </RelativeLayout>

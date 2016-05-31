@@ -323,4 +323,13 @@ public class LocalClient implements ClientMethods {
         HttpManager.getData(p);
         return true;
     }
+
+    public boolean closeTicket(Ticket ticket) {
+        RequestPackage p = new RequestPackage();
+        p.setMethod("PUT");
+        p.setUri("/ticket/"+ticket.getId());
+        p.setTicket(TicketToJSONParser.parseFeed(ticket));
+        HttpManager.getData(p);
+        return true;
+    }
 }

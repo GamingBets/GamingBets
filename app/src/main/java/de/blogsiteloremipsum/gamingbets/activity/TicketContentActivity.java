@@ -14,9 +14,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import de.blogsiteloremipsum.gamingbets.R;
@@ -52,21 +54,20 @@ public class TicketContentActivity extends AppCompatActivity {
             String[] ticketsArray = new String [tickets.size()];
 
             for(int i = 0; i<tickets.size();i++){
-                /*if(tickets.get(i).getUserId()==u.getId())  {
-                    ticketsArray[i] = u.getUserName()+": ";
-                } else {
-                    ticketsArray[i] = "Admin: ";
-                }*/
                 try {
-                    ticketsArray[i] = tickets.get(i).getDatetime() +" " +new getUserTask().execute(tickets.get(i).getUserId()).get().getUserName() + ": ";
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd H:mm:ss");
+                    Date date = format1.parse(tickets.get(i).getDatetime());
+                    format1 = new SimpleDateFormat("H:mm:ss");
+                    String time = format1.format(date.getTime());
+                    ticketsArray[i] = time +" " +new getUserTask().execute(tickets.get(i).getUserId()).get().getUserName() + ": ";
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
                 ticketsArray[i] += tickets.get(i).getContent();
-                System.out.println("!!!!!!!!"+ticketsArray[i]);
-                System.out.println(i);
             }
 
             ListAdapter availableBetsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ticketsArray);
@@ -95,6 +96,18 @@ public class TicketContentActivity extends AppCompatActivity {
 
         new sendTicketTask().execute(newMessage);
         Intent intent = new Intent(getApplicationContext(), TicketContentActivity.class);
+        startActivity(intent);
+    }
+
+    public void closeTicket(View view) {
+
+        Globals g = (Globals) getApplication();
+        Ticket ticket = g.getTicket();
+        ticket.setStatus(0);
+
+        new closeTicketTask().execute(ticket);
+
+        Intent intent = new Intent(getApplicationContext(), UserLandingActivity.class);
         startActivity(intent);
     }
 
@@ -226,6 +239,15 @@ public class TicketContentActivity extends AppCompatActivity {
         protected User doInBackground(Integer... params) {
            return new LocalClient().getUser(params[0]);
 
+        }
+    }
+
+    private class closeTicketTask extends AsyncTask<Ticket, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Ticket... params) {
+            new LocalClient().closeTicket(params[0]);
+            return null;
         }
     }
 }

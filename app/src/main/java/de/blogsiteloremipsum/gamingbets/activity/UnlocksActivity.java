@@ -52,7 +52,7 @@ public class UnlocksActivity extends AppCompatActivity implements PurchaseDialog
                 Globals g = (Globals) getApplication();
 
                 if (g.getUser().getScore()-50<0){
-                    Toast.makeText(UnlocksActivity.this, "You don´t have enough points to Purchase this Item, you need 50 points to unlock this one.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UnlocksActivity.this, "You don´t have enough points to Purchase this Item, you need 50 points to unlock this one.", Toast.LENGTH_LONG).show();
                 }else {
                     PurchaseDialogFragment dialog = PurchaseDialogFragment.newInstance(g.getUser().getScore() - 50, position, g.getUser().getUnlocks());
                     dialog.show(getSupportFragmentManager(), "purchase_dialog");

@@ -228,7 +228,7 @@ public class EditUserActivity extends AppCompatActivity {
             new SubmitChanges().execute(u);
 
         }else{
-            Toast.makeText(EditUserActivity.this, "Passwords don´t match!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditUserActivity.this, "Passwords don´t match!", Toast.LENGTH_LONG).show();
         }
 
 

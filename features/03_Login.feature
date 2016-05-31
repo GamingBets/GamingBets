@@ -1,3 +1,4 @@
+@Login
 Feature: Login
 
   Scenario Outline: Login Success
@@ -8,12 +9,12 @@ Feature: Login
     And I enter "<Password>" into input field number 2
     And I press the enter button
     And I press "LoginButton"
-    Then I should see "Login successful"
+    Then I should see "Hello <User>"
 
     Examples:
       | User  | Password |
       | admin | admin    |
-      | Felix | pass     |
+      | featuretest | test    |
 
 
   Scenario Outline: LogIn Failed

@@ -10,7 +10,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,8 +24,17 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="384dp"
             android:id="@+id/list_news_feed" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="All data about matches is under CC BY-SA Licence and is provided by http://wiki.teamliquid.net/ !"
+            android:id="@+id/txt_data_information"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.76" />
     </LinearLayout>
 
 </RelativeLayout>

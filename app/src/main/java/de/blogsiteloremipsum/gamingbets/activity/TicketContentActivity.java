@@ -95,6 +95,7 @@ public class TicketContentActivity extends AppCompatActivity {
         newMessage.setTicketId(g.getTicket());
 
         new sendTicketTask().execute(newMessage);
+        Toast.makeText(TicketContentActivity.this, "Answer sent", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getApplicationContext(), TicketContentActivity.class);
         startActivity(intent);
     }

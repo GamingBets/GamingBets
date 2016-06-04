@@ -8,7 +8,7 @@ Feature: Give Feedback
     And I enter "featuretest" into input field number 1
     And I enter "test" into input field number 2
     And I press "LoginButton"
-    And I wait for "Felix" to appear
+    And I wait for "Hello featuretest" to appear
     And I press the menu key
     And I press "Write a ticket"
     And I enter "<Ticket>" into input field number 1

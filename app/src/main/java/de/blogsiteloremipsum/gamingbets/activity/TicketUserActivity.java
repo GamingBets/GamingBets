@@ -180,7 +180,7 @@ public class TicketUserActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b){
             TextView Status = (TextView) findViewById(R.id.Status);
             if(b) {
-                Toast.makeText(TicketUserActivity.this, "Ticket sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TicketUserActivity.this, "Ticket sent", Toast.LENGTH_LONG).show();
                 Intent intentUser = new Intent(getApplicationContext(), UserLandingActivity.class);
                 startActivity(intentUser);
             }

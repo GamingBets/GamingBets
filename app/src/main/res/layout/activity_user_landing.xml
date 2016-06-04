@@ -24,8 +24,9 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="384dp"
-            android:id="@+id/list_news_feed" />
+            android:layout_height="291dp"
+            android:id="@+id/list_news_feed"
+            android:layout_weight="0.33" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -34,7 +35,8 @@
             android:text="All data about matches is under CC BY-SA Licence and is provided by http://wiki.teamliquid.net/ !"
             android:id="@+id/txt_data_information"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.76" />
+            android:layout_weight="0.76"
+            android:gravity="center_vertical|center_horizontal" />
     </LinearLayout>
 
 </RelativeLayout>
